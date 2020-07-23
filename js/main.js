@@ -1,3 +1,14 @@
+//sideBar button
+
+$(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+});
+
 //Este es el metodo de imprimir el div por el Id
 function Imprimir(divId)
 {
@@ -9,3 +20,5 @@ function Imprimir(divId)
     ventimp.close();
     
 }
+
+
