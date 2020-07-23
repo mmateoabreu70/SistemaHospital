@@ -2,7 +2,7 @@
 
 //Clase para conectar a la base de datos
 
-class conexion
+class Conexion
 {
     static $con = null;
     public $instancia = null;

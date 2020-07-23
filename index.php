@@ -1,9 +1,9 @@
 <?php
-include("libreria/includes.php");
+include_once("libreria/includes.php");
 
 ?>
 
 
 
 
-<?php include("libreria/foot.php") ?>
+<?php include_once("libreria/foot.php") ?>
