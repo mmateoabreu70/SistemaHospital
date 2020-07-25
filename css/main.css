@@ -2,6 +2,15 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+#main {
+    width: 100%;
+    height: 100%;
+    background-color: #F8F9FA;
+    padding: 20px;
+    border-radius: 15px;
+    opacity: 0.97;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
