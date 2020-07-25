@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 23-07-2020 a las 02:48:35
--- Versión del servidor: 8.0.18
--- Versión de PHP: 7.3.11
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 24-07-2020 a las 04:02:11
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,8 +31,8 @@ CREATE TABLE `citas` (
   `id` int(11) NOT NULL,
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
-  `duracion` varchar(10) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `duracion` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,13 +41,20 @@ CREATE TABLE `citas` (
 --
 
 CREATE TABLE `pacientes` (
-  `cedula` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `apellido` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nacimiento` date NOT NULL,
-  `tipoSangre` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telefono` varchar(12) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cedula` varchar(13) NOT NULL,
+  `nombre` varchar(60) DEFAULT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
+  `nacimiento` date DEFAULT NULL,
+  `tipoSangre` char(5) DEFAULT NULL,
+  `telefono` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pacientes`
+--
+
+INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSangre`, `telefono`) VALUES
+('1264546', 'katherin', 'soto', '2020-07-08', 'b+', '809-969-9898');
 
 -- --------------------------------------------------------
 
@@ -58,8 +64,8 @@ CREATE TABLE `pacientes` (
 
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
-  `rol` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rol` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -78,12 +84,12 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL,
-  `nombre` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `apellido` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `usuario` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pass` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nombre` varchar(60) DEFAULT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
+  `usuario` varchar(30) DEFAULT NULL,
+  `pass` varchar(100) DEFAULT NULL,
   `tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -94,12 +100,12 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `visitas` (
   `idVisita` int(11) NOT NULL,
   `fecha` date NOT NULL COMMENT 'Esta es la fecha en la que se registra la visita.',
-  `motivo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `comentario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `receta` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `motivo` varchar(150) NOT NULL,
+  `comentario` text NOT NULL,
+  `receta` varchar(150) NOT NULL,
   `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
-  `cedula` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cedula` varchar(13) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
