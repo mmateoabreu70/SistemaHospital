@@ -1,13 +1,4 @@
 <?php
-<<<<<<< Updated upstream
-include_once("libreria/includes.php");
-
-$errorMsg = "";
-
-?>
-
-<div id="back-div">
-=======
 session_start();
 include_once("libreria/objetos/login.php");
 
@@ -57,17 +48,12 @@ if($_POST)
 </head>
 <body style="background-image: url('source/background-login.jpg');">
 
->>>>>>> Stashed changes
     <div id="main-div">
         <form action="" method="post">
             <div class="container">
                 <h3>Acceder</h3>
             </div>
-<<<<<<< Updated upstream
-            <span class="invalid-feedback"><?php echo $errorMsg; ?></span>
-=======
             <span class="errorMsg"><?php echo $errorMsg; ?></span>
->>>>>>> Stashed changes
             <div class="form-group col-12">
                 <label for="usuario">Usuario</label>
                 <input type="text" class="form-control form-control-sm" id="usuario" name="usuario" value="<?php echo $usuario; ?>">
@@ -83,12 +69,7 @@ if($_POST)
             </div>
         </form>
     </div>
-<<<<<<< Updated upstream
-</div>
-
-<?php include_once("libreria/foot.php"); ?>
-=======
 
 </body>
 </html>
->>>>>>> Stashed changes
+
