@@ -1,6 +1,7 @@
 <?php
 
 //Clase para conectar a la base de datos
+include_once("libreria/db/config.php");
 
 class Conexion
 {

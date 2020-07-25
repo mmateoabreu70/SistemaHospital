@@ -71,6 +71,7 @@
 
         <!--Contenido de la pagina-->
         <div id="content">
+<<<<<<< Updated upstream
             <nav class="navbar navbar-expand navbar-light bg-light" >
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="">
@@ -89,8 +90,34 @@
 
                 </div>
             </nav>
+<<<<<<< HEAD
 
             <div id="main">
             
+=======
+=======
+
+            <?php if(isset($_SESSION['user'])){ ?>
+                <nav class="navbar navbar-expand navbar-light bg-light" >
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="">
+                            <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
+                            <span>Menu</span>
+                        </button>
+
+                        <a class="navbar-brand mb-0 h1" href="#">
+                            <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
+                            Sistema Hospital
+                        </a>
+
+                        <a href="funciones.php?accion=logout" class="ml-auto">
+                            <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
+                        </a>
+
+                    </div>
+                </nav>
+            <?php } ?>
+>>>>>>> Stashed changes
+>>>>>>> master
     
 
