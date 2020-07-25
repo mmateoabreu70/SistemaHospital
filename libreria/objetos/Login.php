@@ -47,7 +47,7 @@ class Login
                 $_SESSION['apellido'] = $fila[2];
                 $_SESSION['user'] = $fila[3];
                 $_SESSION['pass'] = $fila[4];
-                $_SESSION['tipo'] = $fila[5];
+                $_SESSION['rol'] = $fila[5];
 
                 return true;
             } else {

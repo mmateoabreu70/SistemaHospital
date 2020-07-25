@@ -39,14 +39,14 @@
 
             <ul class="list-unstyled components">
                 <div id="sidebar-subheader">
-                    <p>Administrador</p>
+                    <p><?php echo $_SESSION['rol'] ?></p>
                 </div>   
 
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrar usuarios</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#" class="subOpcion">Home 1</a>
+                            <a href="CrearUsuario.php" class="subOpcion">Crear usuario</a>
                         </li>
                         <li>
                             <a href="#" class="subOpcion">Home 2</a>
@@ -94,5 +94,7 @@
                     </div>
                 </nav>
             <?php } ?>
+
+            <div id="main">
     
 
