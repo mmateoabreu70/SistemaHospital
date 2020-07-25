@@ -1,14 +1,24 @@
 /* Login */
+<<<<<<< Updated upstream
 #back-div {
     width: 100%;
     height: 100%;
     background-color: red;
+=======
+body {
+    background-image: url("../source/background-login.png");
+    background-size: cover;
+>>>>>>> Stashed changes
 }
 
 #main-div {
     background: #F8F9FA;
     width: 400px;
+<<<<<<< Updated upstream
     height: 330px;
+=======
+    height: 360px;
+>>>>>>> Stashed changes
     padding: 30px;
     border-radius: 7px;
     margin: 9% auto;
