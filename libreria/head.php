@@ -20,6 +20,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+    <style>
+        body {
+            background-image: url('source/background-login.jpg');
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">
@@ -66,6 +71,7 @@
 
         <!--Contenido de la pagina-->
         <div id="content">
+<<<<<<< Updated upstream
             <nav class="navbar navbar-expand navbar-light bg-light" >
                 <div class="container-fluid">
                     <button type="button" id="sidebarCollapse" class="">
@@ -84,5 +90,28 @@
 
                 </div>
             </nav>
+=======
+
+            <?php if(isset($_SESSION['user'])){ ?>
+                <nav class="navbar navbar-expand navbar-light bg-light" >
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="">
+                            <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
+                            <span>Menu</span>
+                        </button>
+
+                        <a class="navbar-brand mb-0 h1" href="#">
+                            <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
+                            Sistema Hospital
+                        </a>
+
+                        <a href="funciones.php?accion=logout" class="ml-auto">
+                            <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
+                        </a>
+
+                    </div>
+                </nav>
+            <?php } ?>
+>>>>>>> Stashed changes
     
 
