@@ -1,0 +1,27 @@
+/* Login */
+#back-div {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
+#main-div {
+    background: #F8F9FA;
+    width: 400px;
+    height: 330px;
+    padding: 30px;
+    border-radius: 7px;
+    margin: 9% auto;
+}
+
+#main-div h3 {
+    text-align: center;
+}
+
+#main-div form {
+    margin: 10px;
+}
+
+#main-div button {
+    margin: 5px auto;
+}

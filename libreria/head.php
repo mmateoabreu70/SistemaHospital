@@ -10,6 +10,7 @@
     <script src="js/main.js"></script>
 
     <!--css-->
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/main.css">
 
     <!-- Bootstrap css -->
@@ -23,6 +24,7 @@
 </head>
 <body>
     <div class="wrapper">
+
         <!--Barra lateral-->
         <nav id="sidebar">
             <div class="sidebar-header">
@@ -66,23 +68,26 @@
 
         <!--Contenido de la pagina-->
         <div id="content">
-            <nav class="navbar navbar-expand navbar-light bg-light" >
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="">
-                        <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
-                        <span>Menu</span>
-                    </button>
 
-                    <a class="navbar-brand mb-0 h1" href="#">
-                        <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
-                        Sistema Hospital
-                    </a>
+            <?php if(isset($_SESSION['user'])){ ?>
+                <nav class="navbar navbar-expand navbar-light bg-light" >
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="">
+                            <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
+                            <span>Menu</span>
+                        </button>
 
-                    <a href="#" class="ml-auto">
-                        <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
-                    </a>
+                        <a class="navbar-brand mb-0 h1" href="#">
+                            <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
+                            Sistema Hospital
+                        </a>
 
-                </div>
-            </nav>
+                        <a href="#" class="ml-auto">
+                            <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
+                        </a>
+
+                    </div>
+                </nav>
+            <?php } ?>
     
 
