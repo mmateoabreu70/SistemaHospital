@@ -56,11 +56,11 @@ if($_POST)
             <span class="errorMsg"><?php echo $errorMsg; ?></span>
             <div class="form-group col-12">
                 <label for="usuario">Usuario</label>
-                <input type="text" class="form-control form-control-sm" id="usuario" name="usuario" value="<?php echo $usuario; ?>">
+                <input type="text" class="form-control form-control-sm" id="usuario" name="usuario" value="<?php echo $usuario; ?>" required>
             </div>
             <div class="form-group col-12">
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control form-control-sm" id="password" name="password" value="<?php echo $pass; ?>">
+                <input type="password" class="form-control form-control-sm" id="password" name="password" value="<?php echo $pass; ?>" required>
             </div>
             <div class="form-row text-center">
                 <div class="col-12">
