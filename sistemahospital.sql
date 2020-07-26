@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-07-2020 a las 02:48:35
--- Versión del servidor: 8.0.18
+-- Tiempo de generación: 26-07-2020 a las 03:06:08
+-- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,8 +32,27 @@ CREATE TABLE `citas` (
   `id` int(11) NOT NULL,
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
-  `duracion` varchar(10) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `duracion` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE `estado` (
+  `idEstado` int(11) NOT NULL,
+  `estado` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`idEstado`, `estado`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -42,13 +61,13 @@ CREATE TABLE `citas` (
 --
 
 CREATE TABLE `pacientes` (
-  `cedula` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `nombre` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `apellido` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `cedula` varchar(13) NOT NULL,
+  `nombre` varchar(60) DEFAULT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
   `nacimiento` date NOT NULL,
-  `tipoSangre` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telefono` varchar(12) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `tipoSangre` char(2) DEFAULT NULL,
+  `telefono` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -58,8 +77,8 @@ CREATE TABLE `pacientes` (
 
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
-  `rol` varchar(15) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rol` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -78,12 +97,20 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL,
-  `nombre` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `apellido` varchar(60) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `usuario` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pass` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nombre` varchar(60) DEFAULT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
+  `usuario` varchar(30) DEFAULT NULL,
+  `pass` varchar(100) DEFAULT NULL,
+  `tipo` int(11) NOT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `usuario`, `pass`, `tipo`, `estado`) VALUES
+(1, 'Michael David', 'Mateo Abreu', 'admin', '12345', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -94,12 +121,12 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `visitas` (
   `idVisita` int(11) NOT NULL,
   `fecha` date NOT NULL COMMENT 'Esta es la fecha en la que se registra la visita.',
-  `motivo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `comentario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `receta` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `motivo` varchar(150) NOT NULL,
+  `comentario` text NOT NULL,
+  `receta` varchar(150) NOT NULL,
   `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
-  `cedula` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cedula` varchar(13) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -110,6 +137,12 @@ CREATE TABLE `visitas` (
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`idEstado`);
 
 --
 -- Indices de la tabla `pacientes`
@@ -128,7 +161,8 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`),
-  ADD KEY `tipo` (`tipo`);
+  ADD KEY `tipo` (`tipo`),
+  ADD KEY `estado` (`estado`);
 
 --
 -- Indices de la tabla `visitas`
@@ -138,16 +172,6 @@ ALTER TABLE `visitas`
   ADD KEY `cedula` (`cedula`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -155,7 +179,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `roles` (`idRol`);
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `roles` (`idRol`),
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`estado`) REFERENCES `estado` (`idEstado`);
 
 --
 -- Filtros para la tabla `visitas`
