@@ -12,10 +12,12 @@ if($_POST)
     $errorMsg = "";
     extract($_POST);
 
+
     /* Verificar si coinciden la confirmacion de contraseña */
-    if(!$pass == $confirm)
+    if($pass != $confirm)
     {
         $errorMsg = "Las contraseñas no coinciden";
+
     } else {
 
         /* Insertando valores al objeto */ 
@@ -27,9 +29,10 @@ if($_POST)
         $user->pass = $pass;
         $user->tipo = devolverRol($rol);
 
-        $user->crearUsuario();
-        
-        header("Location: CrearUsuario.php");
+        if($user->crearUsuario())
+        {
+            header("Location: CrearUsuario.php");
+        }
     }
 }
 
@@ -44,11 +47,11 @@ if($_POST)
         <div class="form-row col-12 py-2">
             <div class="col-6">
                 <label for="nombre">Nombres</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $nombre; ?>" >
             </div>
             <div class="col-6">
                 <label for="nombre">Apellidos</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $apellido; ?>" required>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $apellido; ?>" >
             </div>
         </div>
 
@@ -70,18 +73,18 @@ if($_POST)
             </div>
             <div class="col-6">
                 <label for="usuario">Usuario</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $usuario; ?>" required>
+                <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $usuario; ?>" >
             </div>
         </div>
 
         <div class="form-row col-12 py-2">
             <div class="col-6">
                 <label for="pass">Contraseña</label>
-                <input type="password" class="form-control" id="pass" name="pass" value="<?php echo $pass; ?>" required>
+                <input type="password" class="form-control" id="pass" name="pass" value="<?php echo $pass; ?>" >
             </div>
             <div class="col-6">
                 <label for="confirm">Confirmar contraseña</label>
-                <input type="password" class="form-control" id="confirm" name="confirm" value="<?php echo $confirm; ?>" required>
+                <input type="password" class="form-control" id="confirm" name="confirm" value="<?php echo $confirm; ?>" >
             </div>
         </div>
         <div class="container p-3">

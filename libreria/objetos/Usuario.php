@@ -25,16 +25,15 @@ class Usuario
     function crearUsuario()
     {
         $con = Conexion::getInstance();
-        $sql = "INSERT INTO usuarios VALUES ($this->id, '$this->nombre', '$this->apellido', '$this->usuario', '$this->pass', $this->tipo, 1)";
+        $sql = "INSERT INTO usuarios VALUES (0, '$this->nombre', '$this->apellido', '$this->usuario', '$this->pass', $this->tipo, 1)";
         
-        if(!mysqli_query($con, $sql))
+        if(mysqli_query($con, $sql))
         {
-            mysqli_insert_id($con);
-            return false;
+            $this->id = mysqli_insert_id($con);
+            return true;
         }
 
-        return true;
-
+        return false;
     }
 
     function modificarUsuario()
