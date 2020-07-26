@@ -23,7 +23,7 @@ class Login
     {
         $con = Conexion::getInstance();
         $sql = "SELECT idUsuario, nombre, apellido, usuario, pass, rol FROM usuarios
-                INNER JOIN roles ON usuarios.idRol = roles.idRol
+                INNER JOIN roles ON usuarios.idUsuario = roles.idRol
                 WHERE usuario = '$this->user'";
         $result = mysqli_query($con, $sql);
         

@@ -9,9 +9,28 @@ $result = mysqli_query($con, $query);
 
 if($_POST)
 {
+    $errorMsg = "";
     extract($_POST);
 
+    /* Verificar si coinciden la confirmacion de contraseña */
+    if(!$pass == $confirm)
+    {
+        $errorMsg = "Las contraseñas no coinciden";
+    } else {
 
+        /* Insertando valores al objeto */ 
+        $user = new Usuario();
+
+        $user->nombre = $nombre;
+        $user->apellido = $apellido;
+        $user->usuario = $usuario;
+        $user->pass = $pass;
+        $user->tipo = devolverRol($rol);
+
+        $user->crearUsuario();
+        
+        header("Location: CrearUsuario.php");
+    }
 }
 
 ?>
@@ -20,6 +39,7 @@ if($_POST)
     <div class="container p-3">
         <center><h3>Crear usuario</h3></center>
     </div>
+    <span class="errorMsg"><?php echo $errorMsg; ?></span>
     <form method="post">
         <div class="form-row col-12 py-2">
             <div class="col-6">
@@ -35,8 +55,7 @@ if($_POST)
         <div class="form-row col-12 py-2">
             <div class="form-group col-md-6">
                 <label for="rol">Rol de usuario</label>
-                <select id="rol" name="rol" class="form-control" value="<?php echo $rol; ?>" required>
-                    <option selected>Elige un rol...</option>
+                <select id="rol" name="rol" class="form-control" >
                     <?php
 
                         foreach($result as $fila)

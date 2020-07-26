@@ -37,14 +37,6 @@ if($_POST)
     <title>Document</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <style>
-        .errorMsg {
-            color: red;
-            font-weight: bold;
-            padding: 0px 15px;
-            margin: 10px 0px;
-        }
-    </style>
 </head>
 <body style="background-image: url('source/background-login.jpg');">
 

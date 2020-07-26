@@ -1,5 +1,12 @@
 /* Login */
 
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    padding: 0px 15px;
+    margin: 10px 0px;
+}
+
 body {
     background-image: url("../source/background-login.png");
     background-size: cover;
