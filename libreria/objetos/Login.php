@@ -23,8 +23,8 @@ class Login
     {
         $con = Conexion::getInstance();
         $sql = "SELECT idUsuario, nombre, apellido, usuario, pass, rol FROM usuarios
-                INNER JOIN roles ON usuarios.idUsuario = roles.idRol
-                WHERE usuario = '$this->user'";
+                INNER JOIN roles ON usuarios.tipo = roles.idRol
+                WHERE usuario = '$this->user' AND estado = 1";
         $result = mysqli_query($con, $sql);
         
         /* Verificando si no hubo ningun error */ 
@@ -33,13 +33,15 @@ class Login
             return false;
         }
 
-        $fila = $result->fetch_row();
+        $fila = mysqli_fetch_row($result);
 
         /* Verifica si no hay fila vacia, de lo contrario realiza validaciones */
         if($fila == null)
         {
             return false;
+
         } else {
+
             if($this->pass == $fila[4])
             {
                 $_SESSION['id'] = $fila[0];
@@ -51,6 +53,7 @@ class Login
 
                 return true;
             } else {
+
                 return false;
             }
         }

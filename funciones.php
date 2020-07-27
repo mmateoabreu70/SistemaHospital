@@ -17,3 +17,4 @@ function devolverRol($rol)
         return 3;
     }
 }
+

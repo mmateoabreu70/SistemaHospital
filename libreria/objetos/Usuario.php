@@ -5,7 +5,7 @@ class Usuario
 {
     /* Definiendo propiedades de la clase Usuario */
 
-    private $id = 0;
+    private $Id = 0;
     private $nombre = "";
     private $apellido = "";
     private $usuario = "";
@@ -25,42 +25,86 @@ class Usuario
     function crearUsuario()
     {
         $con = Conexion::getInstance();
-        $sql = "INSERT INTO usuarios VALUES (0, '$this->nombre', '$this->apellido', '$this->usuario', '$this->pass', $this->tipo, 1)";
-        
-        if(mysqli_query($con, $sql))
+
+        if($this->existeUsuario())
         {
-            $this->id = mysqli_insert_id($con);
+            $sql = "INSERT INTO usuarios VALUES (0, '$this->nombre', '$this->apellido', '$this->usuario', '$this->pass', $this->tipo, 1)";
+
+            if(mysqli_query($con, $sql))
+            {
+                $this->Id = mysqli_insert_id($con);
+                return true;
+            }
+    
+            return false;
+        }
+        
+        return "Este nombre de usuario ya existe";
+    }
+
+    
+    function modificarUsuario()
+    {
+        $con = Conexion::getInstance();
+
+        if($this->existeUsuario())
+        {
+            $sql = "UPDATE usuarios 
+                    SET nombre = '$this->nombre', apellido = '$this->apellido', usuario = '$this->usuario', pass = '$this->pass', tipo = $this->tipo 
+                    WHERE idUsuario = {$this->Id}";
+
+            if(!mysqli_query($con, $sql))
+            {
+                return false;
+            }
+
             return true;
+        }
+        else {
+            return "Este nombre de usuario ya existe";
         }
 
         return false;
     }
 
-    function modificarUsuario()
-    {
-        $sql = "UPDATE usuarios 
-                SET nombre = '$this->nombre', apellido = '$this->apellido', usuario = '$this->usuario', pass = '$this->pass' 
-                WHERE idUsuario = $this->id";
-        
-        if(!mysqli_query($this->con, $sql))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
 
     function eliminarUsuario()
     {
+        $con = Conexion::getInstance();
+
         $sql = "UPDATE usuarios
                 SET estado = 2
-                WHERE idUsuario = $this->id";
-        if(!mysqli_query($this->con, $sql))
+                WHERE idUsuario = {$this->Id}";
+
+        if(!mysqli_query($con, $sql))
         {
             return false;
         }
 
         return true;
     }
+
+    private function existeUsuario()
+    {
+        /* Verificar si ya existe este nombre de usuario */
+        $con = Conexion::getInstance();
+        $sql = "SELECT usuario 
+                FROM usuarios
+                WHERE usuario = '{$this->usuario}' AND idUsuario != {$this->Id} AND estado = 1";
+
+        $result = mysqli_query($con, $sql);
+
+        if($result != false)
+        {
+            $fila = mysqli_fetch_row($result);
+        }
+
+        if($fila[0] == $this->usuario)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 }

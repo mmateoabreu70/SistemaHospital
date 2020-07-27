@@ -24,6 +24,7 @@
     <style>
         body {
             background-image: url('source/background-login.jpg');
+
         }
     </style>
 </head>
@@ -43,13 +44,13 @@
                 </div>   
 
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrar usuarios</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="CrearUsuario.php" class="subOpcion">Crear usuario</a>
+                            <a href="AdminUsuario.php" class="subOpcion">Administrar</a>
                         </li>
                         <li>
-                            <a href="#" class="subOpcion">Home 2</a>
+                            <a href="CrearUsuario.php" class="subOpcion">Crear usuario</a>
                         </li>
                     </ul>
                 </li>
