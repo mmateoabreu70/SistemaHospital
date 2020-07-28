@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
+<<<<<<< HEAD
 -- Tiempo de generación: 26-07-2020 a las 03:06:08
+=======
+-- Tiempo de generación: 28-07-2020 a las 03:03:46
+>>>>>>> master
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -68,6 +72,38 @@ CREATE TABLE `pacientes` (
   `tipoSangre` char(2) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+<<<<<<< HEAD
+=======
+
+--
+-- Volcado de datos para la tabla `pacientes`
+--
+
+INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSangre`, `telefono`) VALUES
+('001-0605441-4', 'Amadis ', 'Suarez', '1999-04-12', 'A+', '.8092390104');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reportesistema`
+--
+
+CREATE TABLE `reportesistema` (
+  `idReporte` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `evento` int(11) NOT NULL,
+  `usuario` int(11) NOT NULL,
+  `pacienteAfect` varchar(13) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `reportesistema`
+--
+
+INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
+(1, '2020-07-27 22:50:06', 4, 1, NULL),
+(2, '2020-07-27 22:57:22', 4, 1, NULL);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -92,6 +128,32 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipoeventos`
+--
+
+CREATE TABLE `tipoeventos` (
+  `idEvento` int(11) NOT NULL,
+  `evento` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipoeventos`
+--
+
+INSERT INTO `tipoeventos` (`idEvento`, `evento`) VALUES
+(1, 'Iniciar sesión'),
+(2, 'Cerrar sesión'),
+(3, 'Crear usuario'),
+(4, 'Modificar usuario'),
+(5, 'Eliminar usuario'),
+(6, 'Asignar costo de consulta'),
+(7, 'Registrar paciente'),
+(8, 'Asignar cita'),
+(9, 'Registrar visita');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -110,7 +172,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `usuario`, `pass`, `tipo`, `estado`) VALUES
+<<<<<<< HEAD
 (1, 'Michael David', 'Mateo Abreu', 'admin', '12345', 1, 1);
+=======
+(1, 'Michael David', 'Mateo Abreu', 'admin', 'Maicol0502', 1, 1),
+(20, 'Luis Alfredo', 'Pascual', 'luisito', 'luisito01', 2, 1),
+(27, 'Katherine', 'Soto', 'katsoto', 'katsoto01', 3, 1),
+(29, 'Roshby R.', 'Hernandez', 'rosh', 'elflowrosh', 2, 1);
+>>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -151,10 +220,25 @@ ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`cedula`);
 
 --
+-- Indices de la tabla `reportesistema`
+--
+ALTER TABLE `reportesistema`
+  ADD PRIMARY KEY (`idReporte`),
+  ADD KEY `evento` (`evento`),
+  ADD KEY `usuario` (`usuario`),
+  ADD KEY `pacienteAfect` (`pacienteAfect`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`idRol`);
+
+--
+-- Indices de la tabla `tipoeventos`
+--
+ALTER TABLE `tipoeventos`
+  ADD PRIMARY KEY (`idEvento`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -172,8 +256,35 @@ ALTER TABLE `visitas`
   ADD KEY `cedula` (`cedula`);
 
 --
+<<<<<<< HEAD
+=======
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `reportesistema`
+--
+ALTER TABLE `reportesistema`
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+>>>>>>> master
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `reportesistema`
+--
+ALTER TABLE `reportesistema`
+  ADD CONSTRAINT `reportesistema_ibfk_1` FOREIGN KEY (`evento`) REFERENCES `tipoeventos` (`idEvento`),
+  ADD CONSTRAINT `reportesistema_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`idUsuario`),
+  ADD CONSTRAINT `reportesistema_ibfk_3` FOREIGN KEY (`pacienteAfect`) REFERENCES `pacientes` (`cedula`);
 
 --
 -- Filtros para la tabla `usuarios`
