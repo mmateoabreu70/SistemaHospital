@@ -16,11 +16,7 @@
         $user->Id = $_GET['id'];
 
         $user->eliminarUsuario();
-<<<<<<< HEAD
-        header("Location:AdminUsuario.php");
-=======
         header("Location:AdminUsuario.php"); 
->>>>>>> master
     }
 
 ?>

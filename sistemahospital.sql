@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
-<<<<<<< HEAD
--- Tiempo de generación: 26-07-2020 a las 03:06:08
-=======
 -- Tiempo de generación: 28-07-2020 a las 03:03:46
->>>>>>> master
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -72,8 +68,6 @@ CREATE TABLE `pacientes` (
   `tipoSangre` char(2) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-<<<<<<< HEAD
-=======
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -103,7 +97,6 @@ CREATE TABLE `reportesistema` (
 INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
 (1, '2020-07-27 22:50:06', 4, 1, NULL),
 (2, '2020-07-27 22:57:22', 4, 1, NULL);
->>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -172,14 +165,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `usuario`, `pass`, `tipo`, `estado`) VALUES
-<<<<<<< HEAD
-(1, 'Michael David', 'Mateo Abreu', 'admin', '12345', 1, 1);
-=======
 (1, 'Michael David', 'Mateo Abreu', 'admin', 'Maicol0502', 1, 1),
 (20, 'Luis Alfredo', 'Pascual', 'luisito', 'luisito01', 2, 1),
 (27, 'Katherine', 'Soto', 'katsoto', 'katsoto01', 3, 1),
 (29, 'Roshby R.', 'Hernandez', 'rosh', 'elflowrosh', 2, 1);
->>>>>>> master
 
 -- --------------------------------------------------------
 
@@ -256,8 +245,6 @@ ALTER TABLE `visitas`
   ADD KEY `cedula` (`cedula`);
 
 --
-<<<<<<< HEAD
-=======
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -274,7 +261,6 @@ ALTER TABLE `usuarios`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
->>>>>>> master
 -- Restricciones para tablas volcadas
 --
 

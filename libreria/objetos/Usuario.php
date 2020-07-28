@@ -1,9 +1,6 @@
 <?php
 include_once("libreria/db/conexion.php");
-<<<<<<< HEAD
-=======
 include_once("libreria/objetos/ReporteSistema.php");
->>>>>>> master
 
 class Usuario 
 {
@@ -62,11 +59,8 @@ class Usuario
                 return false;
             }
 
-<<<<<<< HEAD
-=======
             $report = new ReporteSistema();
             $report->RegistrarEvento(4);
->>>>>>> master
             return true;
         }
         else {

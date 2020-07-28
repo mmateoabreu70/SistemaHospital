@@ -97,11 +97,8 @@
             <?php } ?>
 
             <div id="main">
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> master
     
 
