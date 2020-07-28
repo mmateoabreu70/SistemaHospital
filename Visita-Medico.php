@@ -2,35 +2,27 @@
 include('libreria/head.php');
 include('libreria/db/conexion.php');
 
-$con = new Conexion::getInstance();
-if ($conexion->connect_errno) {
-    echo "Fallo al conectar a MySQL: (" . $conexion->connect_errno . ") " . $conexion->connect_error;
-}
-$sql="SELECT nombre from pacientes";
-$result = $conexion->query($sql);
-if ($result->num_rows > 0) //si la variable tiene al menos 1 fila entonces seguimos con el codigo
-{
-    $combobit="";
-    while ($row = $result->fetch_array(MYSQLI_ASSOC)) 
-    {
-        $combobit .=" <option value=\"{$row['nombre']}\"></option>"; 
-    }
-}
-else
-{
-    echo "No hubo resultados";
-}
 ?>  
 <html>
 <caption><h1><center>Visitas</caption></h1></center>
     </br>
     <center>
     <form enctype = "multipart/form-data" class="col-md-6" method="post">
-    <select class="form-control form-control-sm" class="col-md-4 " readonly>
-    <?php echo $combobit; ?>
-   
+    <select class="form-control form-control-sm" class="col-md-4 ">
+    <?php 
+    include('libreria/db/conexion.php');
+    $consulta ="SELECT * FROM pacientes";
+    $con=mysqli_query($con,$consulta) or die (mysqli_error($con));
+
+    ?>
+
+    <?php foreach($con as $opciones): ?>
+    <option value="<?php echo $opciones['nombre']?>"><?php echo $opciones['nombre']?></option>
+
+    <?php endforeach  ?>
 
 </select>
+
 </br>
 </br>
 <form>

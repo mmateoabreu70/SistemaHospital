@@ -73,11 +73,7 @@
 
         <!--Contenido de la pagina-->
         <div id="content">
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> master
             <?php if(isset($_SESSION['user'])){ ?>
                 <nav class="navbar navbar-expand navbar-light bg-light" >
                     <div class="container-fluid">
