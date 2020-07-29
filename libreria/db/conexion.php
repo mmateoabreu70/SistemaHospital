@@ -30,7 +30,11 @@ class Conexion
         //Verificando si la conexion ya existe
         if(self::$con == null)
         {
+<<<<<<< HEAD:libreria/db/conexion.php
             self::$con = new conexion();
+=======
+            self::$con = new Conexion();
+>>>>>>> faabcf624cd9c89746aee98b06c5a2198a1a84d3:db/conexion.php
         }
 
         return self::$con->instancia;
