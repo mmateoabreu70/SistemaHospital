@@ -1,0 +1,35 @@
+/* Login */
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    padding: 0px 15px;
+    margin: 10px 0px;
+}
+
+body {
+    background-image: url("../source/background-login.png");
+    background-size: cover;
+
+}
+
+#main-div {
+    background: #F8F9FA;
+    width: 400px;
+    height: 360px;
+    padding: 30px;
+    border-radius: 7px;
+    margin: 9% auto;
+}
+
+#main-div h3 {
+    text-align: center;
+}
+
+#main-div form {
+    margin: 10px;
+}
+
+#main-div button {
+    margin: 5px auto;
+}
