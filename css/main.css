@@ -1,6 +1,11 @@
-/* Sidebar */
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    padding: 0px 15px;
+    margin: 10px 0px;
+}
 
 #main {
     width: 100%;
@@ -9,11 +14,13 @@
     padding: 20px;
     border-radius: 15px;
     opacity: 0.97;
+
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+
 }
 
 p {
@@ -23,6 +30,8 @@ p {
     line-height: 1.7em;
     color: #999;
 }
+
+/* Sidebar */
 
 a,
 a:hover,
