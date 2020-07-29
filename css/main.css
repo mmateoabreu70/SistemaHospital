@@ -2,6 +2,18 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+<<<<<<< HEAD
+=======
+#main {
+    width: 100%;
+    height: 100%;
+    background-color: #F8F9FA;
+    padding: 20px;
+    border-radius: 15px;
+    opacity: 0.97;
+}
+
+>>>>>>> faabcf624cd9c89746aee98b06c5a2198a1a84d3
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
@@ -158,7 +170,11 @@ a.subOpcion:hover {
 
 #content {
     width: 100%;
+<<<<<<< HEAD
     padding: 20px 40px;
+=======
+    padding: 20px 130px;
+>>>>>>> faabcf624cd9c89746aee98b06c5a2198a1a84d3
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
