@@ -34,6 +34,10 @@ class Usuario
             if(mysqli_query($con, $sql))
             {
                 $this->Id = mysqli_insert_id($con);
+
+                $report = new ReporteSistema();
+                $report->RegistrarEvento(3);
+
                 return true;
             }
     
@@ -84,6 +88,8 @@ class Usuario
             return false;
         }
 
+        $report = new ReporteSistema();
+        $report->RegistrarEvento(5);
         return true;
     }
 

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("libreria/db/conexion.php");
+include_once("libreria/objetos/ReporteSistema.php");
 $_SESSION['autorizado'] = false;
 
 
@@ -22,9 +23,9 @@ class Login
     function validarUsuario()
     {
         $con = Conexion::getInstance();
-        $sql = "SELECT idUsuario, nombre, apellido, usuario, pass, rol FROM usuarios
+        $sql = "SELECT idUsuario, nomUser, apellidoUser, user, pass, rol FROM usuarios
                 INNER JOIN roles ON usuarios.tipo = roles.idRol
-                WHERE usuario = '$this->user' AND estado = 1";
+                WHERE user = '$this->user' AND estado = 1";
         $result = mysqli_query($con, $sql);
         
         /* Verificando si no hubo ningun error */ 
@@ -51,6 +52,8 @@ class Login
                 $_SESSION['pass'] = $fila[4];
                 $_SESSION['rol'] = $fila[5];
 
+                $report = new ReporteSistema();
+                $report->RegistrarEvento(1);
                 return true;
             } else {
 
