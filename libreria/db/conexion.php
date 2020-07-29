@@ -30,7 +30,7 @@ class Conexion
         //Verificando si la conexion ya existe
         if(self::$con == null)
         {
-            self::$con = new conexion();
+            self::$con = new Conexion();
         }
 
         return self::$con->instancia;
