@@ -1,31 +1,34 @@
 <?php
-include('libreria/head.php');
-include('libreria/db/conexion.php');
+include('libreria/includes.php');
+$conexion = Conexion::getInstance();
+
+$sql="SELECT cedula,nombre from pacientes";
+$result = $conexion->query($sql);
 
 ?>  
 <html>
 <caption><h1><center>Visitas</caption></h1></center>
     </br>
     <center>
-    <form enctype = "multipart/form-data" class="col-md-6" method="post">
-    <select class="form-control form-control-sm" class="col-md-4 ">
-    <?php 
-    include('libreria/db/conexion.php');
-    $consulta ="SELECT * FROM pacientes";
-    $con=mysqli_query($con,$consulta) or die (mysqli_error($con));
-
+    
+<form enctype = "multipart/form-data" class="col-md-6" method="post">
+  <select class="form-control form-control-sm" class="col-md-4 " readonly>
+    <option selected>Elegir paciente</option>
+    <?php
+      foreach($result as $row)
+      {
+        echo "
+          <option>{$row['cedula']} {$row['nombre']}</option>
+        ";
+      }
     ?>
 
-    <?php foreach($con as $opciones): ?>
-    <option value="<?php echo $opciones['nombre']?>"><?php echo $opciones['nombre']?></option>
+  </select>
 
-    <?php endforeach  ?>
-
-</select>
-
+</form>
 </br>
 </br>
-<form>
+<form enctype = "multipart/form-data" class="col-md-6" method="post">
   <div class="row">
     <div class="col">
     <label for="fechaingreso">Fecha Visita</label>
