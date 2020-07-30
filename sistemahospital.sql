@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 30-07-2020 a las 01:21:40
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.3.11
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 30-07-2020 a las 06:39:49
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -75,7 +74,9 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSangre`, `telefono`) VALUES
-('001-0605441-4', 'Amadis ', 'Suarez', '1999-04-12', 'A+', '.8092390104');
+('001-0605441-4', 'Amadis ', 'Suarez', '1999-04-12', 'A+', '.8092390104'),
+('12345678901', 'Roshby', 'Pajaro', '2001-10-24', 'A+', '8290650438'),
+('40225359641', 'Luis Alfredo', 'Pascual Polanco', '1997-04-23', 'B+', '8298050546');
 
 -- --------------------------------------------------------
 
@@ -109,6 +110,14 @@ CREATE TABLE `reportesistema` (
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `reportesistema`
+--
+
+INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
+(1, '2020-07-29 23:25:13', 1, 20, NULL),
+(2, '2020-07-30 00:10:05', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -285,7 +294,7 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
