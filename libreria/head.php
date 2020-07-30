@@ -78,7 +78,6 @@
                         </ul>
                     </li>
                 <?php endif ?>
-
                 <li class="active">
                     <a href="calendarioCitas.php">Calendario de citas</a>
                 </li>
