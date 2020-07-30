@@ -149,7 +149,7 @@ a[data-toggle="collapse"] {
 }
 
 ul ul a {
-    font-size: 0.9em !important;
+    font-size: 1.0em !important;
     padding-left: 30px !important;
     background: #1b1b1b;
 }
@@ -176,7 +176,7 @@ a.subOpcion:hover {
 
 #content {
     width: 100%;
-    padding: 20px 130px;
+    padding: 20px 90px;
     min-height: 100vh;
     transition: all 0.3s;
     position: absolute;
