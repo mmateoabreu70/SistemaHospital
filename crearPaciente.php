@@ -33,9 +33,13 @@
 
         }else if(isset($_GET['del'])){
             gente::desactivar($_GET['del']);
-        }
-    }
 
+        }
+        
+    }
+      else{
+          header("Location:index.php");
+      }  
 ?>
 <!DOCTYPE html>
 <html lang="en">
