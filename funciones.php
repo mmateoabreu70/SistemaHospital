@@ -1,7 +1,5 @@
 <?php
-session_start();
 include_once("libreria/includes.php");
-
 if($_GET["accion"] == "logout")
 {
     $report = new ReporteSistema();
