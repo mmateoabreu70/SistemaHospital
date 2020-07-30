@@ -470,7 +470,7 @@
         jMask.init(!el.is('input'));
     };
 
-    $.maskWatchers = {};
+    //$.maskWatchers = {};
     var HTMLAttributes = function () {
         var input = $(this),
             options = {},
@@ -570,7 +570,7 @@
 
     var globals = {
         maskElements: 'input,td,span,div',
-        dataMaskAttr: '[data-mask]',
+        dataMaskAttr: '*[data-mask]',
         dataMask: true,
         watchInterval: 300,
         watchInputs: true,

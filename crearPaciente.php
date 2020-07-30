@@ -1,8 +1,8 @@
 <?php
-session_start();
-include_once("libreria/includes.php");
+    session_start();
+    include_once("libreria/includes.php");
 
-if($_SESSION['rol'] == 'Asistente')
+    if($_SESSION['rol'] == 'Asistente')
     {
 
         if($_POST){
@@ -26,9 +26,8 @@ if($_SESSION['rol'] == 'Asistente')
 
         }
 
-    }
-    else{
-    header("Location:index.php");
+    } else {
+        header("Location:index.php");
     } 
  
 ?>
@@ -82,7 +81,7 @@ if($_SESSION['rol'] == 'Asistente')
          </form>     
        </div>    
     </div>
-    
+
 <?php
 include_once("libreria/foot.php");
 ?>
