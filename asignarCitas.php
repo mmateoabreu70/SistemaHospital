@@ -16,12 +16,6 @@ $conexion = Conexion::getInstance();
 </html>
 
 
-
-
-
-
-
-
 <?php
 include_once("libreria/foot.php");
 ?>
