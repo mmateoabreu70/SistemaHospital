@@ -53,23 +53,7 @@ include_once("libreria/includes.php");
          </form>     
        </div>    
     </div>
-     
-
-
-
-
-
-    </div>    
-</body>
-</html>
-
-
-
-
-
-
-
-
+    
 <?php
 include_once("libreria/foot.php");
 ?>
