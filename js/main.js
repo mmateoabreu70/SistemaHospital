@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
 
+    $('#cedula').mask('000-0000000-0');
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
         $('.collapse.in').toggleClass('in');
@@ -20,9 +22,3 @@ function Imprimir(divId)
     ventimp.close();
     
 }
-
-$(document).ready(function(){
-    $('#cedula').mask('000-0000000-0');
-});
-
-

@@ -14,6 +14,8 @@
 
         $sql = "SELECT * FROM pacientes";
         $datos = mysqli_query($con, $sql);
+    } else {
+        header("Location: index.php");
     }
         
 ?>
@@ -23,6 +25,7 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr> 
+                      <th>#</th>
                       <th>Cedula</th>             
                       <th>Nombre</th>
                       <th>Apellido</th>
@@ -38,7 +41,10 @@
                     $datos = gente::listado();
 
                     foreach($datos as $fila){
+                        $count++;
+
                         echo "<tr>
+                        <td>{$count}</td>
                         <td>{$fila->cedula}</td>
                         <td>{$fila->nombre}</td>
                         <td>{$fila->apellido}</td>

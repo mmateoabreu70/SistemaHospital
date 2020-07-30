@@ -6,8 +6,8 @@
     <title>Pacientes</title>
 
     <!--main js-->
-    <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery.mask.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/main.js"></script>
 
     <!--css-->
