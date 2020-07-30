@@ -42,7 +42,7 @@ $conexion = Conexion::getInstance();
                 <select name="medico" class="form-control">                 
                 <option value="">Seleccione medico</option>
                <?php                            
-                $query = "SELECT nomUser from usuarios WHERE tipo = 3;";
+                $query = "SELECT nomUser from usuarios WHERE tipo = 3 AND estado = 1;";
                 $resultado = mysqli_query($conexion, $query);                
                 while($row=mysqli_fetch_array($resultado)){
                 ?>
