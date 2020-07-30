@@ -1,4 +1,5 @@
 <?php
+/* Comentario */
 include_once("libreria/objetos/login.php");
 
 if($_POST)
