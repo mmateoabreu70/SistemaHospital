@@ -70,10 +70,10 @@
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a href="verPacientes.php" class="subOpcion">Ver pacientes</a>
+                                <a href="crearPaciente.php" class="subOpcion">Crear pacientes</a>
                             </li>
                             <li>
-                                <a href="crearPaciente.php" class="subOpcion">Crear pacientes</a>
+                                <a href="verPacientes.php" class="subOpcion">Ver pacientes</a>
                             </li>
                         </ul>
                     </li>
