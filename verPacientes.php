@@ -21,43 +21,43 @@
 ?>
 
 <div>
-         <h4>Visualizar pacientes</h4>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr> 
-                      <th>#</th>
-                      <th>Cedula</th>             
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Fecha de nacimiento</th>
-                      <th>Tipo de sangre</th>
-                      <th>Telefono</th>
+    <h4>Visualizar pacientes</h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr> 
+                <th>#</th>
+                <th>Cedula</th>             
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de nacimiento</th>
+                <th>Tipo de sangre</th>
+                <th>Telefono</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                 <?php
+            </tr>
+        </thead>
+        <tbody>
+            <?php
 
-                    $datos = gente::listado();
-                    $count = 0;
-                    foreach($datos as $fila){
-                        $count++;
+            $datos = gente::listado();
+            $count = 0;
+            foreach($datos as $fila){
+                $count++;
 
-                        echo "<tr>
-                        <td>{$count}</td>
-                        <td>{$fila->cedula}</td>
-                        <td>{$fila->nombre}</td>
-                        <td>{$fila->apellido}</td>
-                        <td>{$fila->nacimiento}</td>
-                        <td>{$fila->tipoSangre}</td>
-                        <td>{$fila->telefono}</td>                
-                        </tr>";
-                    }
+                echo "<tr>
+                <td>{$count}</td>
+                <td>{$fila->cedula}</td>
+                <td>{$fila->nombre}</td>
+                <td>{$fila->apellido}</td>
+                <td>{$fila->nacimiento}</td>
+                <td>{$fila->tipoSangre}</td>
+                <td>{$fila->telefono}</td>                
+                </tr>";
+            }
 
-                 ?>
-                </tbody>
-            </table>
-        </div>
+            ?>
+        </tbody>
+    </table>
+</div>
 <?php
     include_once("libreria/foot.php");
 ?>
