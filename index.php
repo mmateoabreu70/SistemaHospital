@@ -2,11 +2,7 @@
 session_start();
 include_once("libreria/includes.php");
 
-if(isset($_SESSION['user']))
-{
-    
-}
-else {
+if(!isset($_SESSION['user'])){
     header("Location: login.php");
 }
 
