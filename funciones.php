@@ -2,9 +2,6 @@
 session_start();
 include_once("libreria/includes.php");
 
-<<<<<<< HEAD
-
-=======
 if($_GET["accion"] == "logout")
 {
     $report = new ReporteSistema();
@@ -12,7 +9,6 @@ if($_GET["accion"] == "logout")
     session_destroy();
     header("Location: login.php");
 }
->>>>>>> master
 
 function devolverRol($rol)
 {
