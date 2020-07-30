@@ -2,9 +2,13 @@
 /* Comentario */
 include_once("libreria/objetos/login.php");
 
+$errorMsg = "";
+$usuario = "";
+$pass = "";
+
 if($_POST)
 {
-    $errorMsg = "";
+   
 
     /* Recuperando informacion de los inputs */
     $usuario = $_POST['usuario'];
