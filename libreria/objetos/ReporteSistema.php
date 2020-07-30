@@ -42,4 +42,11 @@ class ReporteSistema
         }
 
     }
+
+    static function contarRegistros()
+    {
+        $con = Conexion::getInstance();
+        $sql = "SELECT * FROM reporteSistema";
+        return mysqli_query($con, $sql);
+    }
 }
