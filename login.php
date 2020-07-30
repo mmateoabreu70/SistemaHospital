@@ -45,7 +45,7 @@ if($_POST)
             <div class="container">
                 <h3>Acceder</h3>
             </div>
-            <span class="errorMsg"><?php echo $errorMsg; ?></span>
+            <span class="errorMsg"><?php echo $errorMsg==null ? "" : ""; ?></span>
             <div class="form-group col-12">
                 <label for="usuario">Usuario</label>
                 <input type="text" class="form-control form-control-sm" id="usuario" name="usuario" value="<?php echo $usuario; ?>" required>
