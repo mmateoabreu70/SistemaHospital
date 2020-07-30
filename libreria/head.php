@@ -63,12 +63,25 @@
                         <a href="precioConsulta.php">Precio de consultas</a>
                     </li>
 
-                <?php endif ?> 
+                <?php endif ?>
+                
+                <?php if($_SESSION['rol'] == 'Asistente'): ?>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="verPacientes.php" class="subOpcion">Ver pacientes</a>
+                            </li>
+                            <li>
+                                <a href="crearPaciente.php" class="subOpcion">Crear pacientes</a>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endif ?>
 
                 <li class="active">
                     <a href="calendarioCitas.php">Calendario de citas</a>
                 </li>
-
             </ul>
             <div id="sidebar-foot"></div>
         </nav>

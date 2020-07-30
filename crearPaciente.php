@@ -1,39 +1,40 @@
 <?php
-include_once("libreria/includes.php");
-$conexion = Conexion::getInstance();
-?>
-<?php
+    session_start();
+    include_once("libreria/includes.php");
 
-include_once("libreria/gente.php");
+    if($_SESSION['rol'] == 'Asistente')
+    {
+        $conexion = Conexion::getInstance();
 
-$con = conexion::getInstance();
+        $con = conexion::getInstance();
 
-$p = new gente();
+        $p = new gente();
 
-$gente = new gente();
+        $gente = new gente();
 
-$sql = "SELECT * FROM pacientes";
-$datos = mysqli_query($con, $sql);
+        $sql = "SELECT * FROM pacientes";
+        $datos = mysqli_query($con, $sql);
 
-if($_POST){
-    
-    //$gente->id = $_POST['id'];
-    $gente->nombre = $_POST['nombre'];
-    $gente->apellido = $_POST['apellido'];
-    $gente->cedula = $_POST['cedula'];
-    $gente->nacimiento = $_POST['nacimiento'];
-    $gente->tipoSangre = $_POST['tipoSangre'];
-    $gente->telefono = $_POST['telefono'];
-    $gente->guardar();
+        if($_POST){
+            
+            //$gente->id = $_POST['id'];
+            $gente->nombre = $_POST['nombre'];
+            $gente->apellido = $_POST['apellido'];
+            $gente->cedula = $_POST['cedula'];
+            $gente->nacimiento = $_POST['nacimiento'];
+            $gente->tipoSangre = $_POST['tipoSangre'];
+            $gente->telefono = $_POST['telefono'];
+            $gente->guardar();
 
-    $sql = "INSERT INTO pacientes VALUES ('$gente->cedula', '$gente->nombre', '$gente->apellido','$gente->nacimiento', '$gente->tipoSangre', '$gente->telefono')";
-        
-}else if(isset($_GET['cedula'])){
-    $gente = new gente($_GET['cedula']);
+            $sql = "INSERT INTO pacientes VALUES ('$gente->cedula', '$gente->nombre', '$gente->apellido','$gente->nacimiento', '$gente->tipoSangre', '$gente->telefono')";
+                
+        }else if(isset($_GET['cedula'])){
+            $gente = new gente($_GET['cedula']);
 
-}else if(isset($_GET['del'])){
-    gente::desactivar($_GET['del']);
-}
+        }else if(isset($_GET['del'])){
+            gente::desactivar($_GET['del']);
+        }
+    }
 
 ?>
 <!DOCTYPE html>
