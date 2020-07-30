@@ -73,5 +73,6 @@
          </form>     
        </div>    
     </div>
+</div>
 
 <?php include_once("libreria/foot.php"); ?>
