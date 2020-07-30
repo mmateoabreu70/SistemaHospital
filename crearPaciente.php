@@ -8,6 +8,7 @@ if($_SESSION['rol'] == 'Asistente')
         if($_POST){
                     
             //$gente->id = $_POST['id'];
+            $gente = new gente();
             $gente->nombre = $_POST['nombre'];
             $gente->apellido = $_POST['apellido'];
             $gente->cedula = $_POST['cedula'];
