@@ -51,13 +51,12 @@
 </head>
 <body>
 <div class="container">
-     <h3>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <h3 align ="center">
+   
      Agregar Paciente
      </h3>
      <br>
-     <div class="row">
+     <div align ="center" >
        <div class="col col-sm-6">
          <form align="center" enctype="multipart/form-data" method="post" action="">
          <!--<input type="hidden" name="id" value="<?php //echo $gente->id; ?>" /> -->
