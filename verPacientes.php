@@ -58,3 +58,6 @@
                 </tbody>
             </table>
         </div>
+<?php
+    include_once("libreria/foot.php");
+?>
