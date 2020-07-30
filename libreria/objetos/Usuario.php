@@ -55,7 +55,7 @@ class Usuario
         if($this->existeUsuario())
         {
             $sql = "UPDATE usuarios 
-                    SET nombre = '$this->nombre', apellido = '$this->apellido', usuario = '$this->usuario', pass = '$this->pass', tipo = $this->tipo 
+                    SET nomUser = '$this->nombre', apellidoUser = '$this->apellido', user = '$this->usuario', pass = '$this->pass', tipo = $this->tipo 
                     WHERE idUsuario = {$this->Id}";
 
             if(!mysqli_query($con, $sql))
@@ -95,20 +95,16 @@ class Usuario
 
     private function existeUsuario()
     {
+        
         /* Verificar si ya existe este nombre de usuario */
         $con = Conexion::getInstance();
-        $sql = "SELECT usuario 
+        $sql = "SELECT user 
                 FROM usuarios
-                WHERE usuario = '{$this->usuario}' AND idUsuario != {$this->Id} AND estado = 1";
+                WHERE user = '{$this->usuario}' AND estado = 1 AND idUsuario != {$this->Id}";
 
         $result = mysqli_query($con, $sql);
 
-        if($result != false)
-        {
-            $fila = mysqli_fetch_row($result);
-        }
-
-        if($fila[0] == $this->usuario)
+        if($result->num_rows >= 1 && $result != false)
         {
             return false;
         }

@@ -41,60 +41,59 @@
             <ul class="list-unstyled components">
                 <div id="sidebar-subheader">
                     <p><?php echo $_SESSION['rol'] ?></p>
-                </div>   
+                </div>
+            
+                <?php if($_SESSION['rol'] == 'Administrador'): ?>
+
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="AdminUsuario.php" class="subOpcion">Administrar</a>
+                            </li>
+                            <li>
+                                <a href="CrearUsuario.php" class="subOpcion">Crear usuario</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="reporteSistema.php?pag=1">Reportes del sistema</a>
+                    </li>
+                    <li class="active">
+                        <a href="precioConsulta.php">Precio de consultas</a>
+                    </li>
+
+                <?php endif ?> 
 
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="AdminUsuario.php" class="subOpcion">Administrar</a>
-                        </li>
-                        <li>
-                            <a href="CrearUsuario.php" class="subOpcion">Crear usuario</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a href="#">Opcion 2</a>
-                </li>
-                <li class="active">
-                    <a href="#">Opcion 3</a>
-                </li>
-                <li class="active">
-                    <a href="#">Opcion 4</a>
-                </li>
-                <li class="active">
-                    <a href="#">Opcion 5</a>
+                    <a href="calendarioCitas.php">Calendario de citas</a>
                 </li>
 
             </ul>
-
             <div id="sidebar-foot"></div>
         </nav>
 
         <!--Contenido de la pagina-->
         <div id="content">
 
-            <?php if(isset($_SESSION['user'])){ ?>
-                <nav class="navbar navbar-expand navbar-light bg-light" >
-                    <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="">
-                            <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
-                            <span>Menu</span>
-                        </button>
+            <nav class="navbar navbar-expand navbar-light bg-light" >
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="">
+                        <img src="source/icons/open-menu.svg" width="25" height="25" id="menuIcon">
+                        <span>Menu</span>
+                    </button>
 
-                        <a class="navbar-brand mb-0 h1" href="#">
-                            <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
-                            Sistema Hospital
-                        </a>
+                    <a class="navbar-brand mb-0 h1" href="#">
+                        <img src="source/logo/hospital.svg" width="40" height="40" class="d-inline-block align-top">
+                        Sistema Hospital
+                    </a>
 
-                        <a href="funciones.php?accion=logout" class="ml-auto">
-                            <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
-                        </a>
+                    <a href="funciones.php?accion=logout" class="ml-auto">
+                        <img src="source/icons/logout.svg" class="" width="25" height="25" title="Cerrar sesion">
+                    </a>
 
-                    </div>
-                </nav>
-            <?php } ?>
+                </div>
+            </nav>
 
             <div id="main">
 

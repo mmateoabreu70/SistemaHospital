@@ -7,7 +7,7 @@ if($_SESSION['rol'] == 'Administrador')
     $datos = ReporteSistema::contarRegistros();
 
     /* Codigo para la paginacion */ 
-    $filas_x_pag = 40;
+    $filas_x_pag = 50;
 
         //contar registros de la tabla
     $totalFilas = $datos->num_rows;
@@ -30,6 +30,7 @@ if($_SESSION['rol'] == 'Administrador')
             INNER JOIN tipoeventos ON reportesistema.evento = tipoeventos.idEvento
             INNER JOIN usuarios ON reportesistema.usuario = usuarios.idUsuario
             LEFT JOIN pacientes ON reportesistema.pacienteAfect = pacientes.cedula
+            ORDER BY fecha_hora DESC
             LIMIT $inicio, $filas_x_pag;";
     $result = mysqli_query($con, $sql);
 } else {
@@ -42,7 +43,7 @@ if($_SESSION['rol'] == 'Administrador')
 
 <div class="px-3">
     <div class="pb-3">
-        <a class="btn btn-success" onclick="Imprimir('reporteSistema')" >Imprimir</a>
+        <button class="btn btn-success" onclick="Imprimir('reporteSistema')" >Imprimir</button>
         <small style="display: block;">Solo se imprimirá esta pagina</small>
     </div>
     <div id="reporteSistema">

@@ -2,7 +2,7 @@
 session_start();
 include_once("libreria/includes.php");
 
-if(isset($_SESSION['user']))
+if($_SESSION['rol'] == 'Administrador')
 {
 
     /*Llenando rol de usuario*/
@@ -10,7 +10,7 @@ if(isset($_SESSION['user']))
     $query = "SELECT * FROM roles";
     $llenarDrop = mysqli_query($con, $query);
 
-    if($_POST) {
+    if($_POST){
 
         $errorMsg = "";
         extract($_POST);
@@ -21,23 +21,31 @@ if(isset($_SESSION['user']))
             $errorMsg = "Las contraseñas no coinciden";
         }
         else {
+            extract($_POST);
 
             /* Insertando valores al objeto */ 
-            $user = new Usuario();
+            $objUser = new Usuario();
 
-            $user->Id = $_GET['id'];
-            $user->nombre = $nombre;
-            $user->apellido = $apellido;
-            $user->usuario = $usuario;
-            $user->pass = $pass;
-            $user->tipo = devolverRol($rol);
+            $id = 0;
+
+            if($_GET['id'] != null)
+            {
+                $id = $_GET['id'];
+            }
+
+            $objUser->Id = $id;
+            $objUser->nombre = $nomUser;
+            $objUser->apellido = $apellidoUser;
+            $objUser->usuario = $user;
+            $objUser->pass = $pass;
+            $objUser->tipo = devolverRol($rol);
 
             /* Si existe id en $_GET modifica Usuario */
             if(isset($_GET['id']))
             {
-                $result = $user->modificarUsuario();
+                $result = $objUser->modificarUsuario();
             } else {
-                $result = $user->crearUsuario();
+                $result = $objUser->crearUsuario();
             }
 
             $errorMsg = $result;
@@ -52,9 +60,9 @@ if(isset($_SESSION['user']))
     } elseif(isset($_GET['id'])) {
 
         /* Consiguiendo usuario por id */
-        $sql = "SELECT nombre, apellido, usuario, pass, rol FROM usuarios
+        $sql = "SELECT nomUser, apellidoUser, user, pass, rol FROM usuarios
                 INNER JOIN roles ON usuarios.tipo = roles.idRol 
-                WHERE idUsuario = '{$_GET['id']}'";
+                WHERE idUsuario = {$_GET['id']}";
 
         $result = mysqli_query($con, $sql);
 
@@ -62,7 +70,10 @@ if(isset($_SESSION['user']))
         {
             /* Pasando valores al POST */
             $_POST = $dato;
+
         }
+
+
     }
 }
 else {
@@ -74,7 +85,7 @@ else {
 <div class="px-xl-5 py-3 ">
     <div class="p-3">
         <?php
-            if(isset($_GE['id'])){
+            if(isset($_GET['id'])){
                 echo "<center><h3>Editar usuario</h3></center>";
             } else {
                 echo "<center><h3>Crear usuario</h3></center>";
@@ -86,11 +97,11 @@ else {
         <div class="form-row col-12 py-2">
             <div class="col-6">
                 <label for="nombre">Nombres</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $_POST['nombre']; ?>" required>
+                <input type="text" class="form-control" id="nombre" name="nomUser" value="<?php echo $_POST['nomUser']; ?>" required>
             </div>
             <div class="col-6">
                 <label for="nombre">Apellidos</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo $_POST['apellido']; ?>" required>
+                <input type="text" class="form-control" id="apellido" name="apellidoUser" value="<?php echo $_POST['apellidoUser']; ?>" required>
             </div>
         </div>
 
@@ -101,7 +112,6 @@ else {
                     <option selected>Elige un rol...</option>
 
                     <?php
-
                         foreach($llenarDrop as $fila)
                         {
                             $prop = "";
@@ -110,7 +120,7 @@ else {
                             if( isset( $_GET['id']) && $fila['rol'] == $_POST['rol'] ) 
                             {
                                 $prop = "selected";
-                            }   
+                            }
 
                             echo "
                                 <option {$prop}>{$fila['rol']}</option>
@@ -122,7 +132,7 @@ else {
             </div>
             <div class="col-6">
                 <label for="usuario">Usuario</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $_POST['usuario']; ?>" required>
+                <input type="text" class="form-control" id="usuario" name="user" value="<?php echo $_POST['user']; ?>" required>
             </div>
         </div>
 

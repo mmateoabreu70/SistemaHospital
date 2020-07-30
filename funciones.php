@@ -4,11 +4,9 @@ include_once("libreria/includes.php");
 
 if($_GET["accion"] == "logout")
 {
-    session_destroy();
-
     $report = new ReporteSistema();
     $report->RegistrarEvento(2);
-
+    session_destroy();
     header("Location: login.php");
 }
 

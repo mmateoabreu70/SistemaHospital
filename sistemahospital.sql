@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-07-2020 a las 03:03:46
+-- Tiempo de generación: 30-07-2020 a las 01:21:40
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -32,7 +32,8 @@ CREATE TABLE `citas` (
   `id` int(11) NOT NULL,
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
-  `duracion` varchar(10) NOT NULL
+  `duracion` varchar(10) NOT NULL,
+  `medico` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,6 +80,25 @@ INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSang
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `precioconsultas`
+--
+
+CREATE TABLE `precioconsultas` (
+  `id` int(11) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `precio` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `precioconsultas`
+--
+
+INSERT INTO `precioconsultas` (`id`, `tipo`, `precio`) VALUES
+(1, 'Consulta general', 700);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reportesistema`
 --
 
@@ -89,14 +109,6 @@ CREATE TABLE `reportesistema` (
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `reportesistema`
---
-
-INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
-(1, '2020-07-27 22:50:06', 4, 1, NULL),
-(2, '2020-07-27 22:57:22', 4, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,14 +138,14 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 
 CREATE TABLE `tipoeventos` (
   `idEvento` int(11) NOT NULL,
-  `evento` varchar(50) NOT NULL
+  `nomEvento` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipoeventos`
 --
 
-INSERT INTO `tipoeventos` (`idEvento`, `evento`) VALUES
+INSERT INTO `tipoeventos` (`idEvento`, `nomEvento`) VALUES
 (1, 'Iniciar sesión'),
 (2, 'Cerrar sesión'),
 (3, 'Crear usuario'),
@@ -152,9 +164,9 @@ INSERT INTO `tipoeventos` (`idEvento`, `evento`) VALUES
 
 CREATE TABLE `usuarios` (
   `idUsuario` int(11) NOT NULL,
-  `nombre` varchar(60) DEFAULT NULL,
-  `apellido` varchar(60) DEFAULT NULL,
-  `usuario` varchar(30) DEFAULT NULL,
+  `nomUser` varchar(60) DEFAULT NULL,
+  `apellidoUser` varchar(60) DEFAULT NULL,
+  `user` varchar(30) DEFAULT NULL,
   `pass` varchar(100) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
   `estado` int(11) NOT NULL
@@ -164,11 +176,25 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `nombre`, `apellido`, `usuario`, `pass`, `tipo`, `estado`) VALUES
+INSERT INTO `usuarios` (`idUsuario`, `nomUser`, `apellidoUser`, `user`, `pass`, `tipo`, `estado`) VALUES
 (1, 'Michael David', 'Mateo Abreu', 'admin', 'Maicol0502', 1, 1),
 (20, 'Luis Alfredo', 'Pascual', 'luisito', 'luisito01', 2, 1),
 (27, 'Katherine', 'Soto', 'katsoto', 'katsoto01', 3, 1),
-(29, 'Roshby R.', 'Hernandez', 'rosh', 'elflowrosh', 2, 1);
+(29, 'Roshby R.', 'Hernandez', 'rosh', 'elflowrosh', 2, 1),
+(39, 'Johan', 'Mateo', 'johan01', '12345', 1, 1),
+(40, 'Ada', 'Ureña', 'ada123', '12345', 3, 1),
+(41, 'Userprueba', 'apellidoUser', 'user3', '12345', 1, 2),
+(42, 'Johan', 'Mateo', 'johan01', '12345', 1, 2),
+(43, 'nombre', 'apellido', 'era37', '123456', 2, 2),
+(44, 'Fulano', 'Detal', 'era37', '12345', 2, 2),
+(45, 'Fulano2', 'fulanoapellido', 'fulanero', '12345', 2, 2),
+(46, 'Fulano3', 'fulano', 'era37', '12345', 3, 2),
+(47, 'Fulano4', 'fulano', 'era37', '12345', 2, 2),
+(48, 'Fulano4', 'fulano', 'era37', '12345', 2, 2),
+(49, 'Fulano4', 'fulano', 'era37', '12345', 2, 2),
+(50, 'Fulano4', 'detal', 'era37', '12345', 3, 2),
+(51, 'Fulano4', 'detal', 'era38', '12345', 2, 2),
+(52, 'Erasmo', 'Mateo', 'erasmo37', '12345', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +220,8 @@ CREATE TABLE `visitas` (
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `medico` (`medico`);
 
 --
 -- Indices de la tabla `estado`
@@ -207,6 +234,12 @@ ALTER TABLE `estado`
 --
 ALTER TABLE `pacientes`
   ADD PRIMARY KEY (`cedula`);
+
+--
+-- Indices de la tabla `precioconsultas`
+--
+ALTER TABLE `precioconsultas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `reportesistema`
@@ -252,17 +285,23 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`);
 
 --
 -- Filtros para la tabla `reportesistema`
