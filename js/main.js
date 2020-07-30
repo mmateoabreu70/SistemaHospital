@@ -21,4 +21,8 @@ function Imprimir(divId)
     
 }
 
+$(document).ready(function(){
+    $('#cedula').mask('000-0000000-0');
+});
+
 
