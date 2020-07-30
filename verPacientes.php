@@ -39,7 +39,7 @@
                  <?php
 
                     $datos = gente::listado();
-
+                    $count = 0;
                     foreach($datos as $fila){
                         $count++;
 
