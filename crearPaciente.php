@@ -61,29 +61,29 @@
        <div class="col col-sm-6">
          <form align="center" enctype="multipart/form-data" method="post" action="">
          <!--<input type="hidden" name="id" value="<?php //echo $gente->id; ?>" /> -->
-            <div class="form-group input-group">
-                <label class="input-group-addon" for="cedula">Cedula</label>
-                <input type="text"  name="cedula" id="cedula"  class="form-control"/>            
+            <div class="form-row col-12 py-2">
+                <label  for="cedula">Cedula</label>                                     
+                <input type="text" name="cedula" id="cedula"  class="form-control"/>            
             </div>
-            <div class="form-group input-group">
+            <div class="form-row col-12 py-2">
                 <label class="input-group-addon">Nombre</label>
-                <input type="text"  name="nombre" for="nombre" class="form-control"/>            
+                <input type="text" name="nombre" for="nombre" class="form-control"/>            
             </div>
-            <div class="form-group input-group">
+            <div class="form-row col-12 py-2">
                 <label class="input-group-addon" for="apellido">Apellido</label>
-                <input type="text"  name="apellido" id="apellido" class="form-control"/>            
+                <input type="text" name="apellido" id="apellido" class="form-control"/>            
             </div>
-            <div class="form-group input-group">
+            <div class="form-row col-12 py-2">
                 <label class="input-group-addon" for="nacimiento"> Fecha de Nacimiento</label>
-                <input type="date"  name="nacimiento" id="nacimiento" class="form-control"/>            
+                <input type="date" name="nacimiento" id="nacimiento" class="form-control"/>            
             </div>
-            <div class="form-group input-group">
+            <div class="form-row col-12 py-2">
                 <label class="input-group-addon" for="tipoSangre">Tipo de sangre</label>
-                <input type="text"  name="tipoSangre" id="tipoSangre" class="form-control"/>            
+                <input type="text" name="tipoSangre" id="tipoSangre" class="form-control"/>            
             </div>
-            <div class="form-group input-group">
+            <div class="form-row col-12 py-2">
                 <label class="input-group-addon" for="telefono">Telefono</label>
-                <input type="text"  name="telefono" id="telefono" class="form-control"/>            
+                <input type="text" name="telefono" id="telefono" class="form-control"/>            
             </div>
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
                 <button type="submit" class="btn btn-success">Guardar</button>
