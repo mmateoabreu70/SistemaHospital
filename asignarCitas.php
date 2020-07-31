@@ -14,7 +14,7 @@ if(isset($_POST['agregarcita']))
 	$medico = $_POST["medico"];	
 
 	$insertarDatos = "INSERT INTO citas (id,fechaCita,hora,duracion,medico) VALUES ('$cedula','$fechacita','$hora','$duracion minutos','$medico')";
-	$ejecutarInsertar = mysqli_query(Conexion::getInstance(),$insertarDatos);
+	$ejecutarInsertar = mysqli_query($conexion,$insertarDatos);
 }	
 ?>     
 <div class="container">
