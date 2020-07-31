@@ -183,7 +183,6 @@ CREATE TABLE `visitas` (
   `comentario` text NOT NULL,
   `receta` varchar(150) NOT NULL,
   `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
-  `cedula` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
