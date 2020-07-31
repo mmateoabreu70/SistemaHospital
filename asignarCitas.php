@@ -4,28 +4,41 @@ include_once("libreria/includes.php");
 $conexion = Conexion::getInstance();
 ?>
 <div class="container">
-     <h3 align ="center">   
+    <!-- Nombre de la pagina -->  
+     <h3 align ="center">     
      Citas
      </h3>
      <br>
+     <!--Formulario de citas-->
      <div align ="center" >
        <div class="col col-sm-6">
          <form align="center" enctype="multipart/form-data" method="post" action="">
-         <!--<input type="hidden" name="id" value="<?php //echo $gente->id; ?>" /> -->
+         <!--Fecha de cita-->         
          <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="fechacita"> Fecha de cita</label>
+                <!--Input-->
                 <input type="date" name="fechacita" id="fechacita" class="form-control"/>            
             </div>
+            <!--Hora-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="hora">Hora</label>
+                <!--Input-->
                 <input type="text" name="hora" id="hora" class="form-control"/>            
-            </div>           
+            </div> 
+            <!--Duracion-->          
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="duracion">Duracion</label>
+                <!--Input-->
                 <input type="number" name="duracion" class="form-control"/>            
             </div>
+            <!--Cedula-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="cedula">Cedula</label>
+                <!--drop down list-->
                 <select name="cedula" class="form-control">                 
                 <option value="">Seleccione una cedula</option>
                <?php                            
@@ -37,8 +50,11 @@ $conexion = Conexion::getInstance();
                 <?php } ?>
                 </select>                    
             </div>
+            <!--Medico-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="medico">Medico</label>
+                <!--drop down list-->
                 <select name="medico" class="form-control">                 
                 <option value="">Seleccione medico</option>
                <?php                            
@@ -52,13 +68,7 @@ $conexion = Conexion::getInstance();
                 <option value="<?php echo $row2['idUsuario']?>"><?php echo $row['nomUser'];?></option>
                 <?php } ?>
                 </select>                    
-            </div>        
-           
-            <!--<div class="form-row col-12 py-2">
-                <label class="input-group-addon" for="tipoSangre">Tipo de sangre</label>
-                <input type="text" name="tipoSangre" id="tipoSangre" class="form-control"/>            
-            </div>-->
-            
+            </div>            
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
                 <button type="submit" class="btn btn-success">Guardar</button>
             </div>        
