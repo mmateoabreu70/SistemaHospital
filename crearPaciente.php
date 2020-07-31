@@ -34,37 +34,55 @@
 ?>
 
 <div class="container">
-     <h3 align ="center">
-   
+    <!-- Nombre de la pagina-->
+     <h3 align ="center">   
      Agregar Paciente
      </h3>
      <br>
+     <!-- Formulario -->
      <div align ="center" >
        <div class="col col-sm-6">
          <form align="center" enctype="multipart/form-data" method="post" action="">
-         <!--<input type="hidden" name="id" value="<?php //echo $gente->id; ?>" /> -->
+            <!--Cedula-->         
             <div class="form-row col-12 py-2">
-                <label  for="cedula">Cedula</label>                                     
+                <!--label-->
+                <label  for="cedula">Cedula</label> 
+                <!--Input-->                                    
                 <input type="text" name="cedula" id="cedula"  class="form-control"/>            
             </div>
+            <!--Nombre-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon">Nombre</label>
+                <!--Input-->
                 <input type="text" name="nombre" for="nombre" class="form-control"/>            
             </div>
+            <!--Apellido-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="apellido">Apellido</label>
+                <!--Input-->
                 <input type="text" name="apellido" id="apellido" class="form-control"/>            
             </div>
+            <!--Fecha de nacimiento-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="nacimiento"> Fecha de Nacimiento</label>
+                <!--Input-->
                 <input type="date" name="nacimiento" id="nacimiento" class="form-control"/>            
             </div>
+            <!--Tipo de sangre-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="tipoSangre">Tipo de sangre</label>
+                <!--Input-->
                 <input type="text" name="tipoSangre" id="tipoSangre" class="form-control"/>            
             </div>
+            <!--Telefono-->
             <div class="form-row col-12 py-2">
+                <!--label-->
                 <label class="input-group-addon" for="telefono">Telefono</label>
+                <!--Input-->
                 <input type="text" name="telefono" id="telefono" class="form-control"/>            
             </div>
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
