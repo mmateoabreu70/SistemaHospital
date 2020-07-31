@@ -1,8 +1,22 @@
 <?php
   session_start();
 include_once("libreria/includes.php");
+include_once("libreria/db/conexion.php");
 $conexion = Conexion::getInstance();
 ?>
+<?php
+if(isset($_POST['agregarcita']))
+{
+	$fechacita = $_POST["fechacita"];
+	$hora = $_POST["hora"];
+	$duracion = $_POST["duracion"];
+	$cedula = $_POST["cedula"];
+	$medico = $_POST["medico"];	
+
+	$insertarDatos = "INSERT INTO citas (id,fechaCita,hora,duracion,medico) VALUES ('$cedula','$fechacita','$hora','$duracion minutos','$medico')";
+	$ejecutarInsertar = mysqli_query(Conexion::getInstance(),$insertarDatos);
+}	
+?>     
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -12,7 +26,7 @@ $conexion = Conexion::getInstance();
      <!--Formulario de citas-->
      <div align ="center" >
        <div class="col col-sm-6">
-         <form align="center" enctype="multipart/form-data" method="post" action="">
+         <form align="center" enctype="multipart/form-data" method="POST" action="">
          <!--Fecha de cita-->         
          <div class="form-row col-12 py-2">
                 <!--label-->
@@ -25,7 +39,7 @@ $conexion = Conexion::getInstance();
                 <!--label-->
                 <label class="input-group-addon" for="hora">Hora</label>
                 <!--Input-->
-                <input type="text" name="hora" id="hora" class="form-control"/>            
+                <input type="time" name="hora" id="hora" class="form-control"/>            
             </div> 
             <!--Duracion-->          
             <div class="form-row col-12 py-2">
@@ -70,13 +84,12 @@ $conexion = Conexion::getInstance();
                 </select>                    
             </div>            
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
-                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="submit" name="agregarcita" class="btn btn-success">Agregar cita</button>
             </div>        
          </form>     
        </div>    
     </div>
 </div>
-
 <?php
 include_once("libreria/foot.php");
 ?>
