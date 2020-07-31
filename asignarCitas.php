@@ -43,10 +43,13 @@ $conexion = Conexion::getInstance();
                 <option value="">Seleccione medico</option>
                <?php                            
                 $query = "SELECT nomUser from usuarios WHERE tipo = 3 AND estado = 1;";
-                $resultado = mysqli_query($conexion, $query);                
+                $query2 = "SELECT idUsuario from usuarios WHERE tipo = 3 AND estado = 1;";
+                $resultado = mysqli_query($conexion, $query); 
+                $resultado2 = mysqli_query($conexion, $query2);                
                 while($row=mysqli_fetch_array($resultado)){
+                    $row2=mysqli_fetch_array($resultado2)
                 ?>
-                <option value="<?php echo $row['nomUser']?>"><?php echo $row['nomUser'];?></option>
+                <option value="<?php echo $row2['idUsuario']?>"><?php echo $row['nomUser'];?></option>
                 <?php } ?>
                 </select>                    
             </div>        
