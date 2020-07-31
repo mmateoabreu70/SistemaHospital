@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2020 a las 06:39:49
+-- Tiempo de generación: 31-07-2020 a las 09:22:46
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -34,6 +34,13 @@ CREATE TABLE `citas` (
   `duracion` varchar(10) NOT NULL,
   `medico` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`) VALUES
+(2147483647, '2020-07-22', '18:54:00', '45 minutos', 27);
 
 -- --------------------------------------------------------
 
@@ -117,7 +124,9 @@ CREATE TABLE `reportesistema` (
 
 INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
 (1, '2020-07-29 23:25:13', 1, 20, NULL),
-(2, '2020-07-30 00:10:05', 1, 20, NULL);
+(2, '2020-07-30 00:10:05', 1, 20, NULL),
+(3, '2020-07-30 13:45:18', 1, 20, NULL),
+(4, '2020-07-30 22:51:26', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -294,7 +303,7 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
