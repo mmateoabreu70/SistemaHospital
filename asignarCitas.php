@@ -1,29 +1,9 @@
 <?php
   session_start();
 include_once("libreria/includes.php");
-<<<<<<< Updated upstream
-include_once("libreria/db/conexion.php");
 $conexion = Conexion::getInstance();
 ?>
-<?php
-if(isset($_POST['agregarcita']))
-{
-	$fechacita = $_POST["fechacita"];
-	$hora = $_POST["hora"];
-	$duracion = $_POST["duracion"];
-	$cedula = $_POST["cedula"];
-	$medico = $_POST["medico"];	
 
-	$insertarDatos = "INSERT INTO citas (id,fechaCita,hora,duracion,medico) VALUES ('$cedula','$fechacita','$hora','$duracion minutos','$medico')";
-	$ejecutarInsertar = mysqli_query($conexion,$insertarDatos);
-}	
-?>     
-=======
-//$conexion = Conexion::getInstance();
-
-?>
-
->>>>>>> Stashed changes
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -91,16 +71,25 @@ if(isset($_POST['agregarcita']))
                 </select>                    
             </div>            
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
-<<<<<<< Updated upstream
                 <button type="submit" name="agregarcita" class="btn btn-success">Agregar cita</button>
-=======
-                <button type="submit" class="btn btn-success">Agregar cita</button>
->>>>>>> Stashed changes
             </div>        
          </form>     
        </div>    
     </div>
 </div>
+<?php
+    if(isset($_POST['agregarcita']))
+    {
+    $id = $_POST['cedula'];
+    $fechacita = $_POST['fechacita'];
+    $hora = $_POST['hora'];
+    $duracion = $_POST['duracion'];
+    $medico = $_POST['medico']; 
+    
+    $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
+    values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
+    }
+?>    
 <?php
 include_once("libreria/foot.php");
 ?>
