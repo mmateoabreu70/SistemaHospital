@@ -78,17 +78,21 @@ $conexion = Conexion::getInstance();
     </div>
 </div>
 <?php
-    if(isset($_POST['agregarcita']))
-    {
-    $id = $_POST['cedula'];
-    $fechacita = $_POST['fechacita'];
-    $hora = $_POST['hora'];
-    $duracion = $_POST['duracion'];
-    $medico = $_POST['medico']; 
-    
-    $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
-    values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
-    }
+     if($_SESSION['rol'] == 'Asistente')
+     {
+ 
+        if(isset($_POST['agregarcita']))
+        {
+        $id = $_POST['cedula'];
+        $fechacita = $_POST['fechacita'];
+        $hora = $_POST['hora'];
+        $duracion = $_POST['duracion'];
+        $medico = $_POST['medico']; 
+        
+        $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
+        values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
+        }
+     }    
 ?>    
 <?php
 include_once("libreria/foot.php");
