@@ -1,22 +1,9 @@
 <?php
   session_start();
 include_once("libreria/includes.php");
-include_once("libreria/db/conexion.php");
 $conexion = Conexion::getInstance();
 ?>
-<?php
-if(isset($_POST['agregarcita']))
-{
-	$fechacita = $_POST["fechacita"];
-	$hora = $_POST["hora"];
-	$duracion = $_POST["duracion"];
-	$cedula = $_POST["cedula"];
-	$medico = $_POST["medico"];	
 
-	$insertarDatos = "INSERT INTO citas (id,fechaCita,hora,duracion,medico) VALUES ('$cedula','$fechacita','$hora','$duracion minutos','$medico')";
-	$ejecutarInsertar = mysqli_query($conexion,$insertarDatos);
-}	
-?>     
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -90,6 +77,26 @@ if(isset($_POST['agregarcita']))
        </div>    
     </div>
 </div>
+<?php
+    //Entra aqui si el usuario es rol asistente
+     if($_SESSION['rol'] == 'Asistente')
+     {
+        // Entra aqui cuando se preciona el boton Agregar cita
+        if(isset($_POST['agregarcita']))
+        {
+        // Se guardan los datos capturados en los inputs y los drop down list y se guardan en variables
+        $id = $_POST['cedula'];
+        $fechacita = $_POST['fechacita'];
+        $hora = $_POST['hora'];
+        $duracion = $_POST['duracion'];
+        $medico = $_POST['medico'];
+        
+        //Se mandan los datos a la base de datos
+        $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
+        values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
+        }
+     }    
+?>    
 <?php
 include_once("libreria/foot.php");
 ?>
