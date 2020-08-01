@@ -1,6 +1,7 @@
 <?php
   session_start();
 include_once("libreria/includes.php");
+<<<<<<< Updated upstream
 include_once("libreria/db/conexion.php");
 $conexion = Conexion::getInstance();
 ?>
@@ -17,6 +18,12 @@ if(isset($_POST['agregarcita']))
 	$ejecutarInsertar = mysqli_query($conexion,$insertarDatos);
 }	
 ?>     
+=======
+//$conexion = Conexion::getInstance();
+
+?>
+
+>>>>>>> Stashed changes
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -84,7 +91,11 @@ if(isset($_POST['agregarcita']))
                 </select>                    
             </div>            
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
+<<<<<<< Updated upstream
                 <button type="submit" name="agregarcita" class="btn btn-success">Agregar cita</button>
+=======
+                <button type="submit" class="btn btn-success">Agregar cita</button>
+>>>>>>> Stashed changes
             </div>        
          </form>     
        </div>    
