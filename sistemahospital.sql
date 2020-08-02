@@ -35,7 +35,7 @@ CREATE TABLE `citas` (
   `duracion` varchar(10) NOT NULL,
   `medico` int(11) DEFAULT NULL,
   `paciente` varchar(13) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ CREATE TABLE `citas` (
 CREATE TABLE `estado` (
   `idEstado` int(11) NOT NULL,
   `estado` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -69,7 +69,7 @@ CREATE TABLE `pacientes` (
   `nacimiento` date NOT NULL,
   `tipoSangre` char(2) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -90,7 +90,7 @@ CREATE TABLE `precioconsultas` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `precioconsultas`
@@ -111,7 +111,7 @@ CREATE TABLE `reportesistema` (
   `evento` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reportesistema`
@@ -133,7 +133,7 @@ INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `p
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
   `rol` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -153,7 +153,7 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 CREATE TABLE `tipoeventos` (
   `idEvento` int(11) NOT NULL,
   `nomEvento` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tipoeventos`
@@ -184,7 +184,7 @@ CREATE TABLE `usuarios` (
   `pass` varchar(100) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
   `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -224,7 +224,7 @@ CREATE TABLE `visitas` (
   `receta` varchar(150) NOT NULL,
   `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
   `cedula` varchar(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
