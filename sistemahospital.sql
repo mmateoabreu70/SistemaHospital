@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2020 a las 04:29:21
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.2.31
+-- Servidor: localhost
+-- Tiempo de generación: 02-08-2020 a las 02:42:21
+-- Versión del servidor: 8.0.18
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,21 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `citas` (
-  `id` varchar(13) NOT NULL,
+  `id` int(11) NOT NULL,
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
   `duracion` varchar(10) NOT NULL,
-  `medico` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `citas`
---
-
-INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`) VALUES
-('001-0605441-4', '2020-08-04', '21:14:00', '22 minutos', 52),
-('2147483647', '2020-07-22', '18:54:00', '45 minutos', 27),
-('40225359641', '2020-08-11', '14:36:00', '10 minutos', 27);
+  `medico` int(11) DEFAULT NULL,
+  `paciente` varchar(13) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -53,7 +46,7 @@ INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`) VALUES
 CREATE TABLE `estado` (
   `idEstado` int(11) NOT NULL,
   `estado` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -76,7 +69,7 @@ CREATE TABLE `pacientes` (
   `nacimiento` date NOT NULL,
   `tipoSangre` char(2) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -97,7 +90,7 @@ CREATE TABLE `precioconsultas` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `precioconsultas`
@@ -118,7 +111,7 @@ CREATE TABLE `reportesistema` (
   `evento` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `reportesistema`
@@ -140,7 +133,7 @@ INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `p
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
   `rol` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -160,7 +153,7 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 CREATE TABLE `tipoeventos` (
   `idEvento` int(11) NOT NULL,
   `nomEvento` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipoeventos`
@@ -191,7 +184,7 @@ CREATE TABLE `usuarios` (
   `pass` varchar(100) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
   `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -231,7 +224,7 @@ CREATE TABLE `visitas` (
   `receta` varchar(150) NOT NULL,
   `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
   `cedula` varchar(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Índices para tablas volcadas
@@ -242,7 +235,8 @@ CREATE TABLE `visitas` (
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `medico` (`medico`);
+  ADD KEY `medico` (`medico`),
+  ADD KEY `paciente` (`paciente`);
 
 --
 -- Indices de la tabla `estado`
@@ -303,6 +297,12 @@ ALTER TABLE `visitas`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
@@ -322,7 +322,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`);
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`),
+  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`paciente`) REFERENCES `pacientes` (`cedula`);
 
 --
 -- Filtros para la tabla `reportesistema`
