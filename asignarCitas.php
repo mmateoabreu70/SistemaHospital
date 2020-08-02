@@ -78,10 +78,8 @@ $conexion = Conexion::getInstance();
     </div>
 </div>
 <?php
-    //Entra aqui si el usuario es rol asistente
-     if($_SESSION['rol'] == 'Asistente')
-     {
-        // Entra aqui cuando se preciona el boton Agregar cita
+    
+     // Entra aqui cuando se preciona el boton Agregar cita
         if(isset($_POST['agregarcita']))
         {
         // Se guardan los datos capturados en los inputs y los drop down list y se guardan en variables
@@ -95,7 +93,7 @@ $conexion = Conexion::getInstance();
         $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
         values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
         }
-     }    
+        
 ?>    
 <?php
 include_once("libreria/foot.php");
