@@ -20,24 +20,30 @@ $conexion = Conexion::getInstance();
                 <!--drop down list-->
                 <select name="cumpleaños" class="form-control">                 
                 <option value="">Seleccione un mes</option>
-                <option value="">Enero</option>                                  
-                <option value="">Febrero</option>
-                <option value="">Marzo</option>
-                <option value="">Abril</option>
-                <option value="">Mayo</option>
-                <option value="">Junio</option>
-                <option value="">Julio</option>
-                <option value="">Agosto</option>
-                <option value="">Septiembre</option>
-                <option value="">Octubre</option>
-                <option value="">Noviembre</option>
-                <option value="">Diciembre</option>
+                <option value="01">Enero</option>                                  
+                <option value="02">Febrero</option>
+                <option value="03">Marzo</option>
+                <option value="04">Abril</option>
+                <option value="05">Mayo</option>
+                <option value="06">Junio</option>
+                <option value="07">Julio</option>
+                <option value="08">Agosto</option>
+                <option value="09">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+                </select>
             </div>
          <button type="submit" name="consultarcumpleaños" class="btn btn-success">Consultar cumpleanños</button>
         </div>        
          </form>     
      </div>     
 </div>
+<?php
+if(isset($_POST['consultarcumpleaños']))
+{
+}
+        ?>
 <div>
     <h4>Cumpleaños por mes</h4>
     <table class="table">
@@ -52,8 +58,11 @@ $conexion = Conexion::getInstance();
         </thead>
         <tbody>
             <?php
+            if(isset($_POST['consultarcumpleaños']))
+            {
+            }
 
-            $datos = gente::listado();
+            /*$datos = gente::listado();
             $count = 0;
             foreach($datos as $fila){
                 $count++;
@@ -67,8 +76,7 @@ $conexion = Conexion::getInstance();
                 <td>{$fila->tipoSangre}</td>
                 <td>{$fila->telefono}</td>                
                 </tr>";
-            }
-
+            }*/
             ?>
         </tbody>
     </table>
