@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-07-2020 a las 09:22:46
+-- Tiempo de generación: 02-08-2020 a las 03:15:15
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `citas` (
-  `id` int(11) NOT NULL,
+  `id` varchar(13) NOT NULL,
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
   `duracion` varchar(10) NOT NULL,
@@ -40,7 +40,8 @@ CREATE TABLE `citas` (
 --
 
 INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`) VALUES
-(2147483647, '2020-07-22', '18:54:00', '45 minutos', 27);
+('001-0605441-4', '2020-08-04', '21:14:00', '22 minutos', 52),
+('2147483647', '2020-07-22', '18:54:00', '45 minutos', 27);
 
 -- --------------------------------------------------------
 
