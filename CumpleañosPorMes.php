@@ -1,6 +1,7 @@
 <?php
-  session_start();
+session_start();
 include_once("libreria/includes.php");
+
 $conexion = Conexion::getInstance();
 ?>
 <div class="container">
