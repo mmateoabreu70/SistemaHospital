@@ -19,7 +19,7 @@ $conexion = Conexion::getInstance();
                 <label class="input-group-addon" for="cumpleaños">Cumpleaños</label>
                 <!--drop down list-->
                 <select name="cumpleaños" class="form-control">                 
-                <option value="">Seleccione un mes</option>
+                <option value="0">Seleccione un mes</option>
                 <option value="01">Enero</option>                                  
                 <option value="02">Febrero</option>
                 <option value="03">Marzo</option>
