@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2020 a las 03:15:15
+-- Tiempo de generación: 02-08-2020 a las 04:29:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.31
 
@@ -41,7 +41,8 @@ CREATE TABLE `citas` (
 
 INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`) VALUES
 ('001-0605441-4', '2020-08-04', '21:14:00', '22 minutos', 52),
-('2147483647', '2020-07-22', '18:54:00', '45 minutos', 27);
+('2147483647', '2020-07-22', '18:54:00', '45 minutos', 27),
+('40225359641', '2020-08-11', '14:36:00', '10 minutos', 27);
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,8 @@ INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `p
 (1, '2020-07-29 23:25:13', 1, 20, NULL),
 (2, '2020-07-30 00:10:05', 1, 20, NULL),
 (3, '2020-07-30 13:45:18', 1, 20, NULL),
-(4, '2020-07-30 22:51:26', 1, 20, NULL);
+(4, '2020-07-30 22:51:26', 1, 20, NULL),
+(5, '2020-08-01 21:57:17', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -304,7 +306,7 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
