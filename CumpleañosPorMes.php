@@ -39,11 +39,6 @@ $conexion = Conexion::getInstance();
          </form>     
      </div>     
 </div>
-<?php
-if(isset($_POST['consultarcumpleaños']))
-{
-}
-        ?>
 <div>
     <h4>Cumpleaños por mes</h4>
     <table class="table">
@@ -60,6 +55,18 @@ if(isset($_POST['consultarcumpleaños']))
             <?php
             if(isset($_POST['consultarcumpleaños']))
             {
+                $mes = $_POST['cumpleaños'];
+                $query = "SELECT `nombre`,`apellido`,`nacimiento`,`telefono` FROM pacientes WHERE MONTH(`nacimiento`) = $mes";   
+                $resultado = mysqli_query($conexion, $query);
+                while($row=mysqli_fetch_array($resultado))
+                {
+                    echo "<tr>
+                    <td>{$row['nombre']}</td>
+                    <td>{$row['apellido']}</td>
+                    <td>{$row['nacimiento']}</td>
+                    <td>{$row['telefono']}</td>                                   
+                    </tr>";
+                }
             }
 
             /*$datos = gente::listado();
