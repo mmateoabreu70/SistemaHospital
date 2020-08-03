@@ -1,12 +1,22 @@
 <?php 
-
 include('libreria/includes.php');
+$conexion = Conexion::getInstance();
+
+$sql="SELECT receta from visitas";
+$result = $conexion->query($sql);
+
 ?>
 <form enctype = "multipart/form-data" class="col-md-6" method="post">
 <div id="receta">
 <h3>Receta</h3>
-<p>Esta es la receta</p>
-<textarea class="form-control" id="res" rows="3"></textarea>
+<h3><p><?php 
+foreach($result as $row)
+      {
+        echo "
+          <p>
+           {$row['receta']}</p>
+       ";}?>
+       </p></h3>
 </div>
 </form>
 </br>

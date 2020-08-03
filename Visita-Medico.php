@@ -2,7 +2,7 @@
 include('libreria/includes.php');
 $conexion = Conexion::getInstance();
 
-$sql="SELECT cedula,nombre from pacientes";
+$sql="SELECT apellido,nombre from pacientes";
 $result = $conexion->query($sql);
 
 if($_POST){
@@ -11,7 +11,7 @@ $sql = "insert into visitas (nombre,fecha,motivo,comentario,receta,fechaVisita)
 values('{$nombre}','{$fecha}','{$motivo}','{$comentario}','{$receta}','{$fechaVisita}')";
 $resultado = mysqli_query($conexion, $sql);
 
-header("Location:Visita-Medico.php"); 
+header("Location:receta.php"); 
 }
 
 ?>  
@@ -28,24 +28,36 @@ header("Location:Visita-Medico.php");
       foreach($result as $row)
       {
         echo "
-        
-          <option>{$row['cedula']} {$row['nombre']}</option>
-       ";
-     
-      }
+          <option>{$row['nombre']} {$row['apellido']}</option>
+       ";}
    
     ?>
   </select>
-  <?= asgInput('fecha','Fecha','',['type'=>'date']);?>
- <?= asgInput('fechaVisita','Fecha Visita','',['type'=>'date']);?>
-  <?= asgInput('motivo','Motivo de visita','');?>
-  <?= asgInput('comentario','Comentario','');?>
+  <div class="form-group">
+    <label for="fecha1">Fecha Actual</label>
+    <input type="date" class="form-control" id="fecha1" name = "fecha">
+  </div>
+  <div class="form-group">
+    <label for="mot">Motivo de la visita</label>
+    <textarea class="form-control" id="mot" rows="3" name = "motivo"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="com">Comentario</label>
+    <textarea class="form-control" id="com" rows="3" name = "comentario"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="res">Receta</label>
+    <textarea class="form-control" id="res" rows="3" name = "receta"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="fecha2">Fecha Proxima Visita</label>
+    <input type="date" class="form-control" id="fecha2" name = "fechaVisita">
+  </div>
 </center>
 
 <center><button type="submit" class="btn btn-success" name="action">Agregar</button></center>
     </br>
-<center><a href='receta.php' class='btn btn-info'>Redactar Receta</a></center>
-
+</form>
 <?php
 include('libreria/foot.php');
 ?>
