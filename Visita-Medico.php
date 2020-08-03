@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('libreria/includes.php');
 $conexion = Conexion::getInstance();
 
@@ -10,7 +11,13 @@ extract($_POST);
 $sql = "insert into visitas (nombre,fecha,motivo,comentario,receta,fechaVisita) 
 values('{$nombre}','{$fecha}','{$motivo}','{$comentario}','{$receta}','{$fechaVisita}')";
 $resultado = mysqli_query($conexion, $sql);
+if(isset($_GET['id']))
+    {
+        $user = new Usuario();
+        $user->Id = $_GET['id'];
 
+        $user->eliminarUsuario();
+    }
 header("Location:receta.php"); 
 }
 
