@@ -12,15 +12,21 @@ $conexion = Conexion::getInstance();
         if(isset($_POST['agregarcita']))
         {
         // Se guardan los datos capturados en los inputs y los drop down list y se guardan en variables
-        $id = $_POST['cedula'];
+        $paciente = $_POST['cedula'];
         $fechacita = $_POST['fechacita'];
         $hora = $_POST['hora'];
         $duracion = $_POST['duracion'];
-        $medico = $_POST['medico'];
+        $medico = $_POST['medico'];        
+        $query = "SELECT precio FROM precioconsultas WHERE id=1";
+        $resultado3 = mysqli_query($conexion,$query);
+        if($row3=mysqli_fetch_array($resultado3))
+        {
+            $costo = $row3['precio'];
+        }
         
         //Se mandan los datos a la base de datos
-        $conexion->query("INSERT INTO citas (id,fechaCita,hora,duracion,medico) 
-        values ('$id','$fechacita','$hora','$duracion minutos','$medico')");    
+        $conexion->query("INSERT INTO citas (fechaCita,hora,duracion,medico,paciente,costo) 
+        values ('$fechacita','$hora','$duracion minutos','$medico','$paciente','$costo')");    
         }
     /*} else {
         header("Location:index.php");
