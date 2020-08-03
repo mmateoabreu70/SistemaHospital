@@ -83,7 +83,7 @@
                 <!--label-->
                 <label class="input-group-addon" for="telefono">Telefono</label>
                 <!--Input-->
-                <input type="text" name="telefono" id="telefono" class="form-control"/>            
+                <input type="text" name="telefono" id="telefono" maxlength="10" class="form-control"/>            
             </div>
                 <!--<a href="index.php" class="btn btn-primary">Nuevo</a>-->
                 <button type="submit" class="btn btn-success">Guardar</button>
