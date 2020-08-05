@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-07-2020 a las 01:21:40
--- Versión del servidor: 10.4.13-MariaDB
+-- Tiempo de generación: 05-08-2020 a las 18:02:45
+-- Versión del servidor: 8.0.18
 -- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -33,8 +33,29 @@ CREATE TABLE `citas` (
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
   `duracion` varchar(10) NOT NULL,
-  `medico` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `medico` int(11) DEFAULT NULL,
+  `paciente` varchar(13) DEFAULT NULL,
+  `costo` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`, `paciente`, `costo`) VALUES
+(7, '2020-08-02', '13:57:00', '1 minutos', 27, '001-1234567-1', 700),
+(8, '2020-08-02', '01:59:00', '5 minutos', 40, '031-2489481-2', 700),
+(9, '2020-08-02', '01:05:00', '14 minutos', 52, '201-9373920-3', 700),
+(10, '2020-08-18', '10:03:00', '7 minutos', 27, '894-2098340-5', 700),
+(11, '2020-08-18', '03:05:00', '8 minutos', 52, '892-0139080-1', 700),
+(12, '2020-08-18', '16:07:00', '25 minutos', 40, '092-8439408-4', 700),
+(13, '2020-06-16', '03:05:00', '10 minutos', 40, '897-4329474-2', 700),
+(14, '2020-07-21', '02:07:00', '35 minutos', 52, '894-2098340-5', 700),
+(15, '2020-08-02', '03:06:00', '19 minutos', 27, '892-0139080-1', 700),
+(16, '2020-06-21', '15:07:00', '12 minutos', 27, '894-2098340-5', 700),
+(17, '2020-07-28', '10:08:00', '9 minutos', 52, '032-1638493-0', 700),
+(18, '2020-07-21', '02:08:00', '19 minutos', 40, '892-0139080-1', 700),
+(19, '2020-08-21', '12:00:00', '30 minutos', 40, '402-4350210-8', 700);
 
 -- --------------------------------------------------------
 
@@ -45,7 +66,7 @@ CREATE TABLE `citas` (
 CREATE TABLE `estado` (
   `idEstado` int(11) NOT NULL,
   `estado` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -68,14 +89,27 @@ CREATE TABLE `pacientes` (
   `nacimiento` date NOT NULL,
   `tipoSangre` char(2) DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
 --
 
 INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSangre`, `telefono`) VALUES
-('001-0605441-4', 'Amadis ', 'Suarez', '1999-04-12', 'A+', '.8092390104');
+('001-1234567-1', 'Amadis', 'Suarez', '1982-06-15', 'A+', '8299848389'),
+('031-2489481-2', 'Jose', 'Reyes', '1990-12-04', 'B+', '8096832429'),
+('032-1638493-0', 'Roshby', 'Pajaro', '2000-11-21', 'A+', '8492065473'),
+('084-2935842-3', 'Estefani', 'Mesa', '1972-08-20', 'B+', '8498907852'),
+('092-8439408-4', 'Cesar Javier', 'Martinez Garrido', '1985-02-18', 'B+', '8092105643'),
+('098-7654321-1', 'Carlos Javier', 'Pascual Polanco', '1998-06-05', 'B+', '8092154783'),
+('201-9373920-3', 'alfredo', 'rubio', '1971-01-28', 'B+', '8492154738'),
+('402-4350210-8', 'Michael', 'Mateo', '2000-02-05', 'A+', '8492559737'),
+('613-2879648-7', 'Argenis', 'Rubio', '1995-09-20', 'A+', '8090789402'),
+('817-9034793-8', 'Alofoke', 'Music', '1994-10-19', 'A+', '8296749128'),
+('820-9348320-9', 'Pedro', 'Martinez', '1999-04-02', 'A+', '8098623612'),
+('892-0139080-1', 'Albert', 'Pujols', '2014-05-02', 'A+', '8499132783'),
+('894-2098340-5', 'Daniel', 'Debrand', '1995-07-19', 'A+', '8091967391'),
+('897-4329474-2', 'Juan', 'Rosario', '1991-03-02', 'A+', '8297138712');
 
 -- --------------------------------------------------------
 
@@ -87,7 +121,7 @@ CREATE TABLE `precioconsultas` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `precioconsultas`
@@ -108,7 +142,57 @@ CREATE TABLE `reportesistema` (
   `evento` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `reportesistema`
+--
+
+INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
+(1, '2020-07-29 23:25:13', 1, 20, NULL),
+(2, '2020-07-30 00:10:05', 1, 20, NULL),
+(3, '2020-07-30 13:45:18', 1, 20, NULL),
+(4, '2020-07-30 22:51:26', 1, 20, NULL),
+(5, '2020-08-01 21:57:17', 1, 20, NULL),
+(6, '2020-08-02 20:24:12', 1, 20, NULL),
+(7, '2020-08-05 11:23:33', 8, 20, NULL),
+(8, '2020-08-05 11:48:00', 1, 27, NULL),
+(9, '2020-08-05 12:12:49', 9, 27, NULL),
+(10, '2020-08-05 12:26:17', 9, 27, NULL),
+(11, '2020-08-05 12:47:14', 9, 27, NULL),
+(12, '2020-08-05 12:47:45', 9, 27, NULL),
+(13, '2020-08-05 12:55:34', 9, 27, NULL),
+(14, '2020-08-05 12:58:14', 9, 27, NULL),
+(15, '2020-08-05 13:03:59', 9, 27, NULL),
+(16, '2020-08-05 13:06:03', 9, 27, NULL),
+(17, '2020-08-05 13:17:54', 9, 27, NULL),
+(18, '2020-08-05 13:18:31', 2, 27, NULL),
+(19, '2020-08-05 13:26:35', 1, 27, NULL),
+(20, '2020-08-05 13:40:09', 2, 27, NULL),
+(21, '2020-08-05 13:40:15', 1, 40, NULL),
+(22, '2020-08-05 13:40:43', 2, 40, NULL),
+(23, '2020-08-05 13:41:11', 1, 1, NULL),
+(24, '2020-08-05 13:41:32', 2, 1, NULL),
+(25, '2020-08-05 13:43:32', 1, 1, NULL),
+(26, '2020-08-05 13:43:42', 2, 1, NULL),
+(27, '2020-08-05 13:44:37', 1, 1, NULL),
+(28, '2020-08-05 13:44:40', 2, 1, NULL),
+(29, '2020-08-05 13:45:00', 1, 1, NULL),
+(30, '2020-08-05 13:45:16', 2, 1, NULL),
+(31, '2020-08-05 13:45:46', 1, 1, NULL),
+(32, '2020-08-05 13:45:53', 2, 1, NULL),
+(33, '2020-08-05 13:46:36', 1, 27, NULL),
+(34, '2020-08-05 13:46:39', 2, 27, NULL),
+(35, '2020-08-05 13:47:02', 1, 1, NULL),
+(36, '2020-08-05 13:47:05', 2, 1, NULL),
+(37, '2020-08-05 13:47:58', 1, 1, NULL),
+(38, '2020-08-05 13:48:04', 2, 1, NULL),
+(39, '2020-08-05 13:49:23', 1, 1, NULL),
+(40, '2020-08-05 13:49:27', 2, 1, NULL),
+(41, '2020-08-05 13:50:32', 1, 1, NULL),
+(42, '2020-08-05 13:50:36', 2, 1, NULL),
+(43, '2020-08-05 13:51:53', 1, 27, NULL),
+(44, '2020-08-05 13:52:47', 9, 27, NULL);
 
 -- --------------------------------------------------------
 
@@ -119,7 +203,7 @@ CREATE TABLE `reportesistema` (
 CREATE TABLE `roles` (
   `idRol` int(11) NOT NULL,
   `rol` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -139,7 +223,7 @@ INSERT INTO `roles` (`idRol`, `rol`) VALUES
 CREATE TABLE `tipoeventos` (
   `idEvento` int(11) NOT NULL,
   `nomEvento` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `tipoeventos`
@@ -154,7 +238,8 @@ INSERT INTO `tipoeventos` (`idEvento`, `nomEvento`) VALUES
 (6, 'Asignar costo de consulta'),
 (7, 'Registrar paciente'),
 (8, 'Asignar cita'),
-(9, 'Registrar visita');
+(9, 'Registrar visita'),
+(10, 'Imprimir receta');
 
 -- --------------------------------------------------------
 
@@ -170,7 +255,7 @@ CREATE TABLE `usuarios` (
   `pass` varchar(100) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
   `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -204,13 +289,13 @@ INSERT INTO `usuarios` (`idUsuario`, `nomUser`, `apellidoUser`, `user`, `pass`, 
 
 CREATE TABLE `visitas` (
   `idVisita` int(11) NOT NULL,
-  `fecha` date NOT NULL COMMENT 'Esta es la fecha en la que se registra la visita.',
-  `motivo` varchar(150) NOT NULL,
-  `comentario` text NOT NULL,
-  `receta` varchar(150) NOT NULL,
-  `fechaVisita` date NOT NULL COMMENT 'Esta es la fecha de la visita proxima.',
-  `cedula` varchar(13) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `nombre` varchar(100) DEFAULT NULL,
+  `fecha` date DEFAULT NULL COMMENT 'Esta es la fecha en la que se registra la visita.',
+  `motivo` varchar(150) DEFAULT NULL,
+  `comentario` text,
+  `receta` varchar(150) DEFAULT NULL,
+  `fechaVisita` date DEFAULT NULL COMMENT 'Esta es la fecha de la visita proxima.'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Índices para tablas volcadas
@@ -221,7 +306,8 @@ CREATE TABLE `visitas` (
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `medico` (`medico`);
+  ADD KEY `medico` (`medico`),
+  ADD KEY `paciente` (`paciente`);
 
 --
 -- Indices de la tabla `estado`
@@ -274,24 +360,35 @@ ALTER TABLE `usuarios`
 -- Indices de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  ADD PRIMARY KEY (`idVisita`),
-  ADD KEY `cedula` (`cedula`);
+  ADD PRIMARY KEY (`idVisita`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT de la tabla `visitas`
+--
+ALTER TABLE `visitas`
+  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -301,7 +398,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`);
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`),
+  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`paciente`) REFERENCES `pacientes` (`cedula`);
 
 --
 -- Filtros para la tabla `reportesistema`
@@ -317,12 +415,6 @@ ALTER TABLE `reportesistema`
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`tipo`) REFERENCES `roles` (`idRol`),
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`estado`) REFERENCES `estado` (`idEstado`);
-
---
--- Filtros para la tabla `visitas`
---
-ALTER TABLE `visitas`
-  ADD CONSTRAINT `visitas_ibfk_1` FOREIGN KEY (`cedula`) REFERENCES `pacientes` (`cedula`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
