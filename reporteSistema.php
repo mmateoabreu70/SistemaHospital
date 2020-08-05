@@ -7,7 +7,7 @@ if($_SESSION['rol'] == 'Administrador')
     $datos = ReporteSistema::contarRegistros();
 
     /* Codigo para la paginacion */ 
-    $filas_x_pag = 50;
+    $filas_x_pag = 25;
 
         //contar registros de la tabla
     $totalFilas = $datos->num_rows;
