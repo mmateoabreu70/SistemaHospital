@@ -2,21 +2,27 @@
     session_start();
     include_once("libreria/includes.php");
 
-    /* Llenando la tabla */
-    $con = Conexion::getInstance();
-    $sql = "SELECT idUsuario, nombre, apellido, usuario, pass, rol FROM usuarios 
-            INNER JOIN roles ON usuarios.tipo = roles.idRol
-            WHERE estado = 1";
-    $result = mysqli_query($con, $sql);
-
-    /* Verificar si hay id en la url */
-    if(isset($_GET['id']))
+    if($_SESSION['rol'] == 'Administrador')
     {
-        $user = new Usuario();
-        $user->Id = $_GET['id'];
+        /* Llenando la tabla */
+        $con = Conexion::getInstance();
+        $sql = "SELECT idUsuario, nomUser, apellidoUser, user, pass, rol FROM usuarios 
+                INNER JOIN roles ON usuarios.tipo = roles.idRol
+                WHERE estado = 1
+                ORDER BY idUsuario";
+        $result = mysqli_query($con, $sql);
 
-        $user->eliminarUsuario();
-        header("Location:AdminUsuario.php"); 
+        /* Verificar si hay id en la url */
+        if(isset($_GET['id']))
+        {
+            $user = new Usuario();
+            $user->Id = $_GET['id'];
+
+            $user->eliminarUsuario();
+            header("Location:AdminUsuario.php"); 
+        }
+    } else {
+        header("Location:index.php");
     }
 
 ?>
@@ -42,8 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-
+            <?php 
                 foreach($result as $fila)
                 {
                     $count++;
@@ -51,9 +56,9 @@
                     echo "
                         <tr>
                             <td>$count</td>
-                            <td>{$fila['nombre']}</td>
-                            <td>{$fila['apellido']}</td>
-                            <td>{$fila['usuario']}</td>
+                            <td>{$fila['nomUser']}</td>
+                            <td>{$fila['apellidoUser']}</td>
+                            <td>{$fila['user']}</td>
                             <td>{$fila['pass']}</td>
                             <td>{$fila['rol']}</td>
                             <td colspan='2'>

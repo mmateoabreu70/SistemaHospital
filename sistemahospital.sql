@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-08-2020 a las 05:35:38
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.2.31
+-- Servidor: localhost
+-- Tiempo de generación: 30-07-2020 a las 01:21:40
+-- Versión del servidor: 10.4.13-MariaDB
+-- Versión de PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,9 +32,7 @@ CREATE TABLE `citas` (
   `fechaCita` date NOT NULL,
   `hora` time NOT NULL,
   `duracion` varchar(10) NOT NULL,
-  `medico` int(11) DEFAULT NULL,
-  `paciente` varchar(13) DEFAULT NULL,
-  `costo` double NOT NULL
+  `medico` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -130,6 +128,25 @@ INSERT INTO `precioconsultas` (`id`, `tipo`, `precio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `precioconsultas`
+--
+
+CREATE TABLE `precioconsultas` (
+  `id` int(11) NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `precio` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `precioconsultas`
+--
+
+INSERT INTO `precioconsultas` (`id`, `tipo`, `precio`) VALUES
+(1, 'Consulta general', 700);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reportesistema`
 --
 
@@ -140,18 +157,6 @@ CREATE TABLE `reportesistema` (
   `usuario` int(11) NOT NULL,
   `pacienteAfect` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `reportesistema`
---
-
-INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
-(1, '2020-07-29 23:25:13', 1, 20, NULL),
-(2, '2020-07-30 00:10:05', 1, 20, NULL),
-(3, '2020-07-30 13:45:18', 1, 20, NULL),
-(4, '2020-07-30 22:51:26', 1, 20, NULL),
-(5, '2020-08-01 21:57:17', 1, 20, NULL),
-(6, '2020-08-02 20:24:12', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -265,8 +270,7 @@ CREATE TABLE `visitas` (
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `medico` (`medico`),
-  ADD KEY `paciente` (`paciente`);
+  ADD KEY `medico` (`medico`);
 
 --
 -- Indices de la tabla `estado`
@@ -333,7 +337,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -349,8 +353,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`),
-  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`paciente`) REFERENCES `pacientes` (`cedula`);
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`medico`) REFERENCES `usuarios` (`idUsuario`);
 
 --
 -- Filtros para la tabla `reportesistema`
