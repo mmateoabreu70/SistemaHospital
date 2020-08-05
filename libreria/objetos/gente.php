@@ -75,7 +75,7 @@ class gente{
             $this->cedula = mysqli_insert_id($link);
 
             $report = new ReporteSistema();
-            $report->RegistrarEvento(7);
+            $report->RegistrarEvento(7, $this->cedula);
         }
     }
 
