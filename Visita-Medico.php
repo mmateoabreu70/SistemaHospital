@@ -1,25 +1,33 @@
 <?php
-session_start();
-include('libreria/includes.php');
-$conexion = Conexion::getInstance();
+  session_start();
+  include('libreria/includes.php');
 
-$sql="SELECT apellido,nombre from pacientes";
-$result = $conexion->query($sql);
+  if($_SESSION['rol'] == 'Medico')
+  {
+    $conexion = Conexion::getInstance();
 
-if($_POST){
-extract($_POST);
-$sql = "insert into visitas (nombre,fecha,motivo,comentario,receta,fechaVisita) 
-values('{$nombre}','{$fecha}','{$motivo}','{$comentario}','{$receta}','{$fechaVisita}')";
-$resultado = mysqli_query($conexion, $sql);
-if(isset($_GET['id']))
-    {
-        $user = new Usuario();
-        $user->Id = $_GET['id'];
+    $sql="SELECT apellido,nombre from pacientes";
+    $result = $conexion->query($sql);
+    
+    if($_POST){
 
-        $user->eliminarUsuario();
+      extract($_POST);
+
+      $sql = "INSERT INTO visitas VALUES (0,'{$nombre}','{$fecha}','{$motivo}','{$comentario}','{$receta}','{$fechaVisita}')";
+      mysqli_query($conexion, $sql);
+
+      $id = mysqli_insert_id($conexion);
+      
+      $report = new ReporteSistema();
+      $report->RegistrarEvento(9);
+
+      header("Location:receta.php?idVisita={$id}"); 
     }
-header("Location:receta.php"); 
-}
+    
+  }
+  else {
+    header("Location:index.php");
+  }
 
 ?>  
 <html>
@@ -28,7 +36,7 @@ header("Location:receta.php");
     <center>
     
 <form enctype = "multipart/form-data" class="col-md-6" method="post">
-  <select class="form-control form-control-sm" class="col-md-4 " name = "nombre" readonly>
+  <select class="form-control form-control-sm" class="col-md-4 " name="nombre" readonly>
     <option selected>Elegir paciente</option>
     <?php
      
@@ -42,7 +50,7 @@ header("Location:receta.php");
   </select>
   <div class="form-group">
     <label for="fecha1">Fecha Actual</label>
-    <input type="date" class="form-control" id="fecha1" name = "fecha">
+    <input type="date" class="form-control" id="fecha1" name="fecha" value="<?php echo date('Y-m-d'); ?>">
   </div>
   <div class="form-group">
     <label for="mot">Motivo de la visita</label>

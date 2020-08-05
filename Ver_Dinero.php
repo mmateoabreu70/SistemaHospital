@@ -1,21 +1,27 @@
 <?php
-session_start();
-include('libreria/includes.php');
-//// Aqui es el select para la tabla de citas y asi mostrar algunos campos
-$conexion = Conexion::getInstance();
-$sql="SELECT id, paciente,fechaCita, costo from citas";
-$result = $conexion->query($sql);
- /// Aqui es la suma de todos los campos de la celda
-$consulta="SELECT SUM(costo) as TotalPrecios FROM citas";
-$resultado=$conexion -> query($consulta);
-$fila=$resultado->fetch_assoc();
+    session_start();
+    include('libreria/includes.php');
 
-if(isset($_GET['id']))
+    if($_SESSION['rol'] == 'Medico')
     {
-        $user = new Usuario();
-        $user->Id = $_GET['id'];
+        //// Aqui es el select para la tabla de citas y asi mostrar algunos campos
+        $conexion = Conexion::getInstance();
+        $sql="SELECT id, paciente,fechaCita, costo 
+                FROM citas
+                WHERE medico = {$_SESSION['id']}";
+        $result = $conexion->query($sql);
 
-        $user->eliminarUsuario();
+        /// Aqui es la suma de todos los campos de la celda
+        $consulta="SELECT SUM(costo) as TotalPrecios
+                    FROM citas
+                    WHERE medico = {$_SESSION['id']}";
+
+        $resultado = mysqli_query($conexion, $consulta);
+        $rowTotal = mysqli_fetch_array($resultado);
+
+    }
+    else {
+        header("Location:index.php");
     }
 ?>
 <html>
@@ -44,17 +50,13 @@ if(isset($_GET['id']))
                         </tr>
                     ";
                 }
+
                 /// Aqui se esta haciendo el mostrar del total
 
-                foreach ($resultado as $fila) {
-                    $TotalPrecios=$fila['TotalPrecios'];
-
-                }
-
                 echo "<tr>
-                <th colspan ='3'></th>
-        <th>Total: $TotalPrecios </th>
-                </tr>              
+                    <th colspan ='3'></th>
+                        <th>Total: {$rowTotal['TotalPrecios']}</th>
+                    </tr>              
                 "
             ?>
         </tbody>

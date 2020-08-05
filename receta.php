@@ -1,35 +1,58 @@
 <?php 
-session_start();
-include('libreria/includes.php');
-$conexion = Conexion::getInstance();
+    session_start();
+    include('libreria/includes.php');
 
-$sql="SELECT receta from visitas";
-$result = $conexion->query($sql);
-
-if(isset($_GET['id']))
+    if($_SESSION['rol'] == 'Medico')
     {
-        $user = new Usuario();
-        $user->Id = $_GET['id'];
+        if(isset($_GET['idVisita']))
+        {
+            $conexion = Conexion::getInstance();
 
-        $user->eliminarUsuario();
+            $sql="SELECT receta from visitas
+                  WHERE idVisita = {$_GET['idVisita']}";
+            $result = $conexion->query($sql);
+            $row = mysqli_fetch_array($result);
+
+        }
+    
+        if($_POST)
+        {
+            $report = new ReporteSistema();
+            $report->RegistrarEvento(10);
+        }
+    }
+    else {
+        header("Location:index.php");
     }
 ?>
+
 <a href="Visita-Medico.php" >Volver</a>
-<form enctype = "multipart/form-data" class="col-md-6" method="post">
+<form class="col-md-6" method="post">
 </br>
 <div id="receta">
 <h3>Receta</h3>
-<h3><p><?php 
-foreach($result as $row)
-      {
-        echo "
-          <p>
-           {$row['receta']}</p>
-       ";}?>
-       </p></h3>
+    <h3><p>
+        <?php 
+            if($row['receta'] != null)
+            {
+                echo "
+                    <p>
+                    {$row['receta']}
+                    </p>
+                ";
+            }
+            else {
+                echo "
+                    <span>No hay receta disponible</span>
+                ";
+            }
+        ?>
+    </p></h3>
 </div>
+
+<button type="submit" class="btn btn-success" <?php echo $row['receta']==null ? 'disabled' : '' ?> onclick="Imprimir('receta')" >Imprimir</button>
+
 </form>
 </br>
-<button class="btn btn-success" onclick="Imprimir('receta')" >Imprimir</button>
 
 <?php include_once("libreria/foot.php"); ?>

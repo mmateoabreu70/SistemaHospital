@@ -5,7 +5,9 @@
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Paciente</title>
+    <title>
+        Sistema Hospital
+    </title>
 
     <!--main js-->
     <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
@@ -64,13 +66,19 @@
                     <li class="active">
                         <a href="precioConsulta.php">Precio de consultas</a>
                     </li>
-
                 <?php endif ?> 
+                <?php if($_SESSION['rol'] == 'Medico'): ?>
+                    <li class="active">
+                        <a href="Visita-Medico.php">Asignar visita</a>
+                    </li>
 
+                    <li class="active">
+                        <a href="Ver_Dinero.php">Ver total recaudado</a>
+                    </li>
+                <?php endif ?>
                 <li class="active">
-                    <a href="calendarioCitas.php">Calendario de citas</a>
+                    <a href="#">Calendario de citas</a>
                 </li>
-
             </ul>
             <div id="sidebar-foot"></div>
         </nav>
