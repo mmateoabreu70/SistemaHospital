@@ -2,8 +2,16 @@
 session_start();
 include_once("libreria/includes.php");
 
-$conexion = Conexion::getInstance();
+if($_SESSION['rol'] == 'Asistente')
+{
+    $conexion = Conexion::getInstance();
+}
+else {
+    header("Location:index.php");
+}
+
 ?>
+
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -89,6 +97,7 @@ $conexion = Conexion::getInstance();
         </tbody>
     </table>
 </div>
+
 <?php
 include_once("libreria/foot.php");
 ?>
