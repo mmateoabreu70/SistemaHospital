@@ -67,6 +67,7 @@
                         <a href="precioConsulta.php">Precio de consultas</a>
                     </li>
                 <?php endif ?> 
+                
                 <?php if($_SESSION['rol'] == 'Medico'): ?>
                     <li class="active">
                         <a href="Visita-Medico.php">Asignar visita</a>

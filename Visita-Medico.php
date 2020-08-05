@@ -70,7 +70,7 @@
   </div>
 </center>
 
-<center><button type="submit" class="btn btn-success" name="action">Agregar</button></center>
+<center><button type="Submit" class="btn btn-success" name="action">Agregar</button></center>
     </br>
 </form>
 <?php
