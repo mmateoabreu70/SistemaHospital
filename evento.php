@@ -4,8 +4,8 @@ session_start();
 include_once("libreria/includes.php");
 
 date_default_timezone_set("America/Santiago");
-include 'CalendarioConfig.php';
-include 'CalendarioFunciones.php';
+include 'calendarioFunciones.php';
+include 'calendarioConfig.php';
 
 if (isset($_POST['from'])) 
 {
@@ -47,121 +47,169 @@ if (isset($_POST['from']))
 
 
         header("Location:$base_url"); 
+
+        
     }
 }
-?>
 
+ ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="utf-8">
+        <title>Calendario</title>
+        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
+        <script src="<?=$base_url?>js/jquery.min.js"></script>
+        <script src="<?=$base_url?>js/moment.js"></script>
+        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
+        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
+        <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
+       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
+    </head>
+
+
+<style>
+    
+body{
+
+
+    background-image: url(images/fondo7.jpg);
+
+
+
+}
+  
+</style>
+
+<body >
 
         <div class="container">
 <center>
+            <br>
+            <br>
+            <br>
+<center><font color="white" face="Algerian" size="7" >Calendario de citas</font></center>
+            <br>                         
+<center><font color="white" face="Algerian" size="5" >Aqui agregaras las citas mas importantes que tenga</font></center>
+            <br>
+        
+            
 <div class="row">
 
+<div class="page-header"><h2></h2></div>
+<!--
+        <div class="pull- form-inline"><br>
+                <div class="btn-group">
+                    <button class="btn btn-warning" data-calendar-nav="prev"><< Anterior</button>
+                    <button class="btn btn-primary" data-calendar-nav="today">Hoy</button>
+                    <button class="btn btn-warning" data-calendar-nav="next">Siguiente >></button>
+                </div><br><br>
+                <div class="btn-group">
+                    <button class="btn btn-info" data-calendar-view="year">Año</button>
+                    <button class="btn btn-info active" data-calendar-view="month">Mes</button>
+                    <button class="btn btn-info" data-calendar-view="week">Semana</button>
+                    <button class="btn btn-info" data-calendar-view="day">Dia</button>
+                </div>
+-->
+        </div>
 
-<br>
-<div class="borde">
-        <br>
-<a href="calendarioCitas.php">
-<button class="btn btn-success">
-        
-Actualizar 
-        
-</button>
 
-</a>
-
-<button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
+            <button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
 
 <font color="black" face="Algerian" size="7" >
                 Añadir cita
 </font>
 
             </button>
+    
 
-</div>
 
-        
+            <a href="calendarioCitas.php">
+            <button class="btn btn-info" data-toggle='modal' data-target='#add_evento'>
 
-</div>
+<font color="black" face="Algerian" size="7" >
+                Calendario
+</font>
+            </button>
+            </a>
 
+
+
+
+                </div><hr>
 </center>
-
-
-<div class="borde1"><br>
- <center><font color="red" face="Algerian"><div class="page-header"><h2></h2></div></font></center>
-    <center>
-                                       <div class="btn-group">
-                                            <button class="btn btn-warning" data-calendar-nav="prev"><< Anterior</button>
-                                            <button class="btn btn-primary" data-calendar-nav="today">Hoy</button>
-                                            <button class="btn btn-warning" data-calendar-nav="next">Siguiente >></button>
-                                        </div><br><br>
-                                        <div class="btn-group">
-                                            <button class="btn btn-info" data-calendar-view="year">Año</button>
-                                            <button class="btn btn-info active" data-calendar-view="month">Mes</button>
-                                            <button class="btn btn-info" data-calendar-view="week">Semana</button>
-                                            <button class="btn btn-info" data-calendar-view="day">Dia</button>
-                                        </div>
-                                        <br>
-    </center>                                    
-
                 <div class="row">
-                        <div id="calendar"></div> 
+                        <div id="calendar"></div> <!-- Aqui se mostrara nuestro calendario -->
                         <br><br>
                 </div>
-<br>
-<br>
-<br>
-        </div>
-        <br>
-        <br>
-        <br>
-    </center>
 
+                <!--ventana modal para el calendario-->
+                <div class="modal fade" id="events-modal">
+                    <div class="modal-dialog">
+                            <div class="modal-content">
+                                    <div class="modal-body" style="height: 400px">
+                                        <p>One fine body&hellip;</p>
+                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+        </div>
+<!--
     <script src="<?=$base_url?>js/underscore-min.js"></script>
     <script src="<?=$base_url?>js/calendar.js"></script>
     <script type="text/javascript">
 
         (function($){
-
+                //creamos la fecha actual
                 var date = new Date();
                 var yyyy = date.getFullYear().toString();
                 var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
                 var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
 
-     
+                //establecemos los valores del calendario
                 var options = {
 
-                
+                    // definimos que los eventos se mostraran en ventana modal
                         modal: '#events-modal', 
 
-              
+                        // dentro de un iframe
                         modal_type:'iframe',    
 
-              
+                        //obtenemos los eventos de la base de datos
                         events_source: '<?=$base_url?>obtener_eventos.php', 
 
-                 
+                        // mostramos el calendario en el mes
                         view: 'month',             
 
-               
+                        // y dia actual
                         day: yyyy+"-"+mm+"-"+dd,   
 
 
-             
+                        // definimos el idioma por defecto
                         language: 'es-ES', 
 
+                        //Template de nuestro calendario
                         tmpl_path: '<?=$base_url?>tmpls/', 
                         tmpl_cache: false,
 
 
-              
+                        // Hora de inicio
                         time_start: '08:00', 
 
-            
+                        // y Hora final de cada dia
                         time_end: '22:00',   
 
+                        // intervalo de tiempo entre las hora, en este caso son 30 minutos
                         time_split: '30',    
 
-                
+                        // Definimos un ancho del 100% a nuestro calendario
                         width: '100%', 
 
                         onAfterEventsLoad: function(events)
@@ -224,7 +272,7 @@ Actualizar
                 });
         }(jQuery));
     </script>
-
+-->
 <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -257,7 +305,6 @@ Actualizar
                         <option value="event-warning">Pasantia Medica</option>
                         <option value="event-special">Otro</option>
                     </select>
-
                     <br>
 
 
