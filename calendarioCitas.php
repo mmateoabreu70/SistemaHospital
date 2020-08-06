@@ -1,27 +1,56 @@
 <?php
 
 session_start();
-include_once("libreria/includes.php");
 
-include 'CalendarioConfig.php'; 
-include 'CalendarioFunciones.php';
 
+date_default_timezone_set("America/Santiago");
+include 'calendarioFunciones.php';
+include 'calendarioConfig.php';
+include_once("libreria/head.php");
 if (isset($_POST['from'])) 
 {
 
     if ($_POST['from']!="" AND $_POST['to']!="") 
     {
 
-        $im = $conexion->query("SELECT MAX(id) AS id FROM citas");
+
+        $inicio = _formatear($_POST['from']);
+
+        $final  = _formatear($_POST['to']);
+
+        $inicio_normal = $_POST['from'];
+
+        $final_normal  = $_POST['to'];
+
+        $titulo = evaluar($_POST['title']);
+
+        $body   = evaluar($_POST['event']);
+
+        $clase  = evaluar($_POST['class']);
+
+        $query="INSERT INTO eventos VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
+
+        $conexion->query($query); 
+
+        $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
         $row = $im->fetch_row();  
         $id = trim($row[0]);
+
+
+        $link = "$base_url"."descripcion_evento.php?id=$id";
+
+  
+        $query="UPDATE eventos SET url = '$link' WHERE id = $id";
+
+   
+        $conexion->query($query); 
 
 
         header("Location:$base_url"); 
     }
 }
 
-?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -41,7 +70,6 @@ if (isset($_POST['from']))
 
 <style>
     
-
 body{
 
 background-color: #FFFFFF;
@@ -55,12 +83,13 @@ background-color: #FFFFFF;
         <div class="container">
 
 
-<div class="borde1"><br>
+
+<div class="borde1">
  <center><font color="red" face="Algerian"><div class="page-header"><h2></h2></div></font></center>
     <center>
                         <div class="btn-group">
                         <button class="btn btn-warning" data-calendar-nav="prev"><< Anterior</button>
-                        <button class="btn btn-primary" data-calendar-nav="today">Hoyyyy</button>
+                        <button class="btn btn-primary" data-calendar-nav="today">Hoy</button>
                         <button class="btn btn-warning" data-calendar-nav="next">Siguiente >></button>
                         </div><br><br>
                         <div class="btn-group">
@@ -76,6 +105,13 @@ background-color: #FFFFFF;
         <div id="calendar"></div> 
         <br><br>
         </div>
+<br>
+<br>
+<br>
+        </div>
+        <br>
+        <br>
+        <br>
     </center>
 
     <script src="<?=$base_url?>js/underscore-min.js"></script>
@@ -99,7 +135,7 @@ background-color: #FFFFFF;
                         modal_type:'iframe',    
 
               
-                        events_source: '<?=$base_url?>obtener_citas.php', 
+                        events_source: '<?=$base_url?>obtener_eventos.php', 
 
                  
                         view: 'month',             
@@ -190,21 +226,67 @@ background-color: #FFFFFF;
 <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
-
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Detalles de cita</h4>
+        <h4 class="modal-title" id="myModalLabel">Agregar nueva cita</h4>
       </div>
       <div class="modal-body">
-        <!-- Aqui iran los detalles de la cita -->
-      </div>
+        <form action="" method="post">
+                    <label for="from">Tiempo de inicio</label>
+                    <div class='input-group date' id='from'>
+                        <input type='text' id="from" name="from" class="form-control" readonly />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </div>
 
+                    <br>
+
+                    <label for="to">Tiempo de finalizacion</label>
+                    <div class='input-group date' id='to'>
+                        <input type='text' name="to" id="to" class="form-control" readonly />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+
+                    <br>
+
+                    <label for="tipo">Tipo de cita</label>
+                    <select class="form-control" name="class" id="tipo">
+                        <option value="event-info">Chequeo General</option>
+                        <option value="event-success">Radiografia</option>
+                        <option value="event-important">Entrevista para Empleo</option>
+                        <option value="event-warning">Pasantia Medica</option>
+                        <option value="event-special">Otro</option>
+                    </select>
+
+                    <br>
+
+
+                    <label for="title">Motivo de cita</label>
+                    <input type="text" required autocomplete="off" name="title" class="form-control" id="title" placeholder="Introduce un título">
+
+                    <br>
+
+
+                    <label for="body">Descripcion de la cita</label>
+                    <textarea id="body" name="event" required class="form-control" rows="3"></textarea>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#from').datetimepicker({
+                language: 'es',
+                minDate: new Date()
+            });
+            $('#to').datetimepicker({
+                language: 'es',
+                minDate: new Date()
+            });
+
+        });
+    </script>
+      </div>
       <div class="modal-footer">
-
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-          <a type="submit" class="btn btn-warning"><i class="fa fa-check"></i> Agregar</a>
-
-      </div>
-
+          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Agregar</button>
+        </form>
+    </div>
   </div>
 </div>
 </div>

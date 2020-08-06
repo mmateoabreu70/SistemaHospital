@@ -18,6 +18,6 @@ if ($conexion->connect_errno) {
 }
 
 
-$base_url="http://localhost/SistemaHospital/";
+$base_url="http://localhost/sistemahospital/";
 
 ?>

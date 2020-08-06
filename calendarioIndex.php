@@ -4,9 +4,8 @@ session_start();
 include_once("libreria/includes.php");
 
 date_default_timezone_set("America/Santiago");
-include 'CalendarioConfig.php';
-include 'CalendarioFunciones.php';
-
+include 'calendarioFunciones.php';
+include 'calendarioConfig.php';
 if (isset($_POST['from'])) 
 {
 
@@ -49,39 +48,103 @@ if (isset($_POST['from']))
         header("Location:$base_url"); 
     }
 }
+
 ?>
 
 
+<!DOCTYPE html>
+
+
+<html lang="es">
+<head>
+        <meta charset="utf-8">
+        <title>Calendario</title>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
+        <script src="<?=$base_url?>js/jquery.min.js"></script>
+        <script src="<?=$base_url?>js/moment.js"></script>
+        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
+        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
+       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
+    </head>
+
+<style>
+    
+.borde{
+
+border-radius: 20px;
+border-style: groove; border-width: 4px;
+width: 300px;
+height: 85px;
+
+
+}
+
+.borde1{
+
+border-radius: 20px;
+border-style: groove; border-width: 4px;
+border-left: 20px;
+border-right: 20px;
+width: 1150px;
+height: 800px;
+
+
+}
+
+body{
+
+background-color: #FFFFFF;
+
+
+}
+
+
+
+
+</style>
+
+<body >
+
         <div class="container">
 <center>
-<div class="row">
+                <div class="row">
 
+                        <font color="red" face="Algerian"><div class="page-header"><h2></h2></div></font>
+                        <br>
+                        <p><center><font face="Algerian" size="4">Calendario, Los puntos que aparecen de colores son los eventos especiales</font></center></p>
+                        <br>
+                        <div class="borde">
+                            <br>
+                        <a href="calendario.php">
+                        <button class="btn btn-success">
+                          
+                        Actualizar 
+                            
+                        </button>
+                        </a>
+                        <a href="inicio.php">
+                        <button class="btn btn-primary">
+                          
+                        Volver
+                            
+                        </button>
+                        </a>
+                        <a href="evento.php">
+                        <button class="btn btn-warning">
+                          
+                        + Evento
+                            
+                        </button>
+                        </a>
+                        </div>
+                        <br>
+                        <br>
+                        <br>          
 
-<br>
-<div class="borde">
-        <br>
-<a href="calendarioCitas.php">
-<button class="btn btn-success">
-        
-Actualizar 
-        
-</button>
-
-</a>
-
-<button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
-
-<font color="black" face="Algerian" size="7" >
-                Añadir cita
-</font>
-
-            </button>
-
-</div>
-
-        
-
-</div>
+                </div>
 
 </center>
 
@@ -229,11 +292,11 @@ Actualizar
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Agregar nueva cita</h4>
+        <h4 class="modal-title" id="myModalLabel">Agregar nuevo evento</h4>
       </div>
       <div class="modal-body">
         <form action="" method="post">
-                    <label for="from">Tiempo de inicio</label>
+                    <label for="from">Inicio</label>
                     <div class='input-group date' id='from'>
                         <input type='text' id="from" name="from" class="form-control" readonly />
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
@@ -241,7 +304,7 @@ Actualizar
 
                     <br>
 
-                    <label for="to">Tiempo de finalizacion</label>
+                    <label for="to">Final</label>
                     <div class='input-group date' id='to'>
                         <input type='text' name="to" id="to" class="form-control" readonly />
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
@@ -249,25 +312,25 @@ Actualizar
 
                     <br>
 
-                    <label for="tipo">Tipo de cita</label>
+                    <label for="tipo">Tipo de evento</label>
                     <select class="form-control" name="class" id="tipo">
-                        <option value="event-info">Chequeo General</option>
-                        <option value="event-success">Radiografia</option>
-                        <option value="event-important">Entrevista para Empleo</option>
-                        <option value="event-warning">Pasantia Medica</option>
-                        <option value="event-special">Otro</option>
+                        <option value="event-info">Informacion</option>
+                        <option value="event-success">Exito</option>
+                        <option value="event-important">Importantante</option>
+                        <option value="event-warning">Advertencia</option>
+                        <option value="event-special">Especial</option>
                     </select>
 
                     <br>
 
 
-                    <label for="title">Motivo de cita</label>
+                    <label for="title">Título</label>
                     <input type="text" required autocomplete="off" name="title" class="form-control" id="title" placeholder="Introduce un título">
 
                     <br>
 
 
-                    <label for="body">Descripcion de la cita</label>
+                    <label for="body">Evento</label>
                     <textarea id="body" name="event" required class="form-control" rows="3"></textarea>
 
     <script type="text/javascript">

@@ -60,7 +60,6 @@ if (isset($_POST['from']))
         <meta charset="utf-8">
         <title>Calendario</title>
         <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
         <script src="<?=$base_url?>js/jquery.min.js"></script>
@@ -92,13 +91,8 @@ body{
             <br>
             <br>
             <br>
-<<<<<<< HEAD
-<center><font color="white" face="Algerian" size="7" >Calendario de citas</font></center>
-=======
-<center><font color="white" face="Algerian" size="7" >Calendario de </font></center>
->>>>>>> 586761feaa3a0eed05351493003edf36088d754d
+<center><font color="black" face="Algerian" size="7" >Calendario de citas</font></center>
             <br>                         
-<center><font color="white" face="Algerian" size="5" >Aqui agregaras las citas mas importantes que tenga</font></center>
             <br>
         
             
@@ -125,11 +119,7 @@ body{
             <button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
 
 <font color="black" face="Algerian" size="7" >
-<<<<<<< HEAD
                 Añadir cita
-=======
-                 cita
->>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 </font>
 
             </button>

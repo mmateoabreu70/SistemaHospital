@@ -73,9 +73,6 @@ class gente{
             mysqli_query($link, $sql);
             echo mysqli_error($link);
             $this->cedula = mysqli_insert_id($link);
-
-            $report = new ReporteSistema();
-            $report->RegistrarEvento(7, $this->cedula);
         }
     }
 
