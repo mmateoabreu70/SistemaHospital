@@ -52,41 +52,6 @@ if (isset($_POST['from']))
 ?>
 
 
-<!DOCTYPE html>
-
-
-<html lang="es">
-<head>
-        <meta charset="utf-8">
-        <title>Calendario</title>
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
-       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
-    </head>
-
-<style>
-    
-    .borde{
-
-border-radius: 20px;
-border-style: groove; border-width: 4px;
-width: 300px;
-height: 85px;
-
-}
-
-body{
-
-background-color: #FFFFFF;
-
-}
-
-</style>
-
-<body >
-
         <div class="container">
 <center>
                 <div class="row">

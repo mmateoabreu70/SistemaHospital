@@ -10,6 +10,10 @@
     <script src="js/jquery.mask.js"></script>
     <script src="js/main.js"></script>
 
+    <!--css-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+
     <!--Calendario js y css-->
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
@@ -22,10 +26,6 @@
     <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
     <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
 
-    <!--css-->
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/main.css">
-
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -33,11 +33,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
-        <script src="<?=$base_url?>js/jquery.min.js"></script>
-        <script src="<?=$base_url?>js/moment.js"></script>
-        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
-        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
     <script>
     
         $(document).ready(function() {
