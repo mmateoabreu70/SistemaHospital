@@ -2,8 +2,16 @@
 session_start();
 include_once("libreria/includes.php");
 
-$conexion = Conexion::getInstance();
+if($_SESSION['rol'] == 'Asistente')
+{
+    $conexion = Conexion::getInstance();
+}
+else {
+    header("Location:index.php");
+}
+
 ?>
+
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -68,6 +76,7 @@ $conexion = Conexion::getInstance();
                     <td>{$row['telefono']}</td>                                   
                     </tr>";                    
                 }
+<<<<<<< HEAD
             }      
             ?>
             <?php
@@ -125,10 +134,14 @@ while($row=mysqli_fetch_array($resultado))
 
 $pdf->Output();
             }                  
+=======
+            }           
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
             ?>
         </tbody>
     </table>
 </div>
+
 <?php
 include_once("libreria/foot.php");
 ?>

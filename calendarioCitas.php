@@ -1,18 +1,27 @@
 <?php
 
 session_start();
+<<<<<<< HEAD
 
 
 date_default_timezone_set("America/Santiago");
 include 'calendarioFunciones.php';
 include 'calendarioConfig.php';
 include_once("libreria/head.php");
+=======
+include_once("libreria/includes.php");
+
+include 'CalendarioConfig.php'; 
+include 'CalendarioFunciones.php';
+
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 if (isset($_POST['from'])) 
 {
 
     if ($_POST['from']!="" AND $_POST['to']!="") 
     {
 
+<<<<<<< HEAD
 
         $inicio = _formatear($_POST['from']);
 
@@ -33,10 +42,14 @@ if (isset($_POST['from']))
         $conexion->query($query); 
 
         $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
+=======
+        $im = $conexion->query("SELECT MAX(id) AS id FROM citas");
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
         $row = $im->fetch_row();  
         $id = trim($row[0]);
 
 
+<<<<<<< HEAD
         $link = "$base_url"."descripcion_evento.php?id=$id";
 
   
@@ -46,11 +59,17 @@ if (isset($_POST['from']))
         $conexion->query($query); 
 
 
+=======
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
         header("Location:$base_url"); 
     }
 }
 
+<<<<<<< HEAD
  ?>
+=======
+?>
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 
 <!DOCTYPE html>
 <html lang="es">
@@ -70,6 +89,7 @@ if (isset($_POST['from']))
 
 <style>
     
+<<<<<<< HEAD
 .borde{
 
 border-radius: 20px;
@@ -78,6 +98,8 @@ width: 300px;
 height: 85px;
 
 }
+=======
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 
 body{
 
@@ -90,6 +112,7 @@ background-color: #FFFFFF;
 <body >
 
         <div class="container">
+<<<<<<< HEAD
 <center>
                 <div class="row">
 
@@ -122,11 +145,20 @@ background-color: #FFFFFF;
 
 
 <div class="borde1">
+=======
+
+
+<div class="borde1"><br>
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
  <center><font color="red" face="Algerian"><div class="page-header"><h2></h2></div></font></center>
     <center>
                         <div class="btn-group">
                         <button class="btn btn-warning" data-calendar-nav="prev"><< Anterior</button>
+<<<<<<< HEAD
                         <button class="btn btn-primary" data-calendar-nav="today">Hoy</button>
+=======
+                        <button class="btn btn-primary" data-calendar-nav="today">Hoyyyy</button>
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
                         <button class="btn btn-warning" data-calendar-nav="next">Siguiente >></button>
                         </div><br><br>
                         <div class="btn-group">
@@ -142,6 +174,7 @@ background-color: #FFFFFF;
         <div id="calendar"></div> 
         <br><br>
         </div>
+<<<<<<< HEAD
 <br>
 <br>
 <br>
@@ -149,6 +182,9 @@ background-color: #FFFFFF;
         <br>
         <br>
         <br>
+=======
+
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
     </center>
 
     <script src="<?=$base_url?>js/underscore-min.js"></script>
@@ -172,7 +208,11 @@ background-color: #FFFFFF;
                         modal_type:'iframe',    
 
               
+<<<<<<< HEAD
                         events_source: '<?=$base_url?>obtener_eventos.php', 
+=======
+                        events_source: '<?=$base_url?>obtener_citas.php', 
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 
                  
                         view: 'month',             
@@ -263,6 +303,7 @@ background-color: #FFFFFF;
 <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
+<<<<<<< HEAD
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">Agregar nueva cita</h4>
       </div>
@@ -324,6 +365,23 @@ background-color: #FFFFFF;
           <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Agregar</button>
         </form>
     </div>
+=======
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Detalles de cita</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Aqui iran los detalles de la cita -->
+      </div>
+
+      <div class="modal-footer">
+
+          <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+          <a type="submit" class="btn btn-warning"><i class="fa fa-check"></i> Agregar</a>
+
+      </div>
+
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
   </div>
 </div>
 </div>

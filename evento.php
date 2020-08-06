@@ -92,7 +92,11 @@ body{
             <br>
             <br>
             <br>
+<<<<<<< HEAD
 <center><font color="white" face="Algerian" size="7" >Calendario de citas</font></center>
+=======
+<center><font color="white" face="Algerian" size="7" >Calendario de </font></center>
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
             <br>                         
 <center><font color="white" face="Algerian" size="5" >Aqui agregaras las citas mas importantes que tenga</font></center>
             <br>
@@ -121,7 +125,11 @@ body{
             <button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
 
 <font color="black" face="Algerian" size="7" >
+<<<<<<< HEAD
                 Añadir cita
+=======
+                 cita
+>>>>>>> 586761feaa3a0eed05351493003edf36088d754d
 </font>
 
             </button>
