@@ -70,14 +70,6 @@ if (isset($_POST['from']))
 
 <style>
     
-.borde{
-
-border-radius: 20px;
-border-style: groove; border-width: 4px;
-width: 300px;
-height: 85px;
-
-}
 
 body{
 
@@ -90,35 +82,6 @@ background-color: #FFFFFF;
 <body >
 
         <div class="container">
-<center>
-                <div class="row">
-
-                        
-                        <br>
-                        <div class="borde">
-                            <br>
-                        <a href="calendarioCitas.php">
-                        <button class="btn btn-success">
-                          
-                        Actualizar 
-                            
-                        </button>
-                        
-                        </a>
-                        <a href="evento.php">
-                        <button class="btn btn-warning">
-                          
-                        + Cita
-                            
-                        </button>
-                        </a>
-                        </div>
-                        
-                                
-
-                </div>
-
-</center>
 
 
 <div class="borde1"><br>
