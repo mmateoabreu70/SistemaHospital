@@ -27,11 +27,11 @@ if (isset($_POST['from']))
 
         $clase  = evaluar($_POST['class']);
 
-        $query="INSERT INTO eventos VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
+        $query="INSERT INTO citas VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
 
         $conexion->query($query); 
 
-        $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
+        $im=$conexion->query("SELECT MAX(id) AS id FROM citas");
         $row = $im->fetch_row();  
         $id = trim($row[0]);
 
@@ -39,7 +39,7 @@ if (isset($_POST['from']))
         $link = "$base_url"."descripcion_evento.php?id=$id";
 
   
-        $query="UPDATE eventos SET url = '$link' WHERE id = $id";
+        $query="UPDATE citas SET url = '$link' WHERE id = $id";
 
    
         $conexion->query($query); 
