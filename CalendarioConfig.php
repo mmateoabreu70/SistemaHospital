@@ -1,6 +1,14 @@
 <?php
 
-$conexion = Conexion::getInstance();	
+
+$servidor='localhost';
+$usuario='root';
+$pass='mysql';
+$bd='sistemahospital';
+
+
+$conexion = new mysqli($servidor, $usuario, $pass, $bd);	
+
 
 $conexion->set_charset('utf8');
 

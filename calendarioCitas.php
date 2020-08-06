@@ -16,6 +16,7 @@ if (isset($_POST['from']))
         $row = $im->fetch_row();  
         $id = trim($row[0]);
 
+
         header("Location:$base_url"); 
     }
 }
@@ -46,13 +47,7 @@ if (isset($_POST['from']))
         <div id="calendar"></div> 
         <br><br>
         </div>
-<br>
-<br>
-<br>
-        </div>
-        <br>
-        <br>
-        <br>
+
     </center>
 
     <script src="<?=$base_url?>js/underscore-min.js"></script>
@@ -76,7 +71,7 @@ if (isset($_POST['from']))
                         modal_type:'iframe',    
 
               
-                        events_source: '<?=$base_url?>obtener_eventos.php', 
+                        events_source: '<?=$base_url?>obtener_citas.php', 
 
                  
                         view: 'month',             
@@ -176,8 +171,10 @@ if (isset($_POST['from']))
       </div>
 
       <div class="modal-footer">
+
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-          <a type="submit" class="btn btn-warning">Modificar</a>
+          <a type="submit" class="btn btn-warning"><i class="fa fa-check"></i> Agregar</a>
+
       </div>
 
   </div>
