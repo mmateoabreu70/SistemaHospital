@@ -23,7 +23,6 @@ if (isset($_POST['from']))
 
 ?>
 
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -53,8 +52,6 @@ background-color: #FFFFFF;
 
 <body >
 
-=======
->>>>>>> 44b76da134825c1bf9e4cee44d212f57bc07d65b
         <div class="container">
 
 
