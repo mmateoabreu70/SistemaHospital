@@ -36,6 +36,7 @@ $conexion = Conexion::getInstance();
                 </select>
             </div>
          <button type="submit" name="consultarcumpleaños" class="btn btn-success">Consultar cumpleanños</button>
+         <button class="btn btn-success" type="submit" name="imprimir" >Imprimir</button>
         </div>        
          </form>     
      </div>     
@@ -49,7 +50,6 @@ $conexion = Conexion::getInstance();
                 <th>Apellido</th>
                 <th>Fecha de nacimiento</th>                
                 <th>Telefono</th>
-
             </tr>
         </thead>
         <tbody>
@@ -66,25 +66,65 @@ $conexion = Conexion::getInstance();
                     <td>{$row['apellido']}</td>
                     <td>{$row['nacimiento']}</td>
                     <td>{$row['telefono']}</td>                                   
-                    </tr>";
+                    </tr>";                    
                 }
-            }
+            }      
+            ?>
+            <?php
+            
+            if(isset($_POST['imprimir']))
+            {            
+                require('fpdf/fpdf.php');
 
-            /*$datos = gente::listado();
-            $count = 0;
-            foreach($datos as $fila){
-                $count++;
+class PDF extends FPDF
+{
+// Cabecera de página
+function Header()
+{
+    // Logo
+    
+    // Arial bold 15
+    $this->SetFont('Arial','B',15);
+    // Movernos a la derecha
+    $this->Cell(60);
+    // Título
+    $this->Cell(70,10,utf8_decode('Reporte de cumpleaños'),1,0,'C');
+    // Salto de línea
+    $this->Ln(20);
+}
 
-                echo "<tr>
-                <td>{$count}</td>
-                <td>{$fila->cedula}</td>
-                <td>{$fila->nombre}</td>
-                <td>{$fila->apellido}</td>
-                <td>{$fila->nacimiento}</td>
-                <td>{$fila->tipoSangre}</td>
-                <td>{$fila->telefono}</td>                
-                </tr>";
-            }*/
+// Pie de página
+function Footer()
+{
+    // Posición: a 1,5 cm del final
+    $this->SetY(-15);
+    // Arial italic 8
+    $this->SetFont('Arial','I',8);
+    // Número de página
+    $this->Cell(0,10,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
+}
+}
+
+$query = "SELECT `nombre`,`apellido`,`nacimiento`,`telefono` FROM pacientes WHERE MONTH(`nacimiento`) = 4"; 
+$resultado = mysqli_query($conexion, $query);  
+$pdf = new PDF();
+$pdf->AddPage();
+$pdf->AliasNbPages();
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(40,10,'NOMBRE',0,0,'C',0);
+$pdf->Cell(40,10,'APELLIDO',0,0,'C',0);
+$pdf->Cell(40,10,'NACIMIENTO',0,0,'C',0);
+$pdf->Cell(40,10,'TELEFONO',0,1,'C');
+while($row=mysqli_fetch_array($resultado))
+{
+    $pdf->Cell(40,10,$row['nombre'],0,0,'C',0);
+    $pdf->Cell(40,10,$row['apellido'],0,0,'C',0);
+    $pdf->Cell(40,10,$row['nacimiento'],0,0,'C',0);
+    $pdf->Cell(40,10,$row['telefono'],0,1,'C');    
+}
+
+$pdf->Output();
+            }                  
             ?>
         </tbody>
     </table>
@@ -92,3 +132,36 @@ $conexion = Conexion::getInstance();
 <?php
 include_once("libreria/foot.php");
 ?>
+
+
+
+
+<!--<div class="px-3">-->
+   <!-- <div class="pb-3">
+        <button class="btn btn-success" onclick="Imprimir('consultarcumpleaños')" >Imprimir</button>
+        <small style="display: block;">Solo se imprimirá esta pagina</small>
+    </div>-->
+    <!--<div id="reporteSistema">
+        <div class="py-3">
+            <h3>Reportes del sistema</h3>
+        </div>
+        <table class="table">-->
+           <!-- <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Fecha/Hora</th>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Paciente Afectado</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>-->
+           <!-- <tbody>
+
+               
+                    
+            </tbody>
+        </table>
+    </div>
+</div>
+
