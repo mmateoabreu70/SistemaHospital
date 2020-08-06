@@ -55,8 +55,7 @@ else {
                 $fecha = "'$fecha'";              
                 $query = "SELECT `paciente`,`medico`,`fechaCita`,`hora` FROM citas WHERE fechaCita = $fecha";                   
                 $resultado = mysqli_query($conexion, $query); 
-                $query =
-                $row2                       
+                                    
                 while($row=mysqli_fetch_array($resultado))
                 {
                     echo "<tr>
