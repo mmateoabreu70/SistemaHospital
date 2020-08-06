@@ -92,7 +92,7 @@ body{
             <br>
             <br>
             <br>
-<center><font color="white" face="Algerian" size="7" >Calendario de citas</font></center>
+<center><font color="white" face="Algerian" size="7" >Calendario de </font></center>
             <br>                         
 <center><font color="white" face="Algerian" size="5" >Aqui agregaras las citas mas importantes que tenga</font></center>
             <br>
@@ -121,7 +121,7 @@ body{
             <button class="btn btn-success" data-toggle='modal' data-target='#add_evento'>
 
 <font color="black" face="Algerian" size="7" >
-                Añadir cita
+                 cita
 </font>
 
             </button>
