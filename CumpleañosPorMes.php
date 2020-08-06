@@ -57,7 +57,6 @@ else {
                 <th>Apellido</th>
                 <th>Fecha de nacimiento</th>                
                 <th>Telefono</th>
-
             </tr>
         </thead>
         <tbody>
