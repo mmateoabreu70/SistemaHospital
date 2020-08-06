@@ -4,7 +4,6 @@ session_start();
 include_once("libreria/includes.php");
 
 include 'CalendarioConfig.php'; 
-
 include 'CalendarioFunciones.php';
 
 if (isset($_POST['from'])) 
@@ -13,38 +12,9 @@ if (isset($_POST['from']))
     if ($_POST['from']!="" AND $_POST['to']!="") 
     {
 
-
-        $inicio = _formatear($_POST['from']);
-
-        $final  = _formatear($_POST['to']);
-
-        $inicio_normal = $_POST['from'];
-
-        $final_normal  = $_POST['to'];
-
-        $titulo = evaluar($_POST['title']);
-
-        $body   = evaluar($_POST['event']);
-
-        $clase  = evaluar($_POST['class']);
-
-        $query="INSERT INTO eventos VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
-
-        $conexion->query($query); 
-
-        $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
+        $im = $conexion->query("SELECT MAX(id) AS id FROM citas");
         $row = $im->fetch_row();  
         $id = trim($row[0]);
-
-
-        $link = "$base_url"."descripcion_evento.php?id=$id";
-
-  
-        $query="UPDATE eventos SET url = '$link' WHERE id = $id";
-
-   
-        $conexion->query($query); 
-
 
         header("Location:$base_url"); 
     }
@@ -52,73 +22,7 @@ if (isset($_POST['from']))
 
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-        <meta charset="utf-8">
-        <title>Calendario</title>
-        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
-        <script src="<?=$base_url?>js/jquery.min.js"></script>
-        <script src="<?=$base_url?>js/moment.js"></script>
-        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
-        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
-        <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
-       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
-    </head>
-
-<style>
-    
-.borde{
-
-border-radius: 20px;
-border-style: groove; border-width: 4px;
-width: 300px;
-height: 85px;
-
-}
-
-body{
-
-background-color: #FFFFFF;
-
-}
-
-</style>
-
-<body >
-
         <div class="container">
-<center>
-                <div class="row">
-
-                        
-                        <br>
-                        <div class="borde">
-                            <br>
-                        <a href="calendarioCitas.php">
-                        <button class="btn btn-success">
-                          
-                        Actualizar 
-                            
-                        </button>
-                        
-                        </a>
-                        <a href="evento.php">
-                        <button class="btn btn-warning">
-                          
-                        + Cita
-                            
-                        </button>
-                        </a>
-                        </div>
-                        
-                                
-
-                </div>
-
-</center>
 
 
 <div class="borde1"><br>
@@ -263,67 +167,19 @@ background-color: #FFFFFF;
 <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Agregar nueva cita</h4>
+        <h4 class="modal-title" id="myModalLabel">Detalles de cita</h4>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
-                    <label for="from">Tiempo de inicio</label>
-                    <div class='input-group date' id='from'>
-                        <input type='text' id="from" name="from" class="form-control" readonly />
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </div>
-
-                    <br>
-
-                    <label for="to">Tiempo de finalizacion</label>
-                    <div class='input-group date' id='to'>
-                        <input type='text' name="to" id="to" class="form-control" readonly />
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </div>
-
-                    <br>
-
-                    <label for="tipo">Tipo de cita</label>
-                    <select class="form-control" name="class" id="tipo">
-                        <option value="event-info">Chequeo General</option>
-                        <option value="event-success">Radiografia</option>
-                        <option value="event-important">Entrevista para Empleo</option>
-                        <option value="event-warning">Pasantia Medica</option>
-                        <option value="event-special">Otro</option>
-                    </select>
-
-                    <br>
-
-
-                    <label for="title">Motivo de cita</label>
-                    <input type="text" required autocomplete="off" name="title" class="form-control" id="title" placeholder="Introduce un título">
-
-                    <br>
-
-
-                    <label for="body">Descripcion de la cita</label>
-                    <textarea id="body" name="event" required class="form-control" rows="3"></textarea>
-
-    <script type="text/javascript">
-        $(function () {
-            $('#from').datetimepicker({
-                language: 'es',
-                minDate: new Date()
-            });
-            $('#to').datetimepicker({
-                language: 'es',
-                minDate: new Date()
-            });
-
-        });
-    </script>
+        <!-- Aqui iran los detalles de la cita -->
       </div>
+
       <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-          <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Agregar</button>
-        </form>
-    </div>
+          <a type="submit" class="btn btn-warning">Modificar</a>
+      </div>
+
   </div>
 </div>
 </div>
