@@ -60,7 +60,7 @@ background-color: #FFFFFF;
     <center>
                         <div class="btn-group">
                         <button class="btn btn-warning" data-calendar-nav="prev"><< Anterior</button>
-                        <button class="btn btn-primary" data-calendar-nav="today">Hoy</button>
+                        <button class="btn btn-primary" data-calendar-nav="today">Hoyyyy</button>
                         <button class="btn btn-warning" data-calendar-nav="next">Siguiente >></button>
                         </div><br><br>
                         <div class="btn-group">
