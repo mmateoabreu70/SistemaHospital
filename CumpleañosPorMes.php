@@ -76,23 +76,7 @@ else {
                     <td>{$row['telefono']}</td>                                   
                     </tr>";
                 }
-            }
-
-            /*$datos = gente::listado();
-            $count = 0;
-            foreach($datos as $fila){
-                $count++;
-
-                echo "<tr>
-                <td>{$count}</td>
-                <td>{$fila->cedula}</td>
-                <td>{$fila->nombre}</td>
-                <td>{$fila->apellido}</td>
-                <td>{$fila->nacimiento}</td>
-                <td>{$fila->tipoSangre}</td>
-                <td>{$fila->telefono}</td>                
-                </tr>";
-            }*/
+            }           
             ?>
         </tbody>
     </table>
