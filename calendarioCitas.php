@@ -1,6 +1,55 @@
 <?php
-    session_start();
-    include_once("libreria/includes.php");
+
+session_start();
+include_once("libreria/includes.php");
+
+include 'CalendarioConfig.php'; 
+
+include 'CalendarioFunciones.php';
+
+if (isset($_POST['from'])) 
+{
+
+    if ($_POST['from']!="" AND $_POST['to']!="") 
+    {
+
+
+        $inicio = _formatear($_POST['from']);
+
+        $final  = _formatear($_POST['to']);
+
+        $inicio_normal = $_POST['from'];
+
+        $final_normal  = $_POST['to'];
+
+        $titulo = evaluar($_POST['title']);
+
+        $body   = evaluar($_POST['event']);
+
+        $clase  = evaluar($_POST['class']);
+
+        $query="INSERT INTO eventos VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
+
+        $conexion->query($query); 
+
+        $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
+        $row = $im->fetch_row();  
+        $id = trim($row[0]);
+
+
+        $link = "$base_url"."descripcion_evento.php?id=$id";
+
+  
+        $query="UPDATE eventos SET url = '$link' WHERE id = $id";
+
+   
+        $conexion->query($query); 
+
+
+        header("Location:$base_url"); 
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +57,6 @@
 <head>
         <meta charset="utf-8">
         <title>Calendario</title>
-        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
@@ -49,7 +97,7 @@ background-color: #FFFFFF;
                         <br>
                         <div class="borde">
                             <br>
-                        <a href="calendario.php">
+                        <a href="calendarioCitas.php">
                         <button class="btn btn-success">
                           
                         Actualizar 
@@ -281,6 +329,5 @@ background-color: #FFFFFF;
 </div>
 </body>
 </html>
-
 
 <?php include_once("libreria/foot.php"); ?>
