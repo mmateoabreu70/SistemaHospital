@@ -4,7 +4,7 @@
 include 'CalendarioConfig.php'; 
 
 
-$sql="SELECT * FROM eventos"; 
+$sql="SELECT * FROM citas"; 
 
 
 if ($conexion->query($sql)->num_rows)
@@ -27,19 +27,19 @@ if ($conexion->query($sql)->num_rows)
     }
 
     
-        echo json_encode(
-                array(
-                    "success" => 1,
-                    "result" => $datos
-                )
-            );
+    echo json_encode(
+            array(
+                "success" => 1,
+                "result" => $datos
+            )
+        );
 
-    }
-    else
-    {
-        
-        echo "No hay datos"; 
-    }
+}
+else
+{
+    
+    echo "No hay datos"; 
+}
 
 
 ?>
