@@ -2,8 +2,16 @@
 session_start();
 include_once("libreria/includes.php");
 
-$conexion = Conexion::getInstance();
+if($_SESSION['rol'] == 'Asistente')
+{
+    $conexion = Conexion::getInstance();
+}
+else {
+    header("Location:index.php");
+}
+
 ?>
+
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
@@ -68,27 +76,12 @@ $conexion = Conexion::getInstance();
                     <td>{$row['telefono']}</td>                                   
                     </tr>";
                 }
-            }
-
-            /*$datos = gente::listado();
-            $count = 0;
-            foreach($datos as $fila){
-                $count++;
-
-                echo "<tr>
-                <td>{$count}</td>
-                <td>{$fila->cedula}</td>
-                <td>{$fila->nombre}</td>
-                <td>{$fila->apellido}</td>
-                <td>{$fila->nacimiento}</td>
-                <td>{$fila->tipoSangre}</td>
-                <td>{$fila->telefono}</td>                
-                </tr>";
-            }*/
+            }           
             ?>
         </tbody>
     </table>
 </div>
+
 <?php
 include_once("libreria/foot.php");
 ?>

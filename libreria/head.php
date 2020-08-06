@@ -83,6 +83,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="active">
+                        <a href="asignarCitas.php">Asignar cita</a>
+                    </li>
+                    <li class="active">
+                        <a href="CumpleañosPorMes.php">Reporte de cumpleaños</a>
+                    </li>
                 <?php endif ?>
                 <li class="active">
                     <a href="calendarioCitas.php">Calendario de citas</a>
