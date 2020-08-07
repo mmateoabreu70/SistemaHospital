@@ -70,7 +70,7 @@ else {
             <?php
 
                 $count = 0;
-                if(empty($resultado))
+                if(empty($resultado) || !isset($resultado))
                 {
                     echo "                      
                         <td colspan='5'>
