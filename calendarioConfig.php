@@ -1,13 +1,8 @@
 <?php
 
+include_once("libreria/db/config.php");
 
-$servidor='localhost';
-$usuario='root';
-$pass='mysql';
-$bd='sistemahospital';
-
-
-$conexion = new mysqli($servidor, $usuario, $pass, $bd);	
+$conexion = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);	
 
 
 $conexion->set_charset('utf8');

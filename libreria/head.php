@@ -69,6 +69,9 @@
                     <li class="active">
                         <a href="precioConsulta.php">Precio de consultas</a>
                     </li>
+                    <li class="active">
+                        <a href="CitasPendientesPorDia.php">Buscar citas</a>
+                    </li>
 
                 <?php endif ?>
                 
@@ -85,8 +88,17 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="asignarCitas.php">Asignar Citas</a>
+                        <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citas</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu2">
+                            <li class="active">
+                                <a href="asignarCitas.php" class="subOpcion">Asignar Citas</a>
+                            </li>
+                            <li class="active">
+                                <a href="CitasPendientesPorDia.php" class="subOpcion">Buscar citas</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="active">
                         <a href="CumpleañosPorMes.php">Reporte de cumpleaños</a>
                     </li>
@@ -95,7 +107,7 @@
                     <a href="calendarioCitas.php">Calendario de citas</a>
                 </li>
             </ul>
-            <div id="sidebar-foot"></div>
+
         </nav>
 
         <!--Contenido de la pagina-->

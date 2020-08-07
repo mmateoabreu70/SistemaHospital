@@ -1,32 +1,38 @@
 <?php
-/* Comentario */
+session_start();
 include_once("libreria/objetos/login.php");
 
 $errorMsg = "";
 $usuario = "";
 $pass = "";
 
-if($_POST)
+if(isset($_SESSION['user']))
 {
-   
+    header("Location:index.php");
+}
+else {
 
-    /* Recuperando informacion de los inputs */
-    $usuario = $_POST['usuario'];
-    $pass = $_POST['password'];
-
-    /* Instanciar objeto Login y asignando valores a las propiedades */ 
-    $login = new Login();
-
-    $login->user = $usuario;
-    $login->pass = $pass;
-
-    $confirm = $login->validarUsuario();
-
-    if(!$confirm)
+    if($_POST)
     {
-        $errorMsg = "Usuario o contraseña incorrecto";
-    } else {
-        header("Location: index.php");
+    
+        /* Recuperando informacion de los inputs */
+        $usuario = $_POST['usuario'];
+        $pass = $_POST['password'];
+
+        /* Instanciar objeto Login y asignando valores a las propiedades */ 
+        $login = new Login();
+
+        $login->user = $usuario;
+        $login->pass = $pass;
+
+        $confirm = $login->validarUsuario();
+
+        if(!$confirm)
+        {
+            $errorMsg = "Usuario o contraseña incorrecto";
+        } else {
+            header("Location:index.php");
+        }
     }
 }
 
@@ -38,7 +44,7 @@ if($_POST)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sistema Hospital</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
