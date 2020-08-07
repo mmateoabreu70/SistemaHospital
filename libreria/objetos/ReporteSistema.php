@@ -1,6 +1,6 @@
 <?php
-session_start();
 include_once("libreria/db/conexion.php");
+session_start();
 
 class ReporteSistema
 {
