@@ -89,7 +89,7 @@
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
-                                <a href="crearPaciente.php" class="subOpcion">Crear pacientes</a>
+                                <a href="validarCedula.php" class="subOpcion">Crear paciente</a>
                             </li>
                             <li>
                                 <a href="verPacientes.php" class="subOpcion">Ver pacientes</a>
