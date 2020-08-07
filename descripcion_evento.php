@@ -8,7 +8,7 @@ include 'calendarioConfig.php';
 
     $id  = evaluar($_GET['id']);
 
-    $bd  = $conexion->query("SELECT * FROM eventos WHERE id=$id");
+    $bd  = $conexion->query("SELECT * FROM citas WHERE id=$id");
 
 
     $row = $bd->fetch_assoc();
@@ -25,14 +25,14 @@ include 'calendarioConfig.php';
 if (isset($_POST['eliminar_evento'])) 
 {
     $id  = evaluar($_GET['id']);
-    $sql = "DELETE FROM eventos WHERE id = $id";
+    $sql = "DELETE FROM citas WHERE id = $id";
     if ($conexion->query($sql)) 
     {
-        echo "Evento eliminado";
+        echo "citas eliminado";
     }
     else
     {
-        echo "El evento no se pudo eliminar";
+        echo "El citas no se pudo eliminar";
     }
 }
 
@@ -43,13 +43,13 @@ if (isset($_POST['eliminar_evento']))
 <html lang="en">
 <br><br><br><br>
 <center>
-    <center color="white"><h1 color="white"><font color="white">CITAS PENDIENTES</h1></center>
+    <center color="black"><h1 color="white"><font color="black">CITA PENDIENTE</h1></center>
     <br>
     <br>
 
 <head>
 	<meta charset="UTF-8">
-	<title>Citas</title>
+	<title color="black">Citas</title>
 
 
 
@@ -80,18 +80,18 @@ body{
 </style>
 
 <body>
-    <h2 ><font color="white">Título:</h2>
-	 <h3><font color="white"><?=$titulo?></font></h3>
+    <h2 ><font color="black">Título:</h2>
+	 <h3><font color="black"><?=$titulo?></font></h3>
      <br>
-      <h3><font color="white">Cita:</font></h3>
+      <h3><font color="black">Cita:</font></h3>
      <p><?=$evento?></p>
 	 
-     <h3><font color="white">La Cita es el:</h3>
+     <h3><font color="black">La Cita es el:</h3>
      <b>Fecha inicio:</b> <?=$inicio?>
      <br>
      <br>
      <br>
-     <h3><font color="white">La Cita termina el:</h3>
+     <h3><font color="black">La Cita termina el:</h3>
      <b>Fecha termino:</b> <?=$final?>
 </body>
 <br>
@@ -101,7 +101,7 @@ body{
 
 </form>
 <br>
-<form action="index.php" method="post">
+<form action="calendarioIndex.php" method="post">
     <button type="submit" class="btn btn-success" >Volver</button>
     
 </form>
