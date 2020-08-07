@@ -1,12 +1,14 @@
 <?php
+session_start();
 include_once("libreria/includes.php");
 
-if(isset($_GET["accion"]))
+if($_GET["accion"] == "logout")
 {
     $report = new ReporteSistema();
     $report->RegistrarEvento(2);
+
     session_destroy();
-    header("Location: login.php");
+    header("Location:login.php");
 }
 
 function devolverRol($rol)
