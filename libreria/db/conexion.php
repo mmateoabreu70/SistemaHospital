@@ -11,7 +11,13 @@ class Conexion
     public function __construct()
     {
         //Este constructor crea la instancia con la base de datos
-        $this->instancia = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $this->instancia = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die (
+            "
+                <script>
+                    windows.location = 'instalador.php'
+                </script>
+            "
+        );
 
         //Verificando si no hubo ningun error en la conexion
         if($this->instancia == false)

@@ -48,6 +48,8 @@
         </thead>
         <tbody>
             <?php 
+                $count = 0;
+
                 foreach($result as $fila)
                 {
                     $count++;
