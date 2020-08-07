@@ -1,5 +1,5 @@
 <?php
-  session_start();
+    session_start();
     include_once("libreria/includes.php");
     $conexion = Conexion::getInstance();
     
@@ -30,6 +30,8 @@
     } else {
         header("Location:index.php");
     }   
+
+    include_once("libreria/head.php");
 ?>
 
 <div class="container">

@@ -24,6 +24,8 @@
     } else {
         header("Location:index.php");
     }
+
+    include_once("libreria/head.php");
 ?>
 
 <div class="px-3">

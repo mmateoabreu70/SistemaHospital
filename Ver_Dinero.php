@@ -23,8 +23,11 @@
     else {
         header("Location:index.php");
     }
+
+    include_once("libreria/head.php");
+
 ?>
-<html>
+
 <caption><h1><center>Dinero recaudado</caption></h1></center>
 </br>
 <table class="table">
@@ -39,11 +42,15 @@
         </thead>
         <tbody>
             <?php
+                $count = 0;
+
                 foreach($result as $fila)
                 {
+                    $count++; 
+
                     echo "
                         <tr>
-                            <td>{$fila['id']}</td>
+                            <td>{$count}</td>
                             <td>{$fila['paciente']}</td>
                             <td>{$fila['fechaCita']}</td>
                             <td>{$fila['costo']}</td>

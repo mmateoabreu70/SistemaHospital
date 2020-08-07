@@ -36,7 +36,7 @@ if (isset($_POST['eliminar_evento']))
     }
 }
 
-
+    include_once("libreria/head.php");
  ?>
 
 <!DOCTYPE html>

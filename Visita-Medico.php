@@ -12,6 +12,7 @@
     if($_POST){
 
       extract($_POST);
+      $id = 1;
 
       $sql = "INSERT INTO visitas VALUES (0,'{$nombre}','{$fecha}','{$motivo}','{$comentario}','{$receta}','{$fechaVisita}')";
       mysqli_query($conexion, $sql);
@@ -21,16 +22,17 @@
       $report = new ReporteSistema();
       $report->RegistrarEvento(9);
 
-      header("Location:receta.php?idVisita={$id}"); 
+      header("Location: receta.php?idVisita={$id}");
     }
     
   }
   else {
-    header("Location:index.php");
-  }
+    header("Location: index.php");
+  } 
 
+  include_once("libreria/head.php");
 ?>  
-<html>
+
 <caption><h1><center>Visitas</caption></h1></center>
     </br>
     <center>

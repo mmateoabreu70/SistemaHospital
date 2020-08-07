@@ -19,6 +19,7 @@
         header("Location: index.php");
     }
         
+    include_once("libreria/head.php");
 ?>
 
 <div>

@@ -1,86 +1,90 @@
 <?php
-session_start();
-include_once("libreria/includes.php");
+    session_start();
+    include_once("libreria/includes.php");
 
-$errorMsg = "";
+    $errorMsg = "";
 
-if($_SESSION['rol'] == 'Administrador')
-{
+    if($_SESSION['rol'] == 'Administrador')
+    {
 
-    /*Llenando rol de usuario*/
-    $con = Conexion::getInstance();
-    $query = "SELECT * FROM roles";
-    $llenarDrop = mysqli_query($con, $query);
+        /*Llenando rol de usuario*/
+        $con = Conexion::getInstance();
+        $query = "SELECT * FROM roles";
+        $llenarDrop = mysqli_query($con, $query);
 
-    if($_POST){
+        if($_POST){
 
-        $errorMsg = "";
-        extract($_POST);
-
-        /* Verificar si coinciden la confirmacion de contraseña */
-        if($pass != $confirm)
-        {
-            $errorMsg = "Las contraseñas no coinciden";
-        }
-        else {
             extract($_POST);
 
-            /* Insertando valores al objeto */ 
-            $objUser = new Usuario();
-
-            $id = 0;
-
-            if($_GET['id'] != null)
+            /* Verificar si coinciden la confirmacion de contraseña */
+            if($pass != $confirm)
             {
-                $id = $_GET['id'];
+                $errorMsg = "Las contraseñas no coinciden";
+            }
+            else {
+                extract($_POST);
+
+                /* Insertando valores al objeto */ 
+                $objUser = new Usuario();
+
+                $id = 0;
+
+                if($_GET['id'] != null)
+                {
+                    $id = $_GET['id'];
+                }
+
+                $objUser->Id = $id;
+                $objUser->nombre = $nomUser;
+                $objUser->apellido = $apellidoUser;
+                $objUser->usuario = $user;
+                $objUser->pass = $pass;
+                $objUser->tipo = devolverRol($rol);
+
+                /* Si existe id en $_GET modifica Usuario */
+                if(isset($_GET['id']))
+                {
+                    $result = $objUser->modificarUsuario();
+                } else {
+                    $result = $objUser->crearUsuario();
+                }
+
+                $errorMsg = $result;
+
+                /* Verifica si no hubo error */
+                if($errorMsg == "" || $errorMsg == 1)
+                {
+                    header("Location:AdminUsuario.php");
+                }
+
+            }
+            
+        } elseif(isset($_GET['id'])) {
+
+            /* Consiguiendo usuario por id */
+            $sql = "SELECT nomUser, apellidoUser, user, pass, rol FROM usuarios
+                    INNER JOIN roles ON usuarios.tipo = roles.idRol 
+                    WHERE idUsuario = {$_GET['id']}";
+
+            $result = mysqli_query($con, $sql);
+
+            foreach($result as $dato)
+            {
+                /* Pasando valores al POST */
+                $_POST = $dato;
+
             }
 
-            $objUser->Id = $id;
-            $objUser->nombre = $nomUser;
-            $objUser->apellido = $apellidoUser;
-            $objUser->usuario = $user;
-            $objUser->pass = $pass;
-            $objUser->tipo = devolverRol($rol);
 
-            /* Si existe id en $_GET modifica Usuario */
-            if(isset($_GET['id']))
-            {
-                $result = $objUser->modificarUsuario();
-            } else {
-                $result = $objUser->crearUsuario();
-            }
-
-            $errorMsg = $result;
-
-            /* Verifica si no hubo error */
-            if($errorMsg == "" || $errorMsg == 1)
-            {
-                header("Location:AdminUsuario.php");
-            }
         }
-    } elseif(isset($_GET['id'])) {
-
-        /* Consiguiendo usuario por id */
-        $sql = "SELECT nomUser, apellidoUser, user, pass, rol FROM usuarios
-                INNER JOIN roles ON usuarios.tipo = roles.idRol 
-                WHERE idUsuario = {$_GET['id']}";
-
-        $result = mysqli_query($con, $sql);
-
-        foreach($result as $dato)
-        {
-            /* Pasando valores al POST */
-            $_POST = $dato;
-
-        }
-
-
     }
-}
-else {
-    header("Location: index.php");
-}
+    else {
+        header("Location: index.php");
+    }
+
+    include_once("libreria/head.php");
 ?>
+
 <div class="px-xl-5 py-3 ">
     <div class="p-3">
         <?php
@@ -167,4 +171,5 @@ else {
         </div>
     </form>
 </div>
+
 <?php include_once("libreria/foot.php"); ?>

@@ -5,7 +5,6 @@ session_start();
 date_default_timezone_set("America/Santiago");
 include 'calendarioFunciones.php';
 include 'calendarioConfig.php';
-include_once("libreria/head.php");
 
 if (isset($_POST['from'])) 
 {
@@ -49,6 +48,8 @@ if (isset($_POST['from']))
         header("Location:$base_url"); 
     }
 }
+
+include_once("libreria/head.php");
 
 ?>
 

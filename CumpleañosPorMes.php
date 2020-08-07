@@ -1,14 +1,24 @@
 <?php
-session_start();
-include_once("libreria/includes.php");
+    session_start();
+    include_once("libreria/includes.php");
 
-if($_SESSION['rol'] == 'Asistente')
-{
-    $conexion = Conexion::getInstance();
-}
-else {
-    header("Location:index.php");
-}
+    if($_SESSION['rol'] == 'Asistente')
+    {
+        $conexion = Conexion::getInstance();
+
+        if(isset($_POST['consultarcumpleaños']))
+        {
+            $mes = $_POST['cumpleaños'];
+            $query = "SELECT `nombre`,`apellido`,`nacimiento`,`telefono` FROM pacientes WHERE MONTH(`nacimiento`) = $mes";   
+            $resultado = mysqli_query($conexion, $query);
+            $numFilas = mysqli_num_rows($resultado);
+        }
+    }
+    else {
+        header("Location:index.php");
+    }
+
+    include_once("libreria/head.php");
 
 ?>
 
@@ -44,45 +54,64 @@ else {
                 </select>
             </div>
          <button type="submit" name="consultarcumpleaños" class="btn btn-primary">Consultar cumpleaños</button>
-         <button class="btn btn-success" type="submit" name="imprimir" onclick="Imprimir('reporte')" >Imprimir</button>
+         <button class="btn btn-success" type="submit" name="imprimir" onclick="Imprimir('reporte')" 
+            <?php echo isset($_POST['consultarcumpleaños']) ? '' : 'disabled' ?> >Imprimir</button>
         </div>        
          </form>     
      </div>     
 </div>
 
-<div id="reporte">
-    <h4>Cumpleaños por mes</h4>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>                             
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Fecha de nacimiento</th>                
-                <th>Telefono</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if(isset($_POST['consultarcumpleaños']))
-            {
-                $mes = $_POST['cumpleaños'];
-                $query = "SELECT `nombre`,`apellido`,`nacimiento`,`telefono` FROM pacientes WHERE MONTH(`nacimiento`) = $mes";   
-                $resultado = mysqli_query($conexion, $query);
-                while($row=mysqli_fetch_array($resultado))
-                {
-                    echo "<tr>
-                    <td>{$row['nombre']}</td>
-                    <td>{$row['apellido']}</td>
-                    <td>{$row['nacimiento']}</td>
-                    <td>{$row['telefono']}</td>                                   
-                    </tr>";                    
-                }
-            }      
-            ?>
-           
-        </tbody>
-    </table>
-</div>
+<?php if($_POST): ?>
+    <div id="reporte">
+        <h4>Cumpleaños por mes</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>      
+                    <th>#</th>                       
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de nacimiento</th>                
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    if($numFilas == 0)
+                    {
+                        echo "
+                            <td colspan='6'>
+                                <center>
+                                    No hay resultados
+                                </center>
+                            </td>
+
+                        ";
+
+                    } else {
+                        
+                        $count = 0;
+
+                        while($row=mysqli_fetch_array($resultado))
+                        {
+                            $count++;
+
+                            echo "
+                            <tr>
+                                <td>{$count}</td>
+                                <td>{$row['nombre']}</td>
+                                <td>{$row['apellido']}</td>
+                                <td>{$row['nacimiento']}</td>
+                                <td>{$row['telefono']}</td>                                   
+                            </tr>";                    
+                        }
+                    
+                    }
+                ?>
+            
+            </tbody>
+        </table>
+    </div>
+<?php endif ?>
 
 <?php
 include_once("libreria/foot.php");

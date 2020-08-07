@@ -33,9 +33,11 @@
                     $report->RegistrarEvento(6);
 
                     $errorMsg = "Precio actualizado exitosamente";
+                    header("Location:precioConsulta.php");
                 } else {
                     $errorMsg = "El precio no se pudo actualizar";
                 }
+
             }
             else {
                 $errorMsg = "Lo sentimos, este precio es muy bajo";
@@ -47,6 +49,7 @@
         header("Location:index.php");
     }
 
+    include_once("libreria/head.php");
 ?>
 
 <div class="px-xl-5 py-3 ">

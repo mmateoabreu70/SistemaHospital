@@ -24,6 +24,8 @@
     else {
         header("Location:index.php");
     }
+
+    include_once("libreria/head.php");
 ?>
 
 <a href="Visita-Medico.php" >Volver</a>

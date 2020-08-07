@@ -1,32 +1,34 @@
 <?php
-session_start();
-include_once("libreria/includes.php");
+    session_start();
+    include_once("libreria/includes.php");
 
-if(isset($_SESSION['user']))
-{
-
-    if($_POST)
+    if(isset($_SESSION['user']))
     {
-        $conexion = Conexion::getInstance();
 
-        $fecha = $_POST['fechacita'];
-        $fecha = date("Y-m-d", strtotime($fecha));  
-        $fecha = "'$fecha'";              
-        $query = "SELECT id, nombre, apellido, nomUser, apellidoUser, hora 
-                  FROM citas   
-                  INNER JOIN pacientes ON citas.paciente = pacientes.cedula
-                  INNER JOIN usuarios ON citas.medico = usuarios.idUsuario
-                  WHERE fechaCita = $fecha
-                  ORDER BY hora asc"; 
-        
-        $resultado = null;
-        $resultado = mysqli_query($conexion, $query);  
+        if($_POST)
+        {
+            $conexion = Conexion::getInstance();
+
+            $fecha = $_POST['fechacita'];
+            $fecha = date("Y-m-d", strtotime($fecha));  
+            $fecha = "'$fecha'";              
+            $query = "SELECT id, nombre, apellido, nomUser, apellidoUser, hora 
+                    FROM citas   
+                    INNER JOIN pacientes ON citas.paciente = pacientes.cedula
+                    INNER JOIN usuarios ON citas.medico = usuarios.idUsuario
+                    WHERE fechaCita = $fecha
+                    ORDER BY hora asc"; 
+            
+            $resultado = mysqli_query($conexion, $query);  
+            $numFilas = mysqli_num_rows($resultado);
+        }
+
+    }
+    else {
+        header("Location:index.php");
     }
 
-}
-else {
-    header("Location:index.php");
-}
+    include_once("libreria/head.php");
 
 ?>
 
@@ -46,7 +48,7 @@ else {
                 <!--label-->
                 <label class="input-group-addon" for="citas">Fecha</label>
                 <!--Input tipo date-->
-                <input type="date" name="fechacita" id="fechacita" class="form-control"/>                     
+                <input type="date" name="fechacita" id="fechacita" class="form-control" value="<?php echo date('Y-m-d'); ?>"/>                     
             </div>
          <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar</button>
         </div>        
@@ -70,7 +72,8 @@ else {
             <?php
 
                 $count = 0;
-                if(empty($resultado) || !isset($resultado))
+
+                if($numFilas == 0)
                 {
                     echo "                      
                         <td colspan='5'>

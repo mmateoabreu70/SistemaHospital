@@ -2,7 +2,7 @@
     session_start();
     include_once("libreria/includes.php");
     
-    if($_SESSION['rol'] == 'Asistente' || $_SESSION['rol'] == 'Medico')
+    if($_SESSION['rol'] == 'Asistente' || $_SESSION['rol'] == 'Medico' || $_SESSION['rol'] == 'Administrador')
     {      
         if(isset($_GET['id']))
         {
@@ -23,7 +23,10 @@
     {
         header("Location:index.php");
     }
+
+    include_once("libreria/head.php");
 ?>
+
 <a href="CitasPendientesPorDia.php">Regresar a citas</a>
 <div class="mt-4" id="cita">
     <center><h2>Detalles de la cita</h2></center>

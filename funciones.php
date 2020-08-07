@@ -1,5 +1,6 @@
 <?php
-include_once("libreria/objetos/ReporteSistema.php");
+session_start();
+include_once("libreria/includes.php");
 
 if(isset($_GET['accion']))
 {
@@ -20,4 +21,6 @@ function devolverRol($rol)
         return 3;
     }
 }
+
+
 ?>
