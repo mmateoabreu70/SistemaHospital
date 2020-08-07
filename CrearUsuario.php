@@ -53,7 +53,7 @@ if($_SESSION['rol'] == 'Administrador')
             /* Verifica si no hubo error */
             if( $errorMsg == "" || $errorMsg == 1)
             {
-                header("Location:AdminUsuario.php");
+                header("Location:CrearUsuario.php");
             }
         }
 
