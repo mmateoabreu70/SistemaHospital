@@ -1,14 +1,8 @@
 <?php
 
+include_once("libreria/db/conexion.php");
 
-$servidor='localhost:3307';
-$usuario='root';
-$pass='';
-$bd='sistemahospital';
-
-
-$conexion = new mysqli($servidor, $usuario, $pass, $bd);	
-
+$conexion = Conexion::getInstance(); 	
 
 $conexion->set_charset('utf8');
 
