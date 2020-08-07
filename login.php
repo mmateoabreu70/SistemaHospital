@@ -1,6 +1,6 @@
 <?php
 
-include_once("libreria/objetos/login.php");
+include_once("libreria/objetos/Login.php");
 
 $errorMsg = "";
 $usuario = "";
@@ -25,7 +25,7 @@ if($_POST)
     {
         $errorMsg = "Usuario o contraseña incorrecto";
     } else {
-        header("Location: index.php");
+        header("Location:index.php");
     }
 }
 

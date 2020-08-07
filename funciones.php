@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once("libreria/includes.php");
 
 if($_GET["accion"] == "logout")
@@ -8,7 +7,7 @@ if($_GET["accion"] == "logout")
     $report->RegistrarEvento(2);
 
     session_destroy();
-    header("Location:login.php");
+    header("Location:index.php");
 }
 
 function devolverRol($rol)
@@ -21,4 +20,4 @@ function devolverRol($rol)
         return 3;
     }
 }
-
+?>
