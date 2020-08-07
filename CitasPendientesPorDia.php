@@ -72,13 +72,12 @@ else {
                 $count = 0;
                 if(empty($resultado))
                 {
-                    echo "                        
+                    echo "                      
                         <td colspan='5'>
                             <center>
                                 No hay resultados
                             </center>
-                        </td>
-                        
+                        </td>                        
                     ";
                 }else
                 {
