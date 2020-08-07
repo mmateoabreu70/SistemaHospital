@@ -165,7 +165,7 @@ CREATE TABLE `reportesistema` (
   `fecha_hora` datetime NOT NULL,
   `evento` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
-  `pacienteAfect` varchar(13) DEFAULT NULL
+  `pacienteAfect` varchar(13) NULL
 ) 
 
 --
@@ -221,14 +221,6 @@ INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `p
 --
 -- Volcado de datos para la tabla `reportesistema`
 --
-
-INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
-(1, '2020-07-29 23:25:13', 1, 20, NULL),
-(2, '2020-07-30 00:10:05', 1, 20, NULL),
-(3, '2020-07-30 13:45:18', 1, 20, NULL),
-(4, '2020-07-30 22:51:26', 1, 20, NULL),
-(5, '2020-08-01 21:57:17', 1, 20, NULL),
-(6, '2020-08-02 20:24:12', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
