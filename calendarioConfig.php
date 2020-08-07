@@ -1,9 +1,9 @@
 <?php
 
 
-$servidor='localhost';
+$servidor='localhost:3307';
 $usuario='root';
-$pass='mysql';
+$pass='';
 $bd='sistemahospital';
 
 

@@ -28,11 +28,11 @@ if (isset($_POST['eliminar_evento']))
     $sql = "DELETE FROM eventos WHERE id = $id";
     if ($conexion->query($sql)) 
     {
-        echo "Evento eliminado";
+        echo "Cita eliminado";
     }
     else
     {
-        echo "El evento no se pudo eliminar";
+        echo "El Cita no se pudo eliminar";
     }
 }
 
@@ -43,7 +43,7 @@ if (isset($_POST['eliminar_evento']))
 <html lang="en">
 <br><br><br><br>
 <center>
-    <center color="white"><h1 color="white"><font color="black">CITA PENDIENTE</h1></center>
+    <center color="white"><h1 color="white"><font color="">CITA PENDIENTE</h1></center>
     <br>
     <br>
 
@@ -88,7 +88,6 @@ body{
 	 
      <h3><font color="black">La Cita es el:</h3>
      <b>Fecha inicio:</b> <?=$inicio?>
-     <br>
      <br>
      <br>
      <h3><font color="black">La Cita termina el:</h3>
