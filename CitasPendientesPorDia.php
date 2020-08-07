@@ -46,7 +46,7 @@ else {
                 <!--label-->
                 <label class="input-group-addon" for="citas">Fecha</label>
                 <!--Input tipo date-->
-                <input type="date" name="fechacita" value="00/00/0000" id="fechacita" class="form-control"/>                     
+                <input type="date" name="fechacita" id="fechacita" class="form-control"/>                     
             </div>
          <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar</button>
         </div>        
@@ -70,8 +70,17 @@ else {
             <?php
 
                 $count = 0;
-                
-                if($resultado != null)
+                if(empty($resultado))
+                {
+                    echo "                        
+                        <td colspan='5'>
+                            <center>
+                                No hay resultados
+                            </center>
+                        </td>
+                        
+                    ";
+                }else
                 {
                     foreach($resultado as $row)
                     {
@@ -87,17 +96,7 @@ else {
                             </td>                                
                         </tr>";
                     } 
-                }    
-                else {
-                    echo "                        
-                        <td colspan='5'>
-                            <center>
-                                No hay resultados
-                            </center>
-                        </td>
-                        
-                    ";
-                }   
+                }              
             ?>
         </tbody>
     </table>
