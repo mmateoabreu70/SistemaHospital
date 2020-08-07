@@ -25,6 +25,7 @@ if($_SESSION['rol'] == 'Administrador')
 
     /* Llenar la tabla */
     $con = Conexion::getInstance();
+    
     $sql = "SELECT fecha_hora, nomEvento, user, cedula, nombre, apellido
             FROM reportesistema
             INNER JOIN tipoeventos ON reportesistema.evento = tipoeventos.idEvento
@@ -33,8 +34,9 @@ if($_SESSION['rol'] == 'Administrador')
             ORDER BY fecha_hora DESC
             LIMIT $inicio, $filas_x_pag;";
     $result = mysqli_query($con, $sql);
+
 } else {
-    header("Location: index.php");
+    header("Location:index.php");
 }
 
 

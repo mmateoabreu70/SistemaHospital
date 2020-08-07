@@ -1,8 +1,7 @@
 <?php
-session_start();
 include_once("libreria/includes.php");
 
-if($_GET["accion"] == "logout")
+if(isset($_GET["accion"]))
 {
     $report = new ReporteSistema();
     $report->RegistrarEvento(2);
