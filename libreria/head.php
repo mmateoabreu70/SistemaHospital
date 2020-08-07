@@ -49,7 +49,11 @@
                 <div id="sidebar-subheader">
                     <p><?php echo $_SESSION['rol'] ?></p>
                 </div>
-            
+
+                <li class="active">
+                    <a href="calendarioCitas.php">Calendario de citas</a>
+                </li>
+
                 <?php if($_SESSION['rol'] == 'Administrador'): ?>
 
                     <li class="active">
@@ -103,9 +107,26 @@
                         <a href="CumpleañosPorMes.php">Reporte de cumpleaños</a>
                     </li>
                 <?php endif ?>
-                <li class="active">
-                    <a href="calendarioCitas.php">Calendario de citas</a>
-                </li>
+
+                <?php if($_SESSION['rol'] == 'Medico'): ?>
+                    <li class="active">
+                        <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citas</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu2">
+                            <li class="active">
+                                <a href="asignarCitas.php" class="subOpcion">Asignar Citas</a>
+                            </li>
+                            <li class="active">
+                                <a href="CitasPendientesPorDia.php" class="subOpcion">Buscar citas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="Visita-Medico.php">Registrar visita</a>
+                    </li>
+                    <li class="active">
+                        <a href="Ver_Dinero.php">Ver total recaudado</a>
+                    </li>
+                <?php endif ?>
             </ul>
 
         </nav>
