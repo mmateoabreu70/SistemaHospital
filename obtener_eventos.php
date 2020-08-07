@@ -4,7 +4,7 @@
 include 'calendarioConfig.php'; 
 
 
-$sql="SELECT * FROM eventos"; 
+$sql="SELECT * FROM citas"; 
 
 
 if ($conexion->query($sql)->num_rows)

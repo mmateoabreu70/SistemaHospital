@@ -2,11 +2,11 @@
 
 session_start();
 
-
 date_default_timezone_set("America/Santiago");
 include 'calendarioFunciones.php';
 include 'calendarioConfig.php';
 include_once("libreria/head.php");
+
 if (isset($_POST['from'])) 
 {
 
@@ -28,11 +28,11 @@ if (isset($_POST['from']))
 
         $clase  = evaluar($_POST['class']);
 
-        $query="INSERT INTO eventos VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
+        $query="INSERT INTO citas VALUES(null,'$titulo','$body','','$clase','$inicio','$final','$inicio_normal','$final_normal')";
 
         $conexion->query($query); 
 
-        $im=$conexion->query("SELECT MAX(id) AS id FROM eventos");
+        $im=$conexion->query("SELECT MAX(id) AS id FROM citas");
         $row = $im->fetch_row();  
         $id = trim($row[0]);
 
@@ -40,7 +40,7 @@ if (isset($_POST['from']))
         $link = "$base_url"."descripcion_evento.php?id=$id";
 
   
-        $query="UPDATE eventos SET url = '$link' WHERE id = $id";
+        $query="UPDATE citas SET url = '$link' WHERE id = $id";
 
    
         $conexion->query($query); 
@@ -50,35 +50,7 @@ if (isset($_POST['from']))
     }
 }
 
- ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-        <meta charset="utf-8">
-        <title>Calendario</title>
-        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
-        <script src="<?=$base_url?>js/jquery.min.js"></script>
-        <script src="<?=$base_url?>js/moment.js"></script>
-        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
-        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
-        <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
-       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
-    </head>
-
-<style>
-    
-body{
-
-background-color: #FFFFFF;
-
-}
-
-</style>
-
-<body >
+?>
 
         <div class="container">
 
@@ -180,10 +152,7 @@ background-color: #FFFFFF;
 
 
               
-                        time_start: '08:00', 
-
-            
-                        time_end: '22:00',   
+                
 
                         time_split: '30',    
 
@@ -318,7 +287,5 @@ background-color: #FFFFFF;
   </div>
 </div>
 </div>
-</body>
-</html>
 
 <?php include_once("libreria/foot.php"); ?>
