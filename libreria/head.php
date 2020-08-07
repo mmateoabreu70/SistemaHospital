@@ -26,6 +26,10 @@
         $(document).ready(function() {
             $('#cedula').mask('000-0000000-0');
             $('#telefono').mask('000-000-0000');
+
+            if ($('#cedula').val() !== '') {
+                $('#datosPersona').submit();
+            }
         });
     </script>
 

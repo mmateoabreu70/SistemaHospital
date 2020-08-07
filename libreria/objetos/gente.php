@@ -50,30 +50,18 @@ class gente{
     }
 
     function guardar(){
-        if($this->cedula > 0){
-            $sql = "UPDATE 'pacientes'
-            SET
-            
-            'cedula' = '{$this->cedula}',
-            'nombre' = '{$this->nombre}',
-            'apellido' = '{$this->apellido}',
-            'nacimiento' = '{$this->nacimiento}',
-            'tipoSangre' = '{$this->tipoSangre}',
-            'telefono' = '{$this->telefono}',
+        
+        $sql = "insert into pacientes values ('{$this->cedula}','{$this->nombre}','{$this->apellido}','{$this->nacimiento}','{$this->tipoSangre}','{$this->telefono}');";
+        $link = conexion::getInstance();
+        $result = mysqli_query($link, $sql);
 
-            WHERE
-            'cedula' = '{$this->cedula}';";
-            $sql = "insert into pacientes values ('{$this->cedula}','{$this->nombre}','{$this->apellido}','{$this->nacimiento}','{$this->tipoSangre}','{$this->telefono}');";
-            $link = conexion::getInstance();
-            mysqli_query($link, $sql);
-            echo mysqli_error($link);
-        }else{
-            $sql = "insert into pacientes values ('{$this->cedula}','{$this->nombre}','{$this->apellido}','{$this->nacimiento}','{$this->tipoSangre}','{$this->telefono}');";
-            $link = conexion::getInstance();
-            mysqli_query($link, $sql);
-            echo mysqli_error($link);
-            $this->cedula = mysqli_insert_id($link);
+        if($result)
+        {
+            return true;
         }
+
+        return false;
+
     }
 
     function __toString(){
