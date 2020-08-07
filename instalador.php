@@ -346,38 +346,44 @@ if(isset($_POST['submit']))
         }    
 }
 ?>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Instalador</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-        <h2>Instalador de la tarea 7</h2>
-            <div class="row">
-                <div class="col col-sm-6">
-                <form action="" method="post">
-                    <div class="form-group input-group">
-                        <label class="input-group-addon">Escriba el nombre del servidor:</label>                       
-                        <input type="text" name="servidor" class="form-control" value="localhost" id="servidor">
-                    </div>
-                    <div class="form-group input-group">
-                        <label class="input-group-addon">Escriba el nombre de usuario:</label>                        
-                        <input type="text" name="usuario" class="form-control" value="root" id="usuario">
-                    </div>  
-                    <div class="form-group input-group">
-                        <label class="input-group-addon">Escriba la contraseña:</label>                         
-                        <input type="text" name="contraseña" class="form-control" value="" id="contraseña">
-                    </div>
-                    <div class="form-group input-group">
-                        <label class="input-group-addon">Escriba el nombre de la base de datos:</label>                        
-                        <input type="text" name="basededatos" class="form-control" value="sistemahospital" id="basededatos">
-                    </div>
-                    <button type="submit" name="submit" class="btn btn-success">Solo presione aqui</button>
-                </form>
-                </div>
-            </div> 
-        </div>                       
-    </body>    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Hospital</title>
+    <link rel="shortcut icon" href="source/logo/hospital.svg">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body style="background-image: url('source/background-login.jpg');">
+
+  <div class="container">
+  <h2>Instalador de la tarea 7</h2>
+      <div class="row">
+          <div class="col col-sm-6">
+          <form action="" method="post">
+              <div class="form-group input-group">
+                  <label class="input-group-addon">Escriba el nombre del servidor:</label>                       
+                  <input type="text" name="servidor" class="form-control" value="localhost" id="servidor">
+              </div>
+              <div class="form-group input-group">
+                  <label class="input-group-addon">Escriba el nombre de usuario:</label>                        
+                  <input type="text" name="usuario" class="form-control" value="root" id="usuario">
+              </div>  
+              <div class="form-group input-group">
+                  <label class="input-group-addon">Escriba la contraseña:</label>                         
+                  <input type="text" name="contraseña" class="form-control" value="" id="contraseña">
+              </div>
+              <div class="form-group input-group">
+                  <label class="input-group-addon">Escriba el nombre de la base de datos:</label>                        
+                  <input type="text" name="basededatos" class="form-control" value="sistemahospital" id="basededatos">
+              </div>
+              <button type="submit" name="submit" class="btn btn-success">Solo presione aqui</button>
+          </form>
+          </div>
+      </div> 
+  </div>                       
+</body>    
 </html>
