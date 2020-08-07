@@ -1,5 +1,4 @@
 <?php
-//Esta es la configuracion de la base de datos
 
 define("DB_HOST", "localhost");
 define("DB_USER", "root");

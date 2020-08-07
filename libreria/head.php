@@ -2,17 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        Sistema Hospital
-    </title>
-    <link rel="shortcut icon" href="source/logo/hospital.svg">
-
+    <title>Pacientes</title>
 
     <!--main js-->
-    <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery.mask.js"></script>
     <script src="js/main.js"></script>
 
     <!--css-->
@@ -21,11 +16,17 @@
 
     <!-- Bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#cedula').mask('000-0000000-0');
+        });
+    </script>
 
     <style>
         body {
@@ -68,22 +69,45 @@
                     <li class="active">
                         <a href="precioConsulta.php">Precio de consultas</a>
                     </li>
-                <?php endif ?> 
-                
-                <?php if($_SESSION['rol'] == 'Medico'): ?>
                     <li class="active">
-                        <a href="Visita-Medico.php">Asignar visita</a>
+                        <a href="CitasPendientesPorDia.php">Buscar citas</a>
+                    </li>
+
+                <?php endif ?>
+                
+                <?php if($_SESSION['rol'] == 'Asistente'): ?>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacientes</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="crearPaciente.php" class="subOpcion">Crear pacientes</a>
+                            </li>
+                            <li>
+                                <a href="verPacientes.php" class="subOpcion">Ver pacientes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Citas</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu2">
+                            <li class="active">
+                                <a href="asignarCitas.php" class="subOpcion">Asignar Citas</a>
+                            </li>
+                            <li class="active">
+                                <a href="CitasPendientesPorDia.php" class="subOpcion">Buscar citas</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <li class="active">
-                        <a href="Ver_Dinero.php">Ver total recaudado</a>
+                        <a href="CumpleañosPorMes.php">Reporte de cumpleaños</a>
                     </li>
                 <?php endif ?>
                 <li class="active">
-                    <a href="#">Calendario de citas</a>
+                    <a href="calendarioCitas.php">Calendario de citas</a>
                 </li>
             </ul>
-            <div id="sidebar-foot"></div>
+
         </nav>
 
         <!--Contenido de la pagina-->

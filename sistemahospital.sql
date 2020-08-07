@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 05-08-2020 a las 18:02:45
--- Versión del servidor: 8.0.18
--- Versión de PHP: 7.3.11
+-- Servidor: localhost:3307
+-- Tiempo de generación: 07-08-2020 a las 05:20:08
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,26 +35,21 @@ CREATE TABLE `citas` (
   `medico` int(11) DEFAULT NULL,
   `paciente` varchar(13) DEFAULT NULL,
   `costo` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `citas`
 --
 
 INSERT INTO `citas` (`id`, `fechaCita`, `hora`, `duracion`, `medico`, `paciente`, `costo`) VALUES
-(7, '2020-08-02', '13:57:00', '1 minutos', 27, '001-1234567-1', 700),
-(8, '2020-08-02', '01:59:00', '5 minutos', 40, '031-2489481-2', 700),
-(9, '2020-08-02', '01:05:00', '14 minutos', 52, '201-9373920-3', 700),
 (10, '2020-08-18', '10:03:00', '7 minutos', 27, '894-2098340-5', 700),
 (11, '2020-08-18', '03:05:00', '8 minutos', 52, '892-0139080-1', 700),
-(12, '2020-08-18', '16:07:00', '25 minutos', 40, '092-8439408-4', 700),
-(13, '2020-06-16', '03:05:00', '10 minutos', 40, '897-4329474-2', 700),
-(14, '2020-07-21', '02:07:00', '35 minutos', 52, '894-2098340-5', 700),
-(15, '2020-08-02', '03:06:00', '19 minutos', 27, '892-0139080-1', 700),
-(16, '2020-06-21', '15:07:00', '12 minutos', 27, '894-2098340-5', 700),
-(17, '2020-07-28', '10:08:00', '9 minutos', 52, '032-1638493-0', 700),
-(18, '2020-07-21', '02:08:00', '19 minutos', 40, '892-0139080-1', 700),
-(19, '2020-08-21', '12:00:00', '30 minutos', 40, '402-4350210-8', 700);
+(19, '2020-08-08', '22:00:00', '30 minutos', 27, '001-1234567-1', 700),
+(20, '2020-08-08', '12:00:00', '30 minutos', 27, '897-4329474-2', 700),
+(21, '2020-10-23', '15:30:00', '30 minutos', 40, '201-9373920-3', 700),
+(22, '2020-09-24', '09:30:00', '30 minutos', 52, '098-7654321-1', 700),
+(23, '2020-08-21', '16:30:00', '30 minutos', 52, '892-0139080-1', 700),
+(24, '2020-08-21', '16:30:00', '30 minutos', 52, '892-0139080-1', 700);
 
 -- --------------------------------------------------------
 
@@ -75,6 +69,37 @@ CREATE TABLE `estado` (
 INSERT INTO `estado` (`idEstado`, `estado`) VALUES
 (1, 'Activo'),
 (2, 'Inactivo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `eventos`
+--
+
+CREATE TABLE `eventos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `body` text COLLATE utf8_spanish_ci NOT NULL,
+  `url` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
+  `class` varchar(45) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'event-important',
+  `start` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `end` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `inicio_normal` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `final_normal` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `eventos`
+--
+
+INSERT INTO `eventos` (`id`, `title`, `body`, `url`, `class`, `start`, `end`, `inicio_normal`, `final_normal`) VALUES
+(17, 'Narutitis', 'Ver mucho naruto ', 'http://localhost/sistemahospital/descripcion_evento.php?id=17', 'event-info', '1603434600000', '1603434600000', '23/10/2020 3:30', '23/10/2020 3:30'),
+(19, 'Radiografia para la nalga', 'Se partio las nalgas ', 'http://localhost/sistemahospital/descripcion_evento.php?id=19', 'event-success', '1600950600000', '1600950600000', '24/09/2020 9:30', '24/09/2020 9:30'),
+(21, 'Dolores de cabeza y nariz', 'Intento hacer el auto examen del covid-19 y salio mal ', 'http://localhost/sistemahospital/descripcion_evento.php?id=21', 'event-info', '1597759200000', '1597759200000', '18/08/2020 10:00', '18/08/2020 10:00'),
+(22, 'Dolores nalgales', 'Intento darse placer por lugares no debidos', 'http://localhost/sistemahospital/descripcion_evento.php?id=22', 'event-info', '1596938400000', '1596938400000', '08/08/2020 22:00', '08/08/2020 22:00'),
+(23, 'Viene a solicitar la pasantia medica', 'Necesita la pansantia por motivos universitarios', 'http://localhost/sistemahospital/descripcion_evento.php?id=23', 'event-warning', '1596902400000', '1596902400000', '08/08/2020 12:00', '08/08/2020 12:00'),
+(24, 'Nuevo Doctor', 'Entrevista al Doctor Armado Paredes', 'http://localhost/sistemahospital/descripcion_evento.php?id=24', 'event-important', '1597734300000', '1597734300000', '18/08/2020 3:05', '18/08/2020 3:05'),
+(25, 'cumpleaños', 'Me gusta los carritos', 'http://localhost/sistemahospital/descripcion_evento.php?id=25', 'event-info', '1612522800000', '1612522800000', '05/02/2021 8:00', '05/02/2021 8:00');
 
 -- --------------------------------------------------------
 
@@ -103,7 +128,6 @@ INSERT INTO `pacientes` (`cedula`, `nombre`, `apellido`, `nacimiento`, `tipoSang
 ('092-8439408-4', 'Cesar Javier', 'Martinez Garrido', '1985-02-18', 'B+', '8092105643'),
 ('098-7654321-1', 'Carlos Javier', 'Pascual Polanco', '1998-06-05', 'B+', '8092154783'),
 ('201-9373920-3', 'alfredo', 'rubio', '1971-01-28', 'B+', '8492154738'),
-('402-4350210-8', 'Michael', 'Mateo', '2000-02-05', 'A+', '8492559737'),
 ('613-2879648-7', 'Argenis', 'Rubio', '1995-09-20', 'A+', '8090789402'),
 ('817-9034793-8', 'Alofoke', 'Music', '1994-10-19', 'A+', '8296749128'),
 ('820-9348320-9', 'Pedro', 'Martinez', '1999-04-02', 'A+', '8098623612'),
@@ -193,6 +217,18 @@ INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `p
 (42, '2020-08-05 13:50:36', 2, 1, NULL),
 (43, '2020-08-05 13:51:53', 1, 27, NULL),
 (44, '2020-08-05 13:52:47', 9, 27, NULL);
+
+--
+-- Volcado de datos para la tabla `reportesistema`
+--
+
+INSERT INTO `reportesistema` (`idReporte`, `fecha_hora`, `evento`, `usuario`, `pacienteAfect`) VALUES
+(1, '2020-07-29 23:25:13', 1, 20, NULL),
+(2, '2020-07-30 00:10:05', 1, 20, NULL),
+(3, '2020-07-30 13:45:18', 1, 20, NULL),
+(4, '2020-07-30 22:51:26', 1, 20, NULL),
+(5, '2020-08-01 21:57:17', 1, 20, NULL),
+(6, '2020-08-02 20:24:12', 1, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -316,6 +352,12 @@ ALTER TABLE `estado`
   ADD PRIMARY KEY (`idEstado`);
 
 --
+-- Indices de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
@@ -370,13 +412,19 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT de la tabla `eventos`
+--
+ALTER TABLE `eventos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `reportesistema`
 --
 ALTER TABLE `reportesistema`
-  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `idReporte` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
