@@ -21,55 +21,7 @@ if(isset($_SESSION['user']))
         
         $resultado = null;
         $resultado = mysqli_query($conexion, $query);  
-    }
-
-}
-else {
-    header("Location:index.php");
-}
-
-?>
-
-
-<div class="container">
-    <!-- Nombre de la pagina -->  
-     <h3 align ="center">     
-     Buscar citas por fecha
-     </h3>
-     <br>
-     <!--Formulario de citas-->
-     <div align ="center" >
-       <div class="col col-sm-6">
-         <form align="center" enctype="multipart/form-data" method="POST" action="">
-         <!--Citas-->
-         <div class="form-row col-12 py-2">
-                <!--label-->
-                <label class="input-group-addon" for="citas">Fecha</label>
-                <!--Input tipo date-->
-                <input type="date" name="fechacita" value="00/00/0000" id="fechacita" class="form-control"/>                     
-            </div>
-         <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar</button>
-        </div>        
-         </form>     
-     </div>     
-</div>
-<div>
-    <h4>Citas encontradas</h4>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>      
-                <th>#</th>    
-                <th>Hora</th>                   
-                <th>Paciente</th>
-                <th>Medico</th>               
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php
-
-                $count = 0;
+        $count = 0;
                 
                 if($resultado != null)
                 {
@@ -98,6 +50,55 @@ else {
                         
                     ";
                 }   
+    }
+
+}
+else {
+    header("Location:index.php");
+}
+
+?>
+
+
+<div class="container">
+    <!-- Nombre de la pagina -->  
+     <h3 align ="center">     
+     Buscar citas por fecha
+     </h3>
+     <br>
+     <!--Formulario de citas-->
+     <div align ="center" >
+       <div class="col col-sm-6">
+         <form align="center" enctype="multipart/form-data" method="POST" action="">
+         <!--Citas-->
+         <div class="form-row col-12 py-2">
+                <!--label-->
+                <label class="input-group-addon" for="citas">Fecha</label>
+                <!--Input tipo date-->
+                <input type="date" name="fechacita" id="fechacita" class="form-control"/>                     
+            </div>
+         <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar</button>
+        </div>        
+         </form>     
+     </div>     
+</div>
+<div>
+    <h4>Citas encontradas</h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>      
+                <th>#</th>    
+                <th>Hora</th>                   
+                <th>Paciente</th>
+                <th>Medico</th>               
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+
+                
             ?>
         </tbody>
     </table>
