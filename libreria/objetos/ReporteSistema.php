@@ -18,7 +18,6 @@ class ReporteSistema
 
     function RegistrarEvento($idEvento, $idPaciente = "")
     {
-        session_start();
 
         //Obteniendo fecha y hora
         date_default_timezone_set('America/Santo_Domingo');
@@ -52,3 +51,4 @@ class ReporteSistema
         return mysqli_query($con, $sql);
     }
 }
+?>

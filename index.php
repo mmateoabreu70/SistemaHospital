@@ -1,11 +1,10 @@
 <?php
 session_start();
-include_once("libreria/includes.php");
+include_once("libreria/head.php");
 
 if(!isset($_SESSION['user'])){
-    header("Location: login.php");
+    header("Location:login.php");
 }
-
 
 ?>
 
