@@ -46,7 +46,7 @@ if (isset($_POST['from']))
         $conexion->query($query); 
 
 
-        header("Location:$base_url"); 
+        
 
         
     }
@@ -61,6 +61,7 @@ if (isset($_POST['from']))
         <title>Calendario</title>
         <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
         <script src="<?=$base_url?>js/jquery.min.js"></script>
         <script src="<?=$base_url?>js/moment.js"></script>

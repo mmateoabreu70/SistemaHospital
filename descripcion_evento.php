@@ -43,7 +43,7 @@ if (isset($_POST['eliminar_evento']))
 <html lang="en">
 <br><br><br><br>
 <center>
-    <center color="white"><h1 color="white"><font color="white">CITAS PENDIENTES</h1></center>
+    <center color="white"><h1 color="white"><font color="black">CITA PENDIENTE</h1></center>
     <br>
     <br>
 
@@ -80,18 +80,18 @@ body{
 </style>
 
 <body>
-    <h2 ><font color="white">Título:</h2>
-	 <h3><font color="white"><?=$titulo?></font></h3>
+    <h2 ><font color="black">Título:</h2>
+	 <h3><font color="black"><?=$titulo?></font></h3>
      <br>
-      <h3><font color="white">Cita:</font></h3>
+      <h3><font color="black">Cita:</font></h3>
      <p><?=$evento?></p>
 	 
-     <h3><font color="white">La Cita es el:</h3>
+     <h3><font color="black">La Cita es el:</h3>
      <b>Fecha inicio:</b> <?=$inicio?>
      <br>
      <br>
      <br>
-     <h3><font color="white">La Cita termina el:</h3>
+     <h3><font color="black">La Cita termina el:</h3>
      <b>Fecha termino:</b> <?=$final?>
 </body>
 <br>
@@ -101,7 +101,7 @@ body{
 
 </form>
 <br>
-<form action="index.php" method="post">
+<form action="calendarioCitas.php" method="post">
     <button type="submit" class="btn btn-success" >Volver</button>
     
 </form>
