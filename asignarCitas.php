@@ -1,24 +1,24 @@
 <?php
   session_start();
-include_once("libreria/includes.php");
-$conexion = Conexion::getInstance();
-?>
-<?php
+    include_once("libreria/includes.php");
+    $conexion = Conexion::getInstance();
     
-    //if($_SESSION['rol'] == 'Asistente')
-    //{
+    if($_SESSION['rol'] == 'Asistente' || $_SESSION['rol'] == 'Medico')
+    {
     
-     // Entra aqui cuando se preciona el boton Agregar cita
+        // Entra aqui cuando se preciona el boton Agregar cita
         if(isset($_POST['agregarcita']))
         {
-        // Se guardan los datos capturados en los inputs y los drop down list y se guardan en variables
-        $paciente = $_POST['cedula'];
-        $fechacita = $_POST['fechacita'];
-        $hora = $_POST['hora'];
-        $duracion = $_POST['duracion'];
-        $medico = $_POST['medico'];        
-        $query = "SELECT precio FROM precioconsultas WHERE id=1";
-        $resultado3 = mysqli_query($conexion,$query);
+            // Se guardan los datos capturados en los inputs y los drop down list y se guardan en variables
+            $paciente = $_POST['cedula'];
+            $fechacita = $_POST['fechacita'];
+            $hora = $_POST['hora'];
+            $duracion = $_POST['duracion'];
+            $medico = $_POST['medico'];        
+            $query = "SELECT precio FROM precioconsultas WHERE id=1";
+            $resultado3 = mysqli_query($conexion,$query);
+        }
+
         if($row3=mysqli_fetch_array($resultado3))
         {
             $costo = $row3['precio'];
@@ -27,10 +27,10 @@ $conexion = Conexion::getInstance();
         //Se mandan los datos a la base de datos
         $conexion->query("INSERT INTO citas (fechaCita,hora,duracion,medico,paciente,costo) 
         values ('$fechacita','$hora','$duracion minutos','$medico','$paciente','$costo')");    
-        }
-    /*} else {
+
+    } else {
         header("Location:index.php");
-    } */  
+    }   
 ?>
 
 <div class="container">

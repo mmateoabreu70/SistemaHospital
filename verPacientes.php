@@ -14,6 +14,7 @@
 
         $sql = "SELECT * FROM pacientes";
         $datos = mysqli_query($con, $sql);
+        
     } else {
         header("Location: index.php");
     }

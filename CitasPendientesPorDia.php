@@ -2,20 +2,39 @@
 session_start();
 include_once("libreria/includes.php");
 
-if($_SESSION['rol'] == 'Asistente' || $_SESSION['rol'] == 'Medico')
+if(isset($_SESSION['user']))
 {
-    $conexion = Conexion::getInstance();
+
+    if($_POST)
+    {
+        $conexion = Conexion::getInstance();
+
+        $fecha = $_POST['fechacita'];
+        $fecha = date("Y-m-d", strtotime($fecha));  
+        $fecha = "'$fecha'";              
+        $query = "SELECT id, nombre, apellido, nomUser, apellidoUser, hora 
+                  FROM citas   
+                  INNER JOIN pacientes ON citas.paciente = pacientes.cedula
+                  INNER JOIN usuarios ON citas.medico = usuarios.idUsuario
+                  WHERE fechaCita = $fecha
+                  ORDER BY hora asc"; 
+        
+        $resultado = null;
+        $resultado = mysqli_query($conexion, $query);  
+    }
+
 }
 else {
     header("Location:index.php");
 }
+
 ?>
 
 
 <div class="container">
     <!-- Nombre de la pagina -->  
      <h3 align ="center">     
-     Citas
+     Buscar citas por fecha
      </h3>
      <br>
      <!--Formulario de citas-->
@@ -29,42 +48,57 @@ else {
                 <!--Input tipo date-->
                 <input type="date" name="fechacita" id="fechacita" class="form-control"/>                     
             </div>
-         <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar cita por fecha</button>
+         <button type="submit" name="consultarcitaporfecha" class="btn btn-success">Consultar</button>
         </div>        
          </form>     
      </div>     
 </div>
 <div>
-    <h4>Citas pendientes</h4>
+    <h4>Citas encontradas</h4>
     <table class="table">
         <thead class="thead-dark">
-            <tr>                             
+            <tr>      
+                <th>#</th>    
+                <th>Hora</th>                   
                 <th>Paciente</th>
-                <th>Medico</th>
-                <th>Fecha</th>                
-                <th>Hora</th>
-
+                <th>Medico</th>               
+                <th></th>
             </tr>
         </thead>
         <tbody>
+
             <?php
-            if(isset($_POST['consultarcitaporfecha']))
-            {
-                $fecha = $_POST['fechacita'];
-                $fecha = date("Y-m-d", strtotime($fecha));  
-                $fecha = "'$fecha'";              
-                $query = "SELECT `paciente`,`medico`,`fechaCita`,`hora` FROM citas WHERE fechaCita = $fecha";                   
-                $resultado = mysqli_query($conexion, $query);                                     
-                while($row=mysqli_fetch_array($resultado))
+
+                $count = 0;
+
+                if($resultado != null)
                 {
-                    echo "<tr>
-                    <td>{$row['paciente']}</td>
-                    <td>{$row['medico']}</td>
-                    <td>{$row['fechaCita']}</td>
-                    <td>{$row['hora']}</td>                                   
-                    </tr>";
-                }
-            }           
+                    foreach($resultado as $row)
+                    {
+                        $count++;
+    
+                        echo "<tr>
+                            <td>{$count}</td>
+                            <td>{$row['hora']}</td>   
+                            <td>{$row['nombre']} {$row['apellido']}</td>
+                            <td>{$row['nomUser']} {$row['apellidoUser']}</td>
+                            <td>
+                                <a href='cita.php?id={$row['id']}' class='btn btn-info'>Ver</a>
+                            </td>                                
+                        </tr>";
+                    } 
+                }    
+                else {
+                    echo "
+                        
+                        <td colspan='5'>
+                            <center>
+                                No hay resultados
+                            </center>
+                        </td>
+                        
+                    ";
+                }   
             ?>
         </tbody>
     </table>
