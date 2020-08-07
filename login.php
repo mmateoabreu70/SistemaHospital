@@ -1,38 +1,32 @@
 <?php
-session_start();
+
 include_once("libreria/objetos/login.php");
 
 $errorMsg = "";
 $usuario = "";
 $pass = "";
 
-if(isset($_SESSION['user']))
+if($_POST)
 {
-    header("Location:index.php");
-}
-else {
+   
 
-    if($_POST)
+    /* Recuperando informacion de los inputs */
+    $usuario = $_POST['usuario'];
+    $pass = $_POST['password'];
+
+    /* Instanciar objeto Login y asignando valores a las propiedades */ 
+    $login = new Login();
+
+    $login->user = $usuario;
+    $login->pass = $pass;
+
+    $confirm = $login->validarUsuario();
+
+    if(!$confirm)
     {
-    
-        /* Recuperando informacion de los inputs */
-        $usuario = $_POST['usuario'];
-        $pass = $_POST['password'];
-
-        /* Instanciar objeto Login y asignando valores a las propiedades */ 
-        $login = new Login();
-
-        $login->user = $usuario;
-        $login->pass = $pass;
-
-        $confirm = $login->validarUsuario();
-
-        if(!$confirm)
-        {
-            $errorMsg = "Usuario o contraseña incorrecto";
-        } else {
-            header("Location:index.php");
-        }
+        $errorMsg = "Usuario o contraseña incorrecto";
+    } else {
+        header("Location: index.php");
     }
 }
 
