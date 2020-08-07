@@ -359,7 +359,7 @@ if(isset($_POST['submit']))
 </head>
 <body style="background-image: url('source/background-login.jpg');">
 
-  <div class="container">
+  <div class="main-div">
   <h2>Instalador de la tarea 7</h2>
       <div class="row">
           <div class="col col-sm-6">
