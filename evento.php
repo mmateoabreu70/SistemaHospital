@@ -46,15 +46,46 @@ if (isset($_POST['from']))
         $conexion->query($query); 
 
 
-        header("Location:$base_url"); 
+        
 
         
     }
 }
 
-?>
+ ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="utf-8">
+        <title>Calendario</title>
+        <link rel="stylesheet" href="<?=$base_url?>css/calendar.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script type="text/javascript" src="<?=$base_url?>js/es-ES.js"></script>
+        <script src="<?=$base_url?>js/jquery.min.js"></script>
+        <script src="<?=$base_url?>js/moment.js"></script>
+        <script src="<?=$base_url?>js/bootstrap.min.js"></script>
+        <script src="<?=$base_url?>js/bootstrap-datetimepicker.js"></script>
+        <link rel="stylesheet" href="<?=$base_url?>css/bootstrap-datetimepicker.min.css" />
+       <script src="<?=$base_url?>js/bootstrap-datetimepicker.es.js"></script>
+    </head>
 
 
+<style>
+    
+body{
+
+
+    background-image: url(images/fondo7.jpg);
+
+
+
+}
+  
+</style>
+
+<body >
 
         <div class="container">
 <center>
@@ -129,7 +160,118 @@ if (isset($_POST['from']))
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
         </div>
+<!--
+    <script src="<?=$base_url?>js/underscore-min.js"></script>
+    <script src="<?=$base_url?>js/calendar.js"></script>
+    <script type="text/javascript">
 
+        (function($){
+                //creamos la fecha actual
+                var date = new Date();
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
+                var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
+
+                //establecemos los valores del calendario
+                var options = {
+
+                    // definimos que los eventos se mostraran en ventana modal
+                        modal: '#events-modal', 
+
+                        // dentro de un iframe
+                        modal_type:'iframe',    
+
+                        //obtenemos los eventos de la base de datos
+                        events_source: '<?=$base_url?>obtener_eventos.php', 
+
+                        // mostramos el calendario en el mes
+                        view: 'month',             
+
+                        // y dia actual
+                        day: yyyy+"-"+mm+"-"+dd,   
+
+
+                        // definimos el idioma por defecto
+                        language: 'es-ES', 
+
+                        //Template de nuestro calendario
+                        tmpl_path: '<?=$base_url?>tmpls/', 
+                        tmpl_cache: false,
+
+
+                        // Hora de inicio
+                        time_start: '08:00', 
+
+                        // y Hora final de cada dia
+                        time_end: '22:00',   
+
+                        // intervalo de tiempo entre las hora, en este caso son 30 minutos
+                        time_split: '30',    
+
+                        // Definimos un ancho del 100% a nuestro calendario
+                        width: '100%', 
+
+                        onAfterEventsLoad: function(events)
+                        {
+                                if(!events)
+                                {
+                                        return;
+                                }
+                                var list = $('#eventlist');
+                                list.html('');
+
+                                $.each(events, function(key, val)
+                                {
+                                        $(document.createElement('li'))
+                                                .html('<a href="' + val.url + '">' + val.title + '</a>')
+                                                .appendTo(list);
+                                });
+                        },
+                        onAfterViewLoad: function(view)
+                        {
+                                $('.page-header h2').text(this.getTitle());
+                                $('.btn-group button').removeClass('active');
+                                $('button[data-calendar-view="' + view + '"]').addClass('active');
+                        },
+                        classes: {
+                                months: {
+                                        general: 'label'
+                                }
+                        }
+                };
+
+
+                // id del div donde se mostrara el calendario
+                var calendar = $('#calendar').calendar(options); 
+
+                $('.btn-group button[data-calendar-nav]').each(function()
+                {
+                        var $this = $(this);
+                        $this.click(function()
+                        {
+                                calendar.navigate($this.data('calendar-nav'));
+                        });
+                });
+
+                $('.btn-group button[data-calendar-view]').each(function()
+                {
+                        var $this = $(this);
+                        $this.click(function()
+                        {
+                                calendar.view($this.data('calendar-view'));
+                        });
+                });
+
+                $('#first_day').change(function()
+                {
+                        var value = $(this).val();
+                        value = value.length ? parseInt(value) : null;
+                        calendar.setOptions({first_day: value});
+                        calendar.view();
+                });
+        }(jQuery));
+    </script>
+-->
 <div class="modal fade" id="add_evento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">

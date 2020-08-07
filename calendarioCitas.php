@@ -55,7 +55,35 @@ if (isset($_POST['from']))
         <div class="container">
 
 
+     <!--   <center>
+                <div class="row">
 
+                        
+                        <br>
+                        <div class="borde">
+                            <br>
+                        <a href="calendarioCitas.php">
+                        <button class="btn btn-success">
+                          
+                        Actualizar 
+                            
+                        </button>
+                        
+                        </a>
+                        <a href="evento.php">
+                        <button class="btn btn-warning">
+                          
+                        + Cita
+                            
+                        </button>
+                        </a>
+                        </div>
+                        
+                                
+
+                </div>
+
+  </center>  -->
 <div class="borde1">
  <center><font color="red" face="Algerian"><div class="page-header"><h2></h2></div></font></center>
     <center>

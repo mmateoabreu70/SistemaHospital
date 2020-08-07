@@ -8,7 +8,7 @@ include 'calendarioConfig.php';
 
     $id  = evaluar($_GET['id']);
 
-    $bd  = $conexion->query("SELECT * FROM citas WHERE id=$id");
+    $bd  = $conexion->query("SELECT * FROM eventos WHERE id=$id");
 
 
     $row = $bd->fetch_assoc();
@@ -25,20 +25,61 @@ include 'calendarioConfig.php';
 if (isset($_POST['eliminar_evento'])) 
 {
     $id  = evaluar($_GET['id']);
-    $sql = "DELETE FROM citas WHERE id = $id";
+    $sql = "DELETE FROM eventos WHERE id = $id";
     if ($conexion->query($sql)) 
     {
-        echo "citas eliminado";
+        echo "Evento eliminado";
     }
     else
     {
-        echo "El citas no se pudo eliminar";
+        echo "El evento no se pudo eliminar";
     }
 }
 
 
  ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<br><br><br><br>
+<center>
+    <center color="white"><h1 color="white"><font color="black">CITA PENDIENTE</h1></center>
+    <br>
+    <br>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Citas</title>
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<style>
+
+.borde{
+
+border-radius: 20px;
+border-style: groove; border-width: 4px;
+width: 300px;
+height: 85px;
+
+}
+
+body{
+
+
+    background-image: url('source/background-login.jpg');
+
+
+
+}
+
+
+</style>
+
+<body>
     <h2 ><font color="black">Título:</h2>
 	 <h3><font color="black"><?=$titulo?></font></h3>
      <br>
@@ -52,7 +93,6 @@ if (isset($_POST['eliminar_evento']))
      <br>
      <h3><font color="black">La Cita termina el:</h3>
      <b>Fecha termino:</b> <?=$final?>
-     
 </body>
 <br>
 <br>
@@ -61,7 +101,7 @@ if (isset($_POST['eliminar_evento']))
 
 </form>
 <br>
-<form action="calendarioIndex.php" method="post">
+<form action="calendarioCitas.php" method="post">
     <button type="submit" class="btn btn-success" >Volver</button>
     
 </form>
