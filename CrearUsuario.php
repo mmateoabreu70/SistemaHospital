@@ -2,6 +2,8 @@
 session_start();
 include_once("libreria/includes.php");
 
+$errorMsg = "";
+
 if($_SESSION['rol'] == 'Administrador')
 {
 
@@ -51,12 +53,11 @@ if($_SESSION['rol'] == 'Administrador')
             $errorMsg = $result;
 
             /* Verifica si no hubo error */
-            if( $errorMsg == "" || $errorMsg == 1)
+            if($errorMsg == "" || $errorMsg == 1)
             {
-                header("Location:CrearUsuario.php");
+                header("Location:AdminUsuario.php");
             }
         }
-
     } elseif(isset($_GET['id'])) {
 
         /* Consiguiendo usuario por id */
@@ -79,7 +80,6 @@ if($_SESSION['rol'] == 'Administrador')
 else {
     header("Location: index.php");
 }
-
 ?>
 <div class="px-xl-5 py-3 ">
     <div class="p-3">

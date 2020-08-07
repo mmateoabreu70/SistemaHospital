@@ -7,7 +7,7 @@ if(isset($_GET['accion']))
     $report->RegistrarEvento(2);
 
     session_destroy();
-    header("Location:index.php");
+    header("Location:login.php");
 }
 
 function devolverRol($rol)
