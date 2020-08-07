@@ -125,10 +125,7 @@
                     </li>
                     <li class="active">
                         <a href="Ver_Dinero.php">Ver total recaudado</a>
-                    </li>
-                <?php endif ?>
-            </ul>
-
+                    </li><?php endif?></ul>
         </nav>
 
         <!--Contenido de la pagina-->
