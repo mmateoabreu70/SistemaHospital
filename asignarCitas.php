@@ -17,7 +17,6 @@
             $medico = $_POST['medico'];        
             $query = "SELECT precio FROM precioconsultas WHERE id=1";
             $resultado3 = mysqli_query($conexion,$query);
-        }
 
         if($row3=mysqli_fetch_array($resultado3))
         {
@@ -26,8 +25,8 @@
         
         //Se mandan los datos a la base de datos
         $conexion->query("INSERT INTO citas (fechaCita,hora,duracion,medico,paciente,costo) 
-        values ('$fechacita','$hora','$duracion minutos','$medico','$paciente','$costo')");    
-
+        values ('$fechacita','$hora','$duracion' ,'$minutos','$medico','$paciente','$costo')");    
+        }
     } else {
         header("Location:index.php");
     }   
