@@ -21,35 +21,6 @@ if(isset($_SESSION['user']))
         
         $resultado = null;
         $resultado = mysqli_query($conexion, $query);  
-        $count = 0;
-                
-                if($resultado != null)
-                {
-                    foreach($resultado as $row)
-                    {
-                        $count++;
-    
-                        echo "<tr>
-                            <td>{$count}</td>
-                            <td>{$row['hora']}</td>   
-                            <td>{$row['nombre']} {$row['apellido']}</td>
-                            <td>{$row['nomUser']} {$row['apellidoUser']}</td>
-                            <td>
-                                <a href='cita.php?id={$row['id']}' class='btn btn-info'>Ver</a>
-                            </td>                                
-                        </tr>";
-                    } 
-                }    
-                else {
-                    echo "                        
-                        <td colspan='5'>
-                            <center>
-                                No hay resultados
-                            </center>
-                        </td>
-                        
-                    ";
-                }   
     }
 
 }
@@ -98,7 +69,33 @@ else {
 
             <?php
 
-                
+                $count = 0;
+                if(empty($resultado))
+                {
+                    echo "                      
+                        <td colspan='5'>
+                            <center>
+                                No hay resultados
+                            </center>
+                        </td>                        
+                    ";
+                }else
+                {
+                    foreach($resultado as $row)
+                    {
+                        $count++;
+    
+                        echo "<tr>
+                            <td>{$count}</td>
+                            <td>{$row['hora']}</td>   
+                            <td>{$row['nombre']} {$row['apellido']}</td>
+                            <td>{$row['nomUser']} {$row['apellidoUser']}</td>
+                            <td>
+                                <a href='cita.php?id={$row['id']}' class='btn btn-info'>Ver</a>
+                            </td>                                
+                        </tr>";
+                    } 
+                }              
             ?>
         </tbody>
     </table>

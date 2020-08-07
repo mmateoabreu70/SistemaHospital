@@ -81,7 +81,6 @@ else {
 }
 
 ?>
-
 <div class="px-xl-5 py-3 ">
     <div class="p-3">
         <?php
@@ -168,5 +167,4 @@ else {
         </div>
     </form>
 </div>
-
 <?php include_once("libreria/foot.php"); ?>

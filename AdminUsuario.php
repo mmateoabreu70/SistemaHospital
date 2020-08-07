@@ -24,7 +24,6 @@
     } else {
         header("Location:index.php");
     }
-
 ?>
 
 <div class="px-3">
